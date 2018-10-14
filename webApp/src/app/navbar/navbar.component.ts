@@ -28,6 +28,7 @@ export class NavbarComponent implements OnInit {
   addjQuerySideBarToggle() {
     jQuery('#sidebarCollapse').on('click', () => {
       jQuery('#sidebar').toggleClass('active');
+      jQuery('#rightBox').toggleClass('active');
     });
   }
 }
