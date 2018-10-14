@@ -11,5 +11,11 @@ export class LogInComponent implements OnInit {
 
   ngOnInit() {
   }
+  keyDownFunction() {
+
+  }
+  onSubmit() {
+
+  }
 
 }
