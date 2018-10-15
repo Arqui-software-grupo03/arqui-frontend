@@ -11,5 +11,11 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {
   }
+  keyDownFunction(username, password, event) {
+
+  }
+  onSubmit(username, password, event) {
+
+  }
 
 }
