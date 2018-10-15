@@ -15,7 +15,7 @@ export class LogInComponent implements OnInit {
 
   }
   onSubmit(username, password, event) {
-
+    event.preventDefault();
   }
 
 }

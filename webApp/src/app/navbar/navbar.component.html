@@ -1,98 +1,40 @@
 <div class="wrapper">
-    <!-- Sidebar -->
-    <nav id="sidebar">
-        <app-sidebar></app-sidebar>
-    </nav>
-    <div id="content">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-    
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                    <i class="fa fa-align-justify"></i>
-                    
-                </button>
-    
-          
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="nav navbar-nav">
-                    
-                    <li class="nav-item" data-toggle="tooltip" title="Prueba" data-placement="top">
-                      <a class="nav-link nav-color" routerLink='/'>
-                        HOME
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link nav-color" routerLink='/'>
-                        Posts
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link nav-color" routerLink='/'>
-                        Perfil
-                      </a>
-                    </li>
-                  </ul>
-                  <ul class="nav navbar-nav" id="rightBox">
-                    <li class="nav-item dropdown">
-                      <a class="btn btn-primary dropdown-toggle" href="#" id="logInDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        Iniciar Sesión
-                      </a>
-                      <app-login></app-login>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a class="btn btn-danger dropdown-toggle" href="#" id="signUpDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                          aria-expanded="false">
-                          Inscríbete
-                      </a>
-                      <app-signup></app-signup>
-                    </li>
-                  
-                  </ul>
-                </div>
-              </div>
-        </nav>
-    </div>
-</div>
+  <!-- Sidebar -->
+  <nav id="sidebar">
+      <app-sidebar></app-sidebar>
+  </nav>
+  <div id="content">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button type="button" id="sidebarCollapse" class="btn btn-info">
+      <i class="fa fa-align-justify"></i>
+    </button>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-<!-- <nav class=" navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="nav navbar-nav">
-        
-        <li class="nav-item" data-toggle="tooltip" title="Prueba" data-placement="top">
-          <a class="nav-link nav-color" routerLink='/'>
-            HOME
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link nav-color" routerLink='/'>
-            Posts
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link nav-color" routerLink='/'>
-            Perfil
-          </a>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item dropdown">
-          <a class="btn btn-primary dropdown-toggle" href="#" id="logInDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-            Iniciar Sesión
-          </a>
-          <app-login></app-login>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="btn btn-danger dropdown-toggle" href="#" id="signUpDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false">
-              Inscríbete
-          </a>
-          <app-signup></app-signup>
-        </li>
-      </ul>
-    </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Posts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Iniciar sesión
+            </a>
+            <app-login></app-login>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </div>
-</nav>
--->
+</div>
