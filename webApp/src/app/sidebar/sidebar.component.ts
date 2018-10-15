@@ -6,10 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-
-  constructor() { }
+  username;
+  userEmail;
+  userPhotoUrl;
+  constructor() {
+    this.username = 'Felipe De la Fuente';
+    this.userEmail = 'fadelafuente1@gmail.com';
+    this.userPhotoUrl = '../../assets/felipe_de_la_fuente.jpg';
+   }
 
   ngOnInit() {
+  }
+
+  onClickEditProfile(event) {
+
   }
 
 }

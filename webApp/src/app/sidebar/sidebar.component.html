@@ -2,17 +2,17 @@
     <div class="sidebar-header">
         <div class="row">
             <div class="col-md-4 padding-left-0">
-                <img src="../../assets/felipe_de_la_fuente.jpg" class="img">
+                <img [src]="userPhotoUrl" class="img">
             </div>
             <div class="col-md-8">
                 <h6>
-                    Felipe De la Fuente
+                    {{username}}
                 </h6>
                 <a class="small-font">
-                    fadelafuente1@gmail.com
+                    {{userEmail}}
                 </a>
                 <div class="row">
-                    <i class="fa fa-pencil"></i>
+                    <i class="fa fa-pencil put-right click" (click)="onClickEditProfile($event)"></i>
                 </div>
             </div>
         </div>
