@@ -1,21 +1,33 @@
 <div id="sidebar">
     <div class="sidebar-header">
-        <h3>Posts</h3>
+        <div class="row">
+            <div class="col-md-4 padding-left-0">
+                <img [src]="userPhotoUrl" class="img">
+            </div>
+            <div class="col-md-8">
+                <h6>
+                    {{username}}
+                </h6>
+                <a class="small-font">
+                    {{userEmail}}
+                </a>
+                <div class="row">
+                    <i class="fa fa-pencil put-right click" (click)="onClickEditProfile($event)"></i>
+                </div>
+            </div>
+        </div>
     </div>
 
     <ul class="list-unstyled components">
-        <p>Dummy Heading</p>
+
         <li class="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
+            <a href="#topicsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Topics</a>
+            <ul class="collapse list-unstyled" id="topicsSubmenu">
                 <li>
-                    <a href="#">Home 1</a>
+                    <a href="#">Topic 1</a>
                 </li>
                 <li>
-                    <a href="#">Home 2</a>
-                </li>
-                <li>
-                    <a href="#">Home 3</a>
+                    <a href="#">Topic 2</a>
                 </li>
             </ul>
         </li>

@@ -1,18 +1,4 @@
-.wrapper {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
-}
 
-.wrapper {
-    display: flex;
-    align-items: stretch;
-}
-
-#sidebar {
-    min-width: 250px;
-    max-width: 250px;
-}
 
 #sidebar.active {
     margin-left: -250px;
@@ -22,11 +8,7 @@
 #rightBox {
     margin-left: 60%;
 }
-#sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    min-height: 100vh;
-}
+
 
 a[data-toggle="collapse"] {
     position: relative;
@@ -38,17 +20,7 @@ body {
     background: #fafafa;
 }
 
-#sidebar {
-    /* don't forget to add all the previously mentioned styles here too */
-    background: #7386D5;
-    color: #fff;
-    transition: all 0.1s;
-}
 
-
-#content {
-    width: 100%;
-}
 
 #rightBox.active > li {
     display: inline-block;
@@ -62,3 +34,12 @@ body {
         margin-left: 0;
     }
 }
+.dropdown{
+    position: absolute;
+    right: 0;
+}
+.nav-item:hover{
+    color: black; 
+    font-weight: bold;
+}
+

@@ -1,0 +1,47 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+.wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+}
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 100vh;
+}
+#sidebar {
+  /* don't forget to add all the previously mentioned styles here too */
+  background: #7386D5;
+  color: #fff;
+  transition: all 0.1s;
+}
+#content {
+  width: 100%;
+}
+#rightBox.active > li {
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+      margin-left: -250px;
+  }
+  #sidebar.active {
+      margin-left: 0;
+  }
+}
+#sidebar.active {
+  margin-left: -250px;
+}
+a[data-toggle="collapse"] {
+  position: relative;
+}

@@ -1,0 +1,17 @@
+.dropdown-item{
+  background-color: transparent;
+  color: #28a745;
+  border: 1px #28a745 solid;
+  border-radius: 10%;
+}
+.dropdown-item:hover{
+  background-color: #28a745;
+  color: white;
+}
+.dropdown-menu{
+  right: 0;
+  left: auto !important;
+}
+.dropdown-menu{
+  font-weight: 400;
+}
