@@ -4,6 +4,7 @@ import { PostsComponent } from '@app/posts/posts.component';
 import { FormModule } from '@app/posts/form/form.module';
 import { ThreadModule} from '@app/posts/thread/thread.module';
 import { PostsService } from './posts.service';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { PostsService } from './posts.service';
   ],
   declarations: [
     PostsComponent,
+    PostComponent,
   ],
   exports: [
     PostsComponent,
