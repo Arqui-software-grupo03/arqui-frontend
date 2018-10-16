@@ -1,0 +1,22 @@
+#new-post{
+  background-color: white;
+  position: relative;
+  bottom: 1%;
+  border: 1px solid black; 
+  margin-top: 5%;
+}
+#plus-icon{
+  padding-left: 2%;
+  padding-right: 2%;
+}
+#new-post-input{
+  width: 88%;
+  padding: 0.5%;
+}
+#new-post-submit{
+  padding-left: 2%;
+  padding-right: 2%; 
+}
+.clickeable{
+  cursor: pointer;
+}
