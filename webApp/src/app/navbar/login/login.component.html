@@ -7,14 +7,14 @@
   
     <div class="col-md-12">
         <div class="form-group">
-        <label for="exampleDropdownFormEmail2">Email</label>
-        <input type="email" class="form-control exampleDropdownFormEmail2" #usernameBox id="username-box" placeholder="email@ejemplo.com" (keydown)="keyDownFunction(usernameBox.value, passwordBox.value,$event)">
+            <label for="exampleDropdownFormEmail2">Email</label>
+            <input type="email" class="form-control exampleDropdownFormEmail2" #usernameBox id="username-box" placeholder="email@ejemplo.com" (keydown)="keyDownFunction(usernameBox.value, passwordBox.value,$event)">
         </div>
         <div class="form-group">
-        <label for="exampleDropdownFormPassword2">Contraseña</label>
-        <input type="password" class="form-control" #passwordBox id="password-box" placeholder="Contraseña" (keydown)="keyDownFunction(usernameBox.value, passwordBox.value,$event)">
+            <label for="exampleDropdownFormPassword2">Contraseña</label>
+            <input type="password" class="form-control" #passwordBox id="password-box" placeholder="Contraseña" (keydown)="keyDownFunction(usernameBox.value, passwordBox.value,$event)">
         </div>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#" id="login-btn" (click)="onSubmit(usernameBox.value, passwordBox.value, $event)">Iniciar sesión</a>
+        <button class="dropdown-item" href="#" id="login-btn" (click)="onSubmit(usernameBox.value, passwordBox.value, $event)">Iniciar sesión</button>
     </div>
 </div>
