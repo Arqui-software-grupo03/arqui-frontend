@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { UsersService } from '@app/users/users.service';
 
 declare var jQuery: any;
 
@@ -10,10 +11,13 @@ declare var jQuery: any;
 })
 
 export class NavbarComponent implements OnInit {
-
-  constructor() { }
+  user;
+  constructor(private usersService: UsersService) { }
 
   ngOnInit() {
+    this.usersService.castUser.subscribe(
+      user => this.user = user
+    );
     this.addjQueryTooltip();
     this.addjQuerySideBarToggle();
 
