@@ -1,3 +1,20 @@
-<p>
-  thread works!
-</p>
+<div class="thread row">
+  <div class="border-top col-md-2 margin-left">
+  </div>
+  <div class="border-top col-md-10 row">
+    <div class="col-md-2 text-center ">
+      <img [src]="userPhotoUrl" class="img">
+    </div>
+    <div class="col-md-10 comment ">
+      <div class="row">
+        <div class="col-md-9">
+          <h6 class="response">{{response}}: </h6>
+        </div>
+        <div class="col-md-3">
+          <span class="time">{{hour}}</span> | <span class="time">{{date}}</span>
+        </div>
+      </div>
+      <p class="message">{{message}}</p>
+    </div>
+  </div>
+</div>
