@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
@@ -23,7 +24,8 @@ import { AppComponent } from './app.component';
     SidebarModule,
     UsersModule,
     AuthModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]
