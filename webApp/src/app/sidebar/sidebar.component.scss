@@ -56,19 +56,19 @@ a, a:hover, a:focus {
 
 #sidebar {
     /* don't forget to add all the previously mentioned styles here too */
-    background: #7386D5;
+    background: #1c677F;
     color: #fff;
     transition: all 0.3s;
 }
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
+    background: #1c677F;
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    border-bottom: 1px solid #1c677F;
 }
 
 #sidebar ul p {
@@ -88,12 +88,12 @@ a, a:hover, a:focus {
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: #6d7fcc;
+    background: #1c677F;
 }
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #1c677F;
 }
 .small-font{
     font-size: 10px;
@@ -112,7 +112,4 @@ h6{
     position: absolute;
     right: 5%;
     padding-top: 5%;
-}
-.click{
-    cursor: pointer;
 }

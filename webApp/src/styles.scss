@@ -1,3 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/scss/bootstrap-reboot';
 @import '~bootstrap/scss/bootstrap-grid';
+.row{
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+.eliminate-padding{
+  padding: 0 !important;
+}
+.margin-top-5{
+  margin-top: 5%;
+}
+.margin-left-5{
+  margin-left: 5%;
+}
+.click{
+  cursor: pointer;
+}

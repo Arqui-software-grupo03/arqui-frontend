@@ -1,0 +1,21 @@
+<div class="border">
+  <div class="row">
+    <div class="col-md-2 text-center">
+      <img [src]="userPhotoUrl" class="img">
+      <div class="topic">{{topic}}</div>
+    </div>
+    <div class="col-md-10 comment">
+      <div class="row">
+        <div class="eliminate-padding col-md-9 ">
+          <h6 class="sender">{{sender}}: </h6>
+        </div>
+        <div class="col-md-3">
+          <span class="time">{{hour}}</span> | <span class="time">{{date}}</span>
+        </div>
+      </div>
+      <p>{{message}}</p>
+    </div>
+  </div>
+  <app-thread *ngIf="showThread"></app-thread>
+  <app-thread-form (show)="onShow($event)" threadCounter={{threadCounter}} ></app-thread-form>
+</div>
