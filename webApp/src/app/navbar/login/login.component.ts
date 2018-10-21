@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LogInService } from './login.service';
 import * as $ from 'jquery';
+import { UsersService } from '@app/users/users.service';
 
 declare var jQuery: any;
 
@@ -12,11 +13,15 @@ declare var jQuery: any;
 export class LogInComponent implements OnInit {
   user;
   btnEnable = false;
-  constructor(private logInService: LogInService ) { }
+  constructor(private logInService: LogInService, private usersService: UsersService) { }
 
   ngOnInit() {
+    this.usersService.castUser.subscribe(
+      user => this.user = user
+    );
     this.addjQueryTooltip();
   }
+
   addjQueryTooltip() {
     jQuery('[data-toggle="tooltip"]').tooltip({
       trigger: 'hover'
@@ -24,11 +29,27 @@ export class LogInComponent implements OnInit {
       jQuery(jQuery('[data-toggle="tooltip"]')).tooltip('hide');
     });
   }
-  keyDownFunction(username, password, event) {
-    this.btnEnable = username.length > 4 && password.length > 6 ? true : false;
+
+  keyDownFunction(email, password, event) {
+    this.btnEnable = email.length > 4 && password.length > 6 ? true : false;
   }
-  onSubmit(username, password, event) {
+
+  onSubmit(email, password, event) {
     event.preventDefault();
+    event.stopPropagation();
+    this.validateUser(email, password);
   }
+
+  validateUser(email, password) {
+    this.logInService.getUserByEmail(email, password).subscribe(
+      user => {
+        this.usersService.editUser(user);
+      },
+      error => {
+        // Error
+      }
+    );
+  }
+
 
 }

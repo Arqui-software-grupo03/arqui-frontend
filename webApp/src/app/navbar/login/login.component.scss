@@ -18,3 +18,7 @@
 .dropdown-menu{
   font-weight: 400;
 }
+
+#login-btn[disabled] {
+  cursor: default;
+}
