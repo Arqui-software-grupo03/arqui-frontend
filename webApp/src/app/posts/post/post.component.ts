@@ -12,12 +12,16 @@ export class PostComponent implements OnInit {
   hour;
   date;
   message;
+  showThread;
+  threadCounter;
   constructor() {
     this.userPhotoUrl = '../../assets/felipe_de_la_fuente.jpg';
     this.topic = 'Topic 1';
     this.sender = 'Felipe De la Fuente';
     this.hour = '17:32';
     this.date = '7 septiembre';
+    this.showThread = false;
+    this.threadCounter = 1;
     this.message = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard"
                     + "dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen"
                     + "book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially"
@@ -27,5 +31,8 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  onShow(event) {
+    console.log(event);
+    this.showThread = event;
+  }
 }

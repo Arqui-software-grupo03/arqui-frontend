@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-md-2 text-center">
       <img [src]="userPhotoUrl" class="img">
-      <span class="topic">{{topic}}</span>
+      <div class="topic">{{topic}}</div>
     </div>
     <div class="col-md-10 comment">
       <div class="row">
-        <div class="col-md-9">
+        <div class="eliminate-padding col-md-9 ">
           <h6 class="sender">{{sender}}: </h6>
         </div>
         <div class="col-md-3">
@@ -16,5 +16,6 @@
       <p>{{message}}</p>
     </div>
   </div>
-  <app-thread></app-thread>
+  <app-thread *ngIf="showThread"></app-thread>
+  <app-thread-form (show)="onShow($event)" threadCounter={{threadCounter}} ></app-thread-form>
 </div>
