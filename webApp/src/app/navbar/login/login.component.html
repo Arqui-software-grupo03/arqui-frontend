@@ -20,6 +20,15 @@
                     data-toggle="tooltip" data-placement="top" title="Ingrese contraseña" required>
         </div>
         <div class="dropdown-divider"></div>
-        <button [disabled]="!btnEnable" class="dropdown-item" id="login-btn" (click)="onSubmit(usernameBox.value, passwordBox.value, $event)">Iniciar sesión</button>
+        <button [disabled]="!btnEnable || waitingResponse" class="dropdown-item" id="login-btn" (click)="onSubmit(usernameBox.value, passwordBox.value, $event)">
+            <div *ngIf="!waitingResponse else loading" class="span">
+                Iniciar sesión
+            </div>
+            <ng-template #loading>
+                <div *ngIf="waitingResponse" class="span">
+                    <div class="typing_loader small"></div>
+                </div>
+            </ng-template>
+        </button>
     </div>
 </div>

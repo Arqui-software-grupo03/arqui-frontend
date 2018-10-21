@@ -13,6 +13,7 @@ declare var jQuery: any;
 export class LogInComponent implements OnInit {
   user;
   btnEnable = false;
+  waitingResponse = false;
   constructor(private logInService: LogInService, private usersService: UsersService) { }
 
   ngOnInit() {
@@ -37,6 +38,7 @@ export class LogInComponent implements OnInit {
   onSubmit(email, password, event) {
     event.preventDefault();
     event.stopPropagation();
+    this.waitingResponse = true;
     this.validateUser(email, password);
   }
 
@@ -44,9 +46,11 @@ export class LogInComponent implements OnInit {
     this.logInService.getUserByEmail(email, password).subscribe(
       user => {
         this.usersService.editUser(user);
+        this.waitingResponse = false;
       },
       error => {
         // Error
+        this.waitingResponse = false;
       }
     );
   }

@@ -17,3 +17,67 @@
 .click{
   cursor: pointer;
 }
+
+
+/*Typing Loader ANIMATION*/ 
+.typing_loader{
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  -webkit-animation: typing 1s linear infinite alternate;
+     -moz-animation: Typing 1s linear infinite alternate;
+          animation: typing 1s linear infinite alternate;
+  margin: 46px auto; /* Not necessary- its only for layouting*/  
+  position: relative;
+  left: -12px;
+}
+@-webkit-keyframes typing{
+  0%{
+      background-color: rgba(24, 52, 87, 1);
+      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,0.2), 
+                  48px 0px 0px 0px rgba(24, 52, 87,0.2);
+      }
+  25%{ 
+      background-color: rgba(24, 52, 87, 0.4);
+      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,2), 
+                  48px 0px 0px 0px rgba(24, 52, 87,0.2);
+  }
+  75%{ background-color: rgba(24, 52, 87, 0.4);
+      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,0.2), 
+                  48px 0px 0px 0px rgba(24, 52, 87,1);
+      }
+}
+
+@-moz-keyframes typing{
+  0%{
+      background-color: rgba(24, 52, 87, 1);
+      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,0.2), 
+                  48px 0px 0px 0px rgba(24, 52, 87,0.2);
+      }
+  25%{ 
+      background-color: rgba(24, 52, 87, 0.4);
+      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,2), 
+                  48px 0px 0px 0px rgba(24, 52, 87,0.2);
+  }
+  75%{ background-color: rgba(24, 52, 87, 0.4);
+      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,0.2), 
+                  48px 0px 0px 0px rgba(24, 52, 87,1);
+      }
+}
+
+@keyframes typing{
+  0%{
+      background-color: rgba(24, 52, 87, 1);
+      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,0.2), 
+                  48px 0px 0px 0px rgba(24, 52, 87,0.2);
+      }
+  25%{ 
+      background-color: rgba(24, 52, 87, 0.4);
+      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,2), 
+                  48px 0px 0px 0px rgba(24, 52, 87,0.2);
+  }
+  75%{ background-color: rgba(24, 52, 87, 0.4);
+      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,0.2), 
+                  48px 0px 0px 0px rgba(24, 52, 87,1);
+      }
+}
