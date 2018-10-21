@@ -9,6 +9,6 @@ export class AppService {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
     // Apiary: http://private-bb6ce2-arquitransocialnetwork.apiary-mock.com/
-    url = 'http://private-bb6ce2-arquitransocialnetwork.apiary-mock.com/';
+    url = 'http://private-bb6ce2-arquitransocialnetwork.apiary-mock.com';
     constructor() { }
 }
