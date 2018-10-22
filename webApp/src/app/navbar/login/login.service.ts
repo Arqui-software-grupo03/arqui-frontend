@@ -23,6 +23,26 @@ export class LogInService {
     return this.http.post(this.logInUrl, body, this.httpOptions).pipe(retry(2), catchError(this.errorHandler));
   }
 
+  getUserByToken(email: string): Observable<any> {
+    const body = {
+      'email': email,
+      'token': this.getToken()
+    };
+    return this.http.post(this.logInUrl, body, this.httpOptions).pipe(retry(2), catchError(this.errorHandler));
+  }
+
+  getToken(): string {
+    return localStorage.getItem('token');
+  }
+
+  hasToken(): boolean {
+    return this.getToken() !== null ? true : false;
+  }
+
+  logout(): void {
+    localStorage.clear();
+  }
+
   errorHandler(error: HttpErrorResponse) {
     return throwError(error.status  || 'Server Error');
   }

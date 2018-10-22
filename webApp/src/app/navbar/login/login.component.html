@@ -1,10 +1,7 @@
 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <div *ngIf="0 > 0" class="alert alert-danger">
-        <button (click)="closeError($event)" type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-  
+
+    <flash-messages></flash-messages>
+    
     <div class="col-md-12">
         <div class="form-group">
             <label for="dropdownFormEmail">Email</label>
