@@ -5,6 +5,7 @@ import { UsersService } from '@app/users/users.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
 declare var jQuery: any;
+const TIMEOUT = 5000;
 
 @Component({
   selector: 'app-login',
@@ -50,15 +51,22 @@ export class LogInComponent implements OnInit {
         user.email = email;
         this.usersService.editUser(user);
         this.waitingResponse = false;
-        this.flashMessage.show('Welcome To TheRichPost.com', { cssClass: 'alert-success', timeout: 2000 });
-        this.flashMessage.show('RichDotCom', { cssClass: 'alert-info', timeout: 2000 });
+        console.log(user);
+        this.showMessage('Bienvenido!', 'success');
       },
       error => {
         // Error
         this.waitingResponse = false;
-        this.flashMessage.show('Welcome To TheRichPost.com', { cssClass: 'alert-danger', timeout: 2000 });
+        this.showMessage('Mail o clave incorrecta', 'danger');
       }
     );
+  }
+
+  showMessage(message: string, type: string) {
+    this.flashMessage.show(message, {
+      cssClass: `alert-${type}`,
+      timeout: TIMEOUT
+    });
   }
 
 
