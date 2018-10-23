@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AdminModule } from '@app/admin/admin.module';
@@ -8,12 +10,15 @@ import { PostsModule } from '@app/posts/posts.module';
 import { SidebarModule } from '@app/sidebar/sidebar.module';
 import { UsersModule } from '@app/users/users.module';
 import { AuthModule } from '@app/auth/auth.module';
-
-import { AppComponent } from './app.component';
+import { FlashMessagesModule } from 'angular2-flash-messages';
+import { AppComponent } from '@app/app.component';
+import { NotFoundComponent } from '@app/not-found/not-found.component';
+import { AppRoutingModule } from '@app/app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,8 +28,12 @@ import { AppComponent } from './app.component';
     SidebarModule,
     UsersModule,
     AuthModule,
-    InfiniteScrollModule
-  ],
+    InfiniteScrollModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FlashMessagesModule.forRoot(),
+    AppRoutingModule
+    ],
   providers: [],
   bootstrap: [ AppComponent ]
 })
