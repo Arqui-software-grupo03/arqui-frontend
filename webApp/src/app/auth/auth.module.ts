@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthComponent } from './auth.component';
-import { AuthService } from './auth.service';
-import { AuthGuard } from './auth.guard';
+import { AuthComponent } from '@app/auth/auth.component';
+import { AuthService } from '@app/auth/auth.service';
+import { AuthResolver } from '@app/auth/auth.resolver';
 
 @NgModule({
   imports: [
@@ -13,7 +13,7 @@ import { AuthGuard } from './auth.guard';
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthResolver
   ],
   exports: [
     AuthComponent
