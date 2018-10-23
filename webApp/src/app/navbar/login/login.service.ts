@@ -20,19 +20,27 @@ export class LogInService {
       'email': email,
       'password': password
     };
-    return this.http.post(this.logInUrl, body, this.httpOptions).pipe(retry(2), catchError(this.errorHandler));
+    return this.http.post(this.logInUrl, body, this.httpOptions).pipe(retry(1), catchError(this.errorHandler));
   }
 
-  getUserByToken(email: string): Observable<any> {
+  getUserByToken(): Observable<any> {
     const body = {
-      'email': email,
       'token': this.getToken()
     };
-    return this.http.post(this.logInUrl, body, this.httpOptions).pipe(retry(2), catchError(this.errorHandler));
+    return this.http.post(this.logInUrl, body, this.httpOptions).pipe(retry(1), catchError(this.errorHandler));
   }
 
   getToken(): string {
     return localStorage.getItem('token');
+  }
+
+  getEmail(): string {
+    return localStorage.getItem('email');
+  }
+
+  setToken(email: string, token: string): void {
+    localStorage.setItem('token', token);
+    localStorage.setItem('email', email);
   }
 
   hasToken(): boolean {
@@ -44,6 +52,7 @@ export class LogInService {
   }
 
   errorHandler(error: HttpErrorResponse) {
+    console.log('here');
     return throwError(error.status  || 'Server Error');
   }
 

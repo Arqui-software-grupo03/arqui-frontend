@@ -51,8 +51,9 @@ export class LogInComponent implements OnInit {
         user.email = email;
         this.usersService.editUser(user);
         this.waitingResponse = false;
-        console.log(user);
         this.showMessage('Bienvenido!', 'success');
+        this.logInService.setToken(user.email, user.token);
+        this.setCurrentUser();
       },
       error => {
         // Error
@@ -60,6 +61,13 @@ export class LogInComponent implements OnInit {
         this.showMessage('Mail o clave incorrecta', 'danger');
       }
     );
+  }
+  setCurrentUser() {
+    const usr = {
+      'token': this.logInService.getToken(),
+      'email': this.logInService.getEmail()
+    };
+    this.usersService.editUser(usr);
   }
 
   showMessage(message: string, type: string) {
