@@ -13,9 +13,12 @@ const TIMEOUT = 5000;
 export class SignUpComponent implements OnInit {
   btnEnable = false;
   waitingResponse = false;
-  validEmail = true;
-  private userTypingTimeout;
-  private showingMessage = false;
+  validEmail = false;
+  validUsername = false;
+  private userEmailTypingTimeout;
+  private userNameTypingTimeout;
+  private showingMessageEmail = false;
+  private showingMessageUserName = false;
   constructor(private flashMessage: FlashMessagesService) { }
 
   ngOnInit() {
@@ -32,16 +35,25 @@ export class SignUpComponent implements OnInit {
 
   keyUpValidatePassword(password: string, retypePassword: string) {
     this.btnEnable = (password.length >= 6 && retypePassword.length >= 6) &&
-                        (password === retypePassword) && this.validEmail ? true : false;
+                        (password === retypePassword) && this.validEmail &&
+                          this.validUsername ? true : false;
     if (password.length >= 6 && retypePassword.length >= 1) {
-      clearTimeout(this.userTypingTimeout);
-      this.userTypingTimeout = this.checkAfterUserTypes(password, retypePassword);
+      clearTimeout(this.userEmailTypingTimeout);
+      this.userEmailTypingTimeout = this.checkAfterUserTypes(password !== retypePassword &&
+          !this.showingMessageEmail, 'Las contraseñas ingresadas no coinciden.', 400, 'email');
     }
   }
   keyUpCheckEmail(email: string) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.validEmail = re.test(String(email).toLowerCase());
   }
+  keyUpCheckUsername(username: string) {
+    this.validUsername = username.length >= 4 ? true : false;
+    clearTimeout(this.userNameTypingTimeout);
+    this.userNameTypingTimeout = this.checkAfterUserTypes(
+        !this.validUsername && !this.showingMessageUserName, 'Nombre de usuario mayor o igual a 4 caracteres', 300, 'user');
+  }
+
   onSubmit(username: string, password: string, $event) {
     $event.stopPropagation();
     $event.preventDefault();
@@ -52,27 +64,36 @@ export class SignUpComponent implements OnInit {
     this.flashMessage.show(message, {
       cssClass: `alert-${type}`,
       timeout: TIMEOUT,
-      showCloseBtn: true
+      showCloseBtn: true,
+      closeOnClick: true
     });
   }
 
-  checkAfterUserTypes(password: string, retypePassword: string) {
+  checkAfterUserTypes(condition: boolean, message: string, timeout: number, type: string) {
     return setTimeout( () => {
-      if ((password !== retypePassword) && !this.showingMessage) {
-        this.showMessage('Las contraseñas ingresadas no coinciden.', 'danger');
-        this.changeShowingMessageState(true);
+      if (condition) {
+        this.showMessage(message, 'danger');
+        this.changeShowingMessageState(true, timeout, type);
       }
-    }, 500);
+    }, timeout);
   }
 
-  changeShowingMessageState(value: boolean): void {
-    this.showingMessage = value;
+  changeShowingMessageState(value: boolean, timeout: number, type: string): void {
+    if (type === 'email') {
+      this.showingMessageEmail = value;
+    } else {
+      this.showingMessageUserName = value;
+    }
     setTimeout( () => {
-      this.showingMessage = !this.showingMessage;
+      if (type === 'email') {
+        this.showingMessageEmail = !this.showingMessageEmail;
+      } else {
+        this.showingMessageUserName = !this.showingMessageUserName;
+      }
     }, TIMEOUT);
   }
 
-  close(event) {
+  preventClose(event) {
     event.stopPropagation();
     event.preventDefault();
   }
