@@ -12,12 +12,20 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li *ngIf="!user.email else loggedUserOptions" class="nav-item dropdown" id="login">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Iniciar sesión
-        </a>
-        <app-login></app-login>
-      </li>
+      <div *ngIf="!user.email else loggedUserOptions" class="registration">
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Iniciar sesión
+          </a>
+          <app-login></app-login>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Registrarse
+          </a>
+          <app-signup></app-signup>
+        </li>
+      </div>
       <ng-template #loggedUserOptions>
         <li class="nav-item">
           <a class="nav-link" href="#">Posts</a>
