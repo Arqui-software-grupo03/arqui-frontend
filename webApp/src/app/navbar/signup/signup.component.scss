@@ -1,0 +1,24 @@
+.dropdown-item, #login-btn[disabled]{
+    background-color: transparent;
+    color: #28a745;
+    border: 1px #28a745 solid;
+    border-radius: 0.25rem;
+    text-align: center;
+    cursor: pointer;
+  }
+  .dropdown-item:hover{
+    background-color: #28a745;
+    color: white;
+  }
+  .dropdown-menu{
+    right: 0;
+    left: auto !important;
+    width: 14em;
+  }
+  .dropdown-menu{
+    font-weight: 400;
+  }
+  
+  #login-btn[disabled] {
+    cursor: default;
+  }
