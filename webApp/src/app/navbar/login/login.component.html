@@ -1,4 +1,4 @@
-<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+<div class="dropdown-menu" (click)=preventClose($event) aria-labelledby="navbarDropdown">
 
     <flash-messages></flash-messages>
     
@@ -7,13 +7,13 @@
             <label for="dropdownFormEmail">Email</label>
             <input type="email" class="form-control" name="dropdownFormEmail"
                 #usernameBox id="username-box" placeholder="email@ejemplo.com" 
-                    (keydown)="keyDownFunction(usernameBox.value, passwordBox.value,$event)"
+                    (keyup)="keyUpFunction(usernameBox.value, passwordBox.value,$event)"
                         data-toggle="tooltip" data-placement="top" title="Ingrese email" required>
         </div>
         <div class="form-group">
             <label for="dropdownFormPassword">Contraseña</label>
             <input type="password" name="dropdownFormPassword" class="form-control" #passwordBox id="password-box"
-                placeholder="Contraseña" (keydown)="keyDownFunction(usernameBox.value, passwordBox.value,$event)"
+                placeholder="Contraseña" (keyup)="keyUpFunction(usernameBox.value, passwordBox.value,$event)"
                     data-toggle="tooltip" data-placement="top" title="Ingrese contraseña" required>
         </div>
         <div class="dropdown-divider"></div>
