@@ -16,14 +16,15 @@ export class LogInComponent implements OnInit {
   user;
   btnEnable = false;
   waitingResponse = false;
-  constructor(private logInService: LogInService, private usersService: UsersService,
-              private flashMessage: FlashMessagesService) { }
+  constructor(private flashMessages: FlashMessagesService, private logInService: LogInService,
+              private usersService: UsersService) { }
 
   ngOnInit() {
     this.usersService.castUser.subscribe(
       user => this.user = user
     );
     this.addjQueryTooltip();
+    this.flashMessages.show.bind(this);
   }
 
   addjQueryTooltip() {
@@ -71,7 +72,8 @@ export class LogInComponent implements OnInit {
   }
 
   showMessage(message: string, type: string) {
-    this.flashMessage.show(message, {
+    console.log(this.flashMessages);
+    this.flashMessages.show(message, {
       cssClass: `alert-${type}`,
       timeout: TIMEOUT,
       showCloseBtn: true,
