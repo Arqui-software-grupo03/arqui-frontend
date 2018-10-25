@@ -52,7 +52,6 @@ export class LogInService {
   }
 
   errorHandler(error: HttpErrorResponse) {
-    console.log('here');
     return throwError(error.status  || 'Server Error');
   }
 
