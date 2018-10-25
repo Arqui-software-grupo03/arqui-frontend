@@ -61,7 +61,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
         !this.validUsername && !this.showingMessageUserName, 'Nombre de usuario mayor o igual a 4 caracteres', 300, 'user');
   }
 
-  onSubmit(username: string, email:string, password: string, $event) {
+  onSubmit(username: string, email: string, password: string, $event) {
     $event.stopPropagation();
     $event.preventDefault();
     this.waitingResponse = true;
