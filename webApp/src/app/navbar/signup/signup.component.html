@@ -1,15 +1,21 @@
-<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+<div class="dropdown-menu" aria-labelledby="navbarDropdown" (click)="preventClose($event)">
 
-    <flash-messages (click)=close($event)></flash-messages>
+    <flash-messages (click)=preventClose($event)></flash-messages>
     <div class="col-md-12">
         <div class="form-group">
-            <label for="registerEmail">Ingrese email</label>
+            <label for="registerUsername">Nombre de usuario</label>
+            <input type="text" class="form-control" #usernameBox id="username-box"
+            placeholder="Ejemplo"
+                (keyup)="keyUpCheckUsername(usernameBox.value)" data-toggle="tooltip" data-placement="top" title="Mayor o igual a 4 caracteres">
+        </div>
+        <div class="form-group">
+            <label for="registerEmail">Email</label>
             <input type="email" class="form-control" #emailBox id="email-box"
             placeholder="email@ejemplo.com"
                 (keyup)="keyUpCheckEmail(emailBox.value)" data-toggle="tooltip" data-placement="top" title="Ingrese email">
         </div>
         <div class="form-group">
-            <label for="registerPassword">Ingrese Contraseña</label>
+            <label for="registerPassword">Contraseña</label>
             <input type="password" class="form-control" #passwordBox id="password-box" 
             placeholder="Contraseña" (keyup)="keyUpValidatePassword(passwordBox.value, passwordRetypeBox.value)"
                 data-toggle="tooltip" data-placement="top" title="Mayor o igual a 6 caracteres">
@@ -19,7 +25,7 @@
             <input type="password" class="form-control" #passwordRetypeBox id="password-retype-box" placeholder="Contraseña" (keyup)="keyUpValidatePassword(passwordBox.value, passwordRetypeBox.value)">
         </div>
         <div class="dropdown-divider"></div>
-        <button [disabled]="!btnEnable || waitingResponse" class="dropdown-item" id="login-btn" (click)="onSubmit(emailBox.value, passwordBox.value, $event)">
+        <button [disabled]="!btnEnable || waitingResponse" class="dropdown-item" id="login-btn" (click)="onSubmit(usernameBox.value, emailBox.value, passwordBox.value, $event)">
             <div *ngIf="!waitingResponse else loading" class="span">
                 Registrarse
             </div>
