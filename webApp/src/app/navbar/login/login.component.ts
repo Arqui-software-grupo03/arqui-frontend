@@ -32,7 +32,7 @@ export class LogInComponent implements OnInit {
   }
 
   addjQueryTooltip() {
-    jQuery('[data-toggle="toolip"]').tooltip({
+    jQuery('[data-toggle="tooltip"]').tooltip({
       trigger: 'hover'
     }).on('click', () => {
       jQuery(jQuery('[data-toggle="tooltip"]')).tooltip('hide');
