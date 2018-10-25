@@ -55,4 +55,8 @@ export class AppComponent implements OnInit, OnDestroy {
       timeout: TIMEOUT
     });
   }
+  preventClose(event) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
 }

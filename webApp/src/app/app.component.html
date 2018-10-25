@@ -1,5 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="wrapper">
+  <flash-messages class="overlay" (click)="preventClose($event)"></flash-messages>
   <!-- Sidebar -->
   <nav id="sidebar">
       <app-sidebar></app-sidebar>
@@ -9,7 +10,3 @@
     <app-posts></app-posts>
   </div>
 </div>
-<flash-messages></flash-messages>
-
-
-
