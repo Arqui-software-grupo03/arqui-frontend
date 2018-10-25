@@ -1,7 +1,7 @@
 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
     <flash-messages></flash-messages>
-    <div *ngIf="!user" class="col-md-12">
+    <div class="col-md-12">
         <div class="form-group">
             <label for="dropdownFormEmail">Email</label>
             <input type="email" class="form-control" name="dropdownFormEmail"
@@ -25,13 +25,6 @@
                     <div class="typing_loader small"></div>
                 </div>
             </ng-template>
-        </button>
-    </div>
-    <div *ngIf="user" class="col-md-12">
-        <button class="dropdown-item logout-btn" id="logout-btn" (click)="onLogout()">
-            <div class="span">
-                Cerrar sesión
-            </div>
         </button>
     </div>
 </div>

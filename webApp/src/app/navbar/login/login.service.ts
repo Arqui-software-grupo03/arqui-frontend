@@ -47,10 +47,6 @@ export class LogInService {
     return this.getToken() !== null ? true : false;
   }
 
-  logout(): void {
-    localStorage.clear();
-  }
-
   errorHandler(error: HttpErrorResponse) {
     console.log('here');
     return throwError(error.status  || 'Server Error');

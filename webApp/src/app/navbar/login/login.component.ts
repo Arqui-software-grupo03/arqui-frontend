@@ -49,10 +49,6 @@ export class LogInComponent implements OnInit {
     this.waitingResponse = true;
     this.validateUser(email, password);
   }
-  onLogout() {
-    this.logInService.logout();
-    this.usersService.editUser(null);
-  }
 
   validateUser(email, password) {
     this.logInService.getUserByEmail(email, password).subscribe(
