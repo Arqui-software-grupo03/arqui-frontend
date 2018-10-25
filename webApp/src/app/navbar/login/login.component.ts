@@ -34,15 +34,15 @@ export class LogInComponent implements OnInit {
     });
   }
 
-  keyDownFunction(email, password, event) {
-    this.btnEnable = email.length > 4 && password.length > 6 ? true : false;
+  keyUpFunction(email, password, event) {
+    this.btnEnable = email.length > 4 && password.length >= 6 ? true : false;
   }
 
   onSubmit(email, password, event) {
-    event.preventDefault();
+    this.preventClose(event);
     this.waitingResponse = true;
     this.validateUser(email, password);
-    event.stopPropagation();
+
   }
 
   validateUser(email, password) {
@@ -73,9 +73,15 @@ export class LogInComponent implements OnInit {
   showMessage(message: string, type: string) {
     this.flashMessage.show(message, {
       cssClass: `alert-${type}`,
-      timeout: TIMEOUT
+      timeout: TIMEOUT,
+      showCloseBtn: true,
+      closeOnClick: true
     });
   }
 
+  preventClose(event) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
 
 }
