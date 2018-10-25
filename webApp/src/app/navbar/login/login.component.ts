@@ -17,9 +17,6 @@ export class LogInComponent implements OnInit {
   user;
   btnEnable = false;
   waitingResponse = false;
-  looged: boolean;
-  @Input() isLooged: boolean;
-  @Output() isLoogedEvent = new EventEmitter();
   constructor(private logInService: LogInService, private usersService: UsersService,
               private flashMessage: FlashMessagesService) { }
 
@@ -29,9 +26,7 @@ export class LogInComponent implements OnInit {
         this.user = user;
       }
     );
-    this.looged = this.isLooged;
-    console.log('imprimiendo desde login');
-    console.log(this.looged);
+    console.log(this.user);
     this.waitingResponse = false;
     this.addjQueryTooltip();
   }
@@ -56,8 +51,7 @@ export class LogInComponent implements OnInit {
   }
   onLogout() {
     this.logInService.logout();
-    this.looged = false;
-    this.isLoogedEvent.emit(this.looged);
+    this.usersService.editUser(null);
   }
 
   validateUser(email, password) {
@@ -69,8 +63,6 @@ export class LogInComponent implements OnInit {
         this.showMessage('Bienvenido!', 'success');
         this.logInService.setToken(user.email, user.token);
         this.setCurrentUser();
-        this.looged = true;
-        this.isLoogedEvent.emit(this.looged);
       },
       error => {
         // Error

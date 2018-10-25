@@ -14,7 +14,6 @@ declare var jQuery: any;
 
 export class NavbarComponent implements OnInit, OnDestroy {
   user;
-  isLooged;
   private ngUnsubscribe = new Subject();
   constructor(private usersService: UsersService, private cdRef: ChangeDetectorRef) { }
 
@@ -22,16 +21,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.usersService.castUser.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       user => {
         this.user = user;
-        this.isLooged = this.user.token ? true : false;
       }
     );
     this.addjQueryTooltip();
     this.addjQuerySideBarToggle();
 
   }
-  isLoogedEvent(isLooged) {
-    this.isLooged = isLooged;
-  }
+  
   ngOnDestroy() {
     this.cdRef.detach();
     this.ngUnsubscribe.next();
