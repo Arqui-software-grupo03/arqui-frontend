@@ -72,7 +72,6 @@ export class LogInComponent implements OnInit {
   }
 
   showMessage(message: string, type: string) {
-    console.log(this.flashMessages);
     this.flashMessages.show(message, {
       cssClass: `alert-${type}`,
       timeout: TIMEOUT,
