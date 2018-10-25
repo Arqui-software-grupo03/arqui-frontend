@@ -14,9 +14,6 @@ const routes: Routes = [
     { path: 'home',
       component:
       AppComponent,
-      resolve: {
-          'user': AuthResolver
-      }
     },
     { path: '**',
       component: NotFoundComponent
