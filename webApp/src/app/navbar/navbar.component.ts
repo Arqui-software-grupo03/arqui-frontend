@@ -19,12 +19,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.usersService.castUser.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-      user => this.user = user
+      user => {
+        this.user = user;
+      }
     );
     this.addjQueryTooltip();
     this.addjQuerySideBarToggle();
 
   }
+
   ngOnDestroy() {
     this.cdRef.detach();
     this.ngUnsubscribe.next();
