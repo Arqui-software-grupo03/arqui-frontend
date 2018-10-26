@@ -21,13 +21,15 @@ export class AppComponent implements OnInit, OnDestroy {
               private usersService: UsersService, private cdRef: ChangeDetectorRef,
               private route: ActivatedRoute) {
 
-    this.logInService.getUserByToken().subscribe(
-      success => {
-        this.setCurrentUser();
-        this.showMessage('Bienvenido!', 'success');
-      },
-      error => {}
-    );
+    if (this.logInService.getToken()) {
+      this.logInService.getUserByToken().subscribe(
+        success => {
+          this.setCurrentUser();
+          this.showMessage('Bienvenido!', 'success');
+        },
+        error => {}
+      );
+    }
 
 
   }
