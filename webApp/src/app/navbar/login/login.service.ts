@@ -12,7 +12,7 @@ export class LogInService {
   logInUrl;
   constructor(private appService: AppService, private http: HttpClient) {
     this.httpOptions = appService.httpOptions;
-    this.logInUrl = `${appService.url}/login`;
+    this.logInUrl = `${appService.url}/users/login`;
   }
 
   getUserByEmail(email: string, password: string): Observable<any> {
@@ -43,12 +43,15 @@ export class LogInService {
     localStorage.setItem('email', email);
   }
 
+  removeToken(): void {
+    localStorage.clear();
+  }
+
   hasToken(): boolean {
     return this.getToken() !== null ? true : false;
   }
 
   errorHandler(error: HttpErrorResponse) {
-    console.log('here');
     return throwError(error.status  || 'Server Error');
   }
 

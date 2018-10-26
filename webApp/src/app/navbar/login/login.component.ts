@@ -17,8 +17,8 @@ export class LogInComponent implements OnInit {
   user;
   btnEnable = false;
   waitingResponse = false;
-  constructor(private logInService: LogInService, private usersService: UsersService,
-              private flashMessage: FlashMessagesService) { }
+  constructor(private flashMessages: FlashMessagesService, private logInService: LogInService,
+              private usersService: UsersService) { }
 
   ngOnInit() {
     this.usersService.castUser.subscribe(
@@ -26,9 +26,9 @@ export class LogInComponent implements OnInit {
         this.user = user;
       }
     );
-    console.log(this.user);
     this.waitingResponse = false;
     this.addjQueryTooltip();
+    this.flashMessages.show.bind(this);
   }
 
   addjQueryTooltip() {
@@ -39,15 +39,15 @@ export class LogInComponent implements OnInit {
     });
   }
 
-  keyDownFunction(email, password, event) {
-    this.btnEnable = email.length > 4 && password.length > 6 ? true : false;
+  keyUpFunction(email, password, event) {
+    this.btnEnable = email.length > 4 && password.length >= 6 ? true : false;
   }
 
   onSubmit(email, password, event) {
-    event.preventDefault();
-    event.stopPropagation();
+    this.preventClose(event);
     this.waitingResponse = true;
     this.validateUser(email, password);
+
   }
 
   validateUser(email, password) {
@@ -76,11 +76,17 @@ export class LogInComponent implements OnInit {
   }
 
   showMessage(message: string, type: string) {
-    this.flashMessage.show(message, {
+    this.flashMessages.show(message, {
       cssClass: `alert-${type}`,
-      timeout: TIMEOUT
+      timeout: TIMEOUT,
+      showCloseBtn: true,
+      closeOnClick: true
     });
   }
 
+  preventClose(event) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
 
 }

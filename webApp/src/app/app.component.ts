@@ -24,6 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.logInService.getUserByToken().subscribe(
       success => {
         this.setCurrentUser();
+        this.showMessage('Bienvenido!', 'success');
       },
       error => {}
     );
@@ -52,7 +53,13 @@ export class AppComponent implements OnInit, OnDestroy {
   showMessage(message: string, type: string) {
     this.flashMessage.show(message, {
       cssClass: `alert-${type}`,
-      timeout: TIMEOUT
+      timeout: TIMEOUT,
+      showCloseBtn: true,
+      closeOnClick: true
     });
+  }
+  preventClose(event) {
+    event.stopPropagation();
+    event.preventDefault();
   }
 }

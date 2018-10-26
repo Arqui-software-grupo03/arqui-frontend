@@ -52,3 +52,12 @@ body {
 #login {
     margin-right: 3em;
 }
+
+.registration {
+    position: absolute;
+    right: 3%;
+}
+
+.registration > li.nav-item {
+    display: inline-block;
+}

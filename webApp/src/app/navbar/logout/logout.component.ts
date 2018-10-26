@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '@app/users/users.service';
+import { LogInService } from '@app/navbar/login/login.service';
 
 
 @Component({
@@ -9,15 +10,15 @@ import { UsersService } from '@app/users/users.service';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService, private logInService: LogInService) { }
 
   ngOnInit() {
   }
   onLogout() {
     this.logout();
-    this.usersService.editUser(null);
+    this.usersService.editUser({});
   }
   logout() {
-    localStorage.clear();
+    this.logInService.removeToken();
   }
 }
