@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LogInService } from './login.service';
 import * as $ from 'jquery';
 import { UsersService } from '@app/users/users.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { ThrowStmt } from '@angular/compiler';
 
 declare var jQuery: any;
 const TIMEOUT = 5000;
@@ -21,8 +22,11 @@ export class LogInComponent implements OnInit {
 
   ngOnInit() {
     this.usersService.castUser.subscribe(
-      user => this.user = user
+      user => {
+        this.user = user;
+      }
     );
+    this.waitingResponse = false;
     this.addjQueryTooltip();
     this.flashMessages.show.bind(this);
   }
