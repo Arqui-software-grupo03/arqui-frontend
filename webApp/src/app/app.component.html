@@ -2,11 +2,11 @@
 <div class="wrapper">
   <flash-messages class="overlay" (click)="preventClose($event)"></flash-messages>
   <!-- Sidebar -->
-  <nav id="sidebar">
+  <nav *ngIf="user.email" id="sidebar">
       <app-sidebar></app-sidebar>
   </nav>
   <div id="content">
     <app-navbar></app-navbar>
-    <app-posts></app-posts>
+    <app-posts *ngIf="user.email"></app-posts>
   </div>
 </div>
