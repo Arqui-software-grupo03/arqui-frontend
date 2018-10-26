@@ -21,3 +21,20 @@ $opacity: 65%;
     -ms-filter: opacity($opacity);
     filter: opacity($opacity);
 }
+
+.home-form {
+    position: relative;
+    margin-top: 35vh;
+    margin-left: 28vw;
+    background-color: black;
+    box-shadow: 0 3em 3em 3em rgba(0, 0, 0, 0.15);
+    width: 50%;
+    padding: 4em;
+    border-radius: 0.25rem;
+}
+
+.home-form > button {
+    display: inline-block;
+    width: 50%;
+    line-height: 3em;
+}
