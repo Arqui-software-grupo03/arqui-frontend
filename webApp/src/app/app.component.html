@@ -8,5 +8,6 @@
   <div id="content">
     <app-navbar></app-navbar>
     <app-posts *ngIf="user.email"></app-posts>
+    <app-homepage *ngIf="!user.email"></app-homepage>
   </div>
 </div>

@@ -14,6 +14,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AppComponent } from '@app/app.component';
 import { NotFoundComponent } from '@app/not-found/not-found.component';
 import { AppRoutingModule } from '@app/app-routing.module';
+import { HomepageModule } from './homepage/homepage.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AppRoutingModule } from '@app/app-routing.module';
     HttpClientModule,
     BrowserAnimationsModule,
     FlashMessagesModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    HomepageModule
     ],
   providers: [],
   bootstrap: [ AppComponent ]
