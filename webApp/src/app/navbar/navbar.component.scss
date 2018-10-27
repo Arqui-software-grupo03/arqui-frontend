@@ -56,9 +56,14 @@ body {
 
 #login {
     margin-right: 3em;
+    width: 100%;
     &:hover {
         font-weight: normal;
     }
+}
+
+#signup {
+    width: 100%;
 }
 
 #signup:hover {

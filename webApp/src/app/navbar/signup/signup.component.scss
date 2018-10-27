@@ -1,22 +1,22 @@
 $green: #28a745;
-#login-btn, #login-btn[disabled]{
+#signup-btn, #signup-btn[disabled]{
   border-radius: 0.25rem;
   text-align: center;
   cursor: pointer;
 }
 
-#login-btn {
+#signup-btn {
   background-color: $green;
   color: white;
 }
 
-#login-btn[disabled], #login-btn[disabled]:hover {
+#signup-btn[disabled], #signup-btn[disabled]:hover {
   background-color: transparent;
   color: $green;
   border: 1px $green solid;
 }
 
-#login-btn:hover {
+#signup-btn:hover {
   background-color: #4bbd65;
   color: white;
 }
@@ -31,7 +31,7 @@ $green: #28a745;
   font-weight: 400;
 }
 
-#login-btn[disabled] {
+#signup-btn[disabled] {
   cursor: default;
 }
 
@@ -39,4 +39,8 @@ $green: #28a745;
   width: 1.1rem;
   height: 1.1rem;
   margin: 0.5rem 3.2rem;
+}
+
+.col-md-12 {
+  padding: 1em;
 }

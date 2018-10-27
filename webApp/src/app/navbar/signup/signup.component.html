@@ -23,7 +23,7 @@
             <input type="password" class="form-control" #passwordRetypeBox id="password-retype-box" placeholder="Contraseña" (keyup)="keyUpValidatePassword(passwordBox.value, passwordRetypeBox.value)">
         </div>
         <div class="dropdown-divider"></div>
-        <button [disabled]="!btnEnable || waitingResponse" class="dropdown-item" id="login-btn" (click)="onSubmit(usernameBox.value, emailBox.value, passwordBox.value, $event)">
+        <button [disabled]="!btnEnable || waitingResponse" class="dropdown-item" id="signup-btn" (click)="onSubmit(usernameBox.value, emailBox.value, passwordBox.value, $event)">
             <div *ngIf="!waitingResponse else loading" class="span">
                 Registrarse
             </div>
