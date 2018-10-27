@@ -1,15 +1,26 @@
-.dropdown-item, #login-btn[disabled]{
-  background-color: transparent;
-  color: #28a745;
-  border: 1px #28a745 solid;
+$green: #28a745;
+#login-btn, #login-btn[disabled]{
   border-radius: 0.25rem;
   text-align: center;
   cursor: pointer;
 }
-.dropdown-item:hover{
-  background-color: #28a745;
+
+#login-btn {
+  background-color: green;
   color: white;
 }
+
+#login-btn[disabled], #login-btn[disabled]:hover {
+  background-color: transparent;
+  color: $green;
+  border: 1px $green solid;
+}
+
+#login-btn:hover {
+  background-color: #4bbd65;
+  color: white;
+}
+
 .logout-btn{
   background-color: red!important;
   color: black;
@@ -18,6 +29,7 @@
   right: 0;
   left: auto !important;
   width: 14em;
+  box-shadow: 0em 0.5em 0.5em 0;
 }
 .dropdown-menu{
   font-weight: 400;

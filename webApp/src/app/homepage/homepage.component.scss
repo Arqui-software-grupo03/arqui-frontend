@@ -24,7 +24,8 @@ $opacity: 65%;
 
 .home-form {
     position: relative;
-    margin-top: 35vh;
+    margin-top: 20vh;
+    margin-bottom: 10vh;
     margin-left: 28vw;
     background-color: black;
     box-shadow: 0 3em 3em 3em rgba(0, 0, 0, 0.15);
@@ -37,4 +38,25 @@ $opacity: 65%;
     display: inline-block;
     width: 50%;
     line-height: 3em;
+}
+
+.btn-info.active {
+    background-color: #0bacc6 !important;
+    border-color: #0bacc6;
+    font-weight: bold;
+}
+
+
+.btn-danger.active {
+    background-color: #e9061d !important;
+    border-color: #e9061d;
+    font-weight: bold;
+}
+
+.forms {
+    margin-top: 1em;
+    border-radius: 0.25rem;
+    // box-shadow: 0em 0em 0.2em 0.2em white;
+    padding: 3.5rem 0;
+    
 }

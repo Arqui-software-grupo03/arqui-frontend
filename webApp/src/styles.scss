@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/scss/bootstrap-reboot';
 @import '~bootstrap/scss/bootstrap-grid';
+$typingColor: rgb(41, 168, 120);
 .row{
   margin-right: 0 !important;
   margin-left: 0 !important;
@@ -33,51 +34,77 @@
 }
 @-webkit-keyframes typing{
   0%{
-      background-color: rgba(24, 52, 87, 1);
-      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,0.2), 
-                  48px 0px 0px 0px rgba(24, 52, 87,0.2);
+      background-color: $typingColor;
+      box-shadow: 24px 0px 0px 0px rgba($typingColor,0.2), 
+                  48px 0px 0px 0px rgba($typingColor,0.2);
       }
   25%{ 
-      background-color: rgba(24, 52, 87, 0.4);
-      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,2), 
-                  48px 0px 0px 0px rgba(24, 52, 87,0.2);
+      background-color: rgba($typingColor, 0.4);
+      box-shadow: 24px 0px 0px 0px rgba($typingColor, 2), 
+                  48px 0px 0px 0px rgba($typingColor,0.2);
   }
-  75%{ background-color: rgba(24, 52, 87, 0.4);
-      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,0.2), 
-                  48px 0px 0px 0px rgba(24, 52, 87,1);
+  75%{ background-color: rgba($typingColor, 0.4);
+      box-shadow: 24px 0px 0px 0px rgba($typingColor,0.2), 
+                  48px 0px 0px 0px rgba($typingColor,1);
       }
 }
 
 @-moz-keyframes typing{
   0%{
-      background-color: rgba(24, 52, 87, 1);
-      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,0.2), 
-                  48px 0px 0px 0px rgba(24, 52, 87,0.2);
+      background-color: $typingColor;
+      box-shadow: 24px 0px 0px 0px rgba($typingColor,0.2), 
+                  48px 0px 0px 0px rgba($typingColor,0.2);
       }
   25%{ 
-      background-color: rgba(24, 52, 87, 0.4);
-      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,2), 
-                  48px 0px 0px 0px rgba(24, 52, 87,0.2);
+      background-color: rgba($typingColor, 0.4);
+      box-shadow: 24px 0px 0px 0px rgba($typingColor, 2), 
+                  48px 0px 0px 0px rgba($typingColor,0.2);
   }
-  75%{ background-color: rgba(24, 52, 87, 0.4);
-      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,0.2), 
-                  48px 0px 0px 0px rgba(24, 52, 87,1);
+  75%{ background-color: rgba($typingColor, 0.4);
+      box-shadow: 24px 0px 0px 0px rgba($typingColor,0.2), 
+                  48px 0px 0px 0px rgba($typingColor,1);
       }
 }
 
 @keyframes typing{
   0%{
-      background-color: rgba(24, 52, 87, 1);
-      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,0.2), 
-                  48px 0px 0px 0px rgba(24, 52, 87,0.2);
+      background-color: $typingColor;
+      box-shadow: 24px 0px 0px 0px rgba($typingColor,0.2), 
+                  48px 0px 0px 0px rgba($typingColor,0.2);
       }
   25%{ 
-      background-color: rgba(24, 52, 87, 0.4);
-      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,2), 
-                  48px 0px 0px 0px rgba(24, 52, 87,0.2);
+      background-color: rgba($typingColor, 0.4);
+      box-shadow: 24px 0px 0px 0px rgba($typingColor, 2), 
+                  48px 0px 0px 0px rgba($typingColor,0.2);
   }
-  75%{ background-color: rgba(24, 52, 87, 0.4);
-      box-shadow: 24px 0px 0px 0px rgba(24, 52, 87,0.2), 
-                  48px 0px 0px 0px rgba(24, 52, 87,1);
+  75%{ background-color: rgba($typingColor, 0.4);
+      box-shadow: 24px 0px 0px 0px rgba($typingColor,0.2), 
+                  48px 0px 0px 0px rgba($typingColor,1);
       }
+}
+
+.forms .form-group {
+  & > label {
+    color: rgb(189, 188, 188);
+  }
+}
+
+.forms {
+  div.dropdown-divider {
+    border-top: 1px solid rgb(189, 188, 188) !important;
+  }
+  button#login-btn[disabled] {
+    background-color: transparent;
+    color: #218838;
+    border: 2px #218838 solid !important;
+  }
+  button {
+    line-height: 2.5em;
+  }
+  input {
+    box-shadow: 0em 0em 0.3em 0.1em;
+  }
+  .small {
+    margin: 0.5rem 45% !important;
+  }
 }

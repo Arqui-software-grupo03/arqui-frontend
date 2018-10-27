@@ -1,9 +1,11 @@
 <div class="home">
   <div class="home-form">
     
-    <button class="btn btn-info" id="login">Iniciar sesión</button>
-    <button class="btn btn-danger" id="signup">Registarse</button>
-    <app-login></app-login>
-    <app-signup></app-signup>
+    <button class="btn btn-info" [ngClass]="{'active': choice === 1}" (click)="choice = 1" id="login">Iniciar sesión</button>
+    <button class="btn btn-danger" [ngClass]="{'active': choice === 2}" (click)="choice = 2" id="signup">Registarse</button>
+    <div class="forms">
+      <app-login *ngIf="choice === 1"></app-login>
+      <app-signup *ngIf="choice !== 1"></app-signup>
+    </div>
   </div>
 </div>

@@ -1,3 +1,4 @@
+$green: #28a745;
 #login-btn, #login-btn[disabled]{
   border-radius: 0.25rem;
   text-align: center;
@@ -5,14 +6,14 @@
 }
 
 #login-btn {
-  background-color: green;
+  background-color: $green;
   color: white;
 }
 
 #login-btn[disabled], #login-btn[disabled]:hover {
   background-color: transparent;
-  color: #28a745;
-  border: 1px #28a745 solid;
+  color: $green;
+  border: 1px $green solid;
 }
 
 #login-btn:hover {
