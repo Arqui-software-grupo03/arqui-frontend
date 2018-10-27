@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { LoginModule } from '@app/navbar/login/login.module';
 import { HomepageService } from '@app/homepage/homepage.service';
+import { SignupModule } from '@app/navbar/signup/signup.module';
 
 
 @NgModule({
     imports: [
         CommonModule,
-        LoginModule
+        LoginModule,
+        SignupModule
     ],
     declarations: [
         HomepageComponent

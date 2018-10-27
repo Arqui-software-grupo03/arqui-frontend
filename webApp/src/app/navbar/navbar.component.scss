@@ -43,6 +43,9 @@ body {
 .nav-item:hover{
     color: black; 
     font-weight: bold;
+    #login, #signup {
+        font-weight: normal;
+    }
 }
 .btn-toogle{
     background-color: #1c677F;
@@ -53,6 +56,13 @@ body {
 
 #login {
     margin-right: 3em;
+    &:hover {
+        font-weight: normal;
+    }
+}
+
+#signup:hover {
+    font-weight: normal;
 }
 
 .registration {

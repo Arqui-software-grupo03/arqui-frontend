@@ -15,16 +15,20 @@
       </li>
       <div *ngIf="!user.email else loggedUserOptions" class="registration">
         <li class="nav-item">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-1" data-toggle="dropdown" role="button" aria-haspopup="false">
             Iniciar sesión
           </a>
-          <app-login></app-login>
+          <div class="dropdown-menu" id="login" (click)=preventClose($event) aria-labelledby="navbarDropdown-1">
+            <app-login></app-login>
+          </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Registrarse
           </a>
-          <app-signup></app-signup>
+          <div class="dropdown-menu" id="signup" aria-labelledby="navbarDropdown-2" (click)="preventClose($event)">
+            <app-signup></app-signup>
+          </div>
         </li>
       </div>
       <ng-template #loggedUserOptions>

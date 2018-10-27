@@ -10,28 +10,12 @@ declare var jQuery: any;
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  clickedLogInBtn;
-  clickedSignUpBtn;
+  choice = 1;
   constructor(private homepageService: HomepageService) { }
 
   ngOnInit() {
-    this.homepageService.castLogInHome.subscribe(
-      val => this.clickedLogInBtn = val
-    );
-    this.homepageService.castSignUpHome.subscribe(
-      val => this.clickedSignUpBtn = val
-    );
-    this.addjQueryTooltip();
-  }
-
-  addjQueryTooltip() {
-    jQuery('#login').on('click', () => {
-      this.homepageService.editVariables('login', !this.clickedLogInBtn);
-    });
-    jQuery('#signup').on('click', () => {
-      this.homepageService.editVariables('signup', !this.clickedSignUpBtn);
-    });
 
   }
+
 
 }
