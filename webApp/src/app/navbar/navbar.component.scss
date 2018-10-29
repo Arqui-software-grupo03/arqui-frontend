@@ -36,10 +36,10 @@ body {
         margin-left: 0;
     }
 }
-.dropdown{
+/* .dropdown{
     position: absolute;
     right: 0;
-}
+} */
 .nav-item:hover{
     color: black; 
     font-weight: bold;
@@ -70,11 +70,18 @@ body {
     font-weight: normal;
 }
 
-.registration {
+.registration, #logout {
     position: absolute;
     right: 3%;
 }
 
 .registration > li.nav-item {
     display: inline-block;
+}
+
+.logout-btn {
+    background: None;
+    color: black;
+    cursor: pointer;
+    width: 100%;
 }
