@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from '@app/not-found/not-found.component';
 import { AppComponent } from '@app/app.component';
-import { AuthResolver } from '@app/auth/auth.resolver';
 import { UsersComponent } from '@app/users/users.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { Authenticate } from './auth/authenticate.guard';
 
 // Define routes for url: localhost:4200/anyRoute
 const routes: Routes = [
@@ -18,7 +18,8 @@ const routes: Routes = [
       HomepageComponent,
     },
     { path: 'profile',
-      component: UsersComponent
+      component: UsersComponent,
+      canActivate: [ Authenticate ]
     },
     { path: '**',
       component: NotFoundComponent

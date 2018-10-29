@@ -26,7 +26,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.addjQueryTooltip();
-    this.flashMessage.show.bind(this);
   }
 
   ngOnDestroy() {

@@ -10,6 +10,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 export class LogInService {
   httpOptions;
   logInUrl;
+  private logged = false;
   constructor(private appService: AppService, private http: HttpClient) {
     this.httpOptions = appService.httpOptions;
     this.logInUrl = `${appService.url}/users/login`;
@@ -49,6 +50,14 @@ export class LogInService {
 
   hasToken(): boolean {
     return this.getToken() !== null ? true : false;
+  }
+
+  editLogged(value: boolean) {
+    this.logged = value;
+  }
+
+  isUserLogged(): boolean {
+    return this.logged;
   }
 
   errorHandler(error: HttpErrorResponse) {

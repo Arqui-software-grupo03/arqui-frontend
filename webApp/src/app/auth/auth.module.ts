@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthComponent } from '@app/auth/auth.component';
 import { AuthService } from '@app/auth/auth.service';
-import { AuthResolver } from '@app/auth/auth.resolver';
 
 @NgModule({
   imports: [
@@ -13,7 +12,6 @@ import { AuthResolver } from '@app/auth/auth.resolver';
   ],
   providers: [
     AuthService,
-    AuthResolver
   ],
   exports: [
     AuthComponent

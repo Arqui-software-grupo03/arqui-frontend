@@ -25,62 +25,61 @@ export class HomepageComponent implements OnInit, OnDestroy {
 
     if (this.logInService.getToken()) {
       this.logInService.getUserByToken().subscribe(
-      success => {
-      this.setCurrentUser();
-      this.showMessage('Bienvenido!', 'success');
-      this.loading = false;
-      },
-      error => {
-      this.loading = false;
-      }
-      );
-      } else {
-      this.loading = false;
-    }
-
-
-    }
-
-    ngOnInit() {
-      this.loading = true;
-      setTimeout(
-        () => {
+        success => {
+          this.setCurrentUser();
+          this.showMessage('Bienvenido!', 'success');
           this.loading = false;
-        }, 900
-      );
-      this.usersService.castUser.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-        usr => {
-          // this.loading = true;
-          this.user = usr;
+        },
+        error => {
+          this.loading = false;
         }
       );
-
-    }
-    ngOnDestroy() {
-      this.cdRef.detach();
-      this.ngUnsubscribe.next();
-      this.ngUnsubscribe.unsubscribe();
-    }
-
-    setCurrentUser() {
-      const usr = {
-        'token': this.logInService.getToken(),
-        'email': this.logInService.getEmail()
-      };
-      this.usersService.editUser(usr);
-    }
-    showMessage(message: string, type: string) {
-      this.flashMessage.show(message, {
-        cssClass: `alert-${type}`,
-        timeout: TIMEOUT,
-        showCloseBtn: true,
-        closeOnClick: true
-      });
-    }
-    preventClose(event) {
-      event.stopPropagation();
-      event.preventDefault();
+    } else {
+      this.loading = false;
     }
 
 
+  }
+
+  ngOnInit() {
+    this.loading = true;
+    setTimeout(
+      () => {
+        this.loading = false;
+      }, 900
+    );
+    this.usersService.castUser.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      usr => {
+        // this.loading = true;
+        this.user = usr;
+      }
+    );
+
+  }
+  ngOnDestroy() {
+    this.cdRef.detach();
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.unsubscribe();
+  }
+
+  setCurrentUser() {
+    const usr = {
+      'token': this.logInService.getToken(),
+      'email': this.logInService.getEmail()
+    };
+    this.usersService.editUser(usr);
+    this.logInService.editLogged(true);
+  }
+  showMessage(message: string, type: string) {
+    this.flashMessage.show(message, {
+      cssClass: `alert-${type}`,
+      timeout: TIMEOUT,
+      showCloseBtn: true,
+      closeOnClick: true
+    });
+  }
+  preventClose(event) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
 }

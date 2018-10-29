@@ -28,7 +28,6 @@ export class LogInComponent implements OnInit {
     );
     this.waitingResponse = false;
     this.addjQueryTooltip();
-    this.flashMessages.show.bind(this);
   }
 
   addjQueryTooltip() {
@@ -73,6 +72,7 @@ export class LogInComponent implements OnInit {
       'email': this.logInService.getEmail()
     };
     this.usersService.editUser(usr);
+    this.logInService.editLogged(true);
   }
 
   showMessage(message: string, type: string) {

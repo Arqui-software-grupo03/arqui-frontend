@@ -20,5 +20,6 @@ export class LogoutComponent implements OnInit {
   }
   logout() {
     this.logInService.removeToken();
+    this.logInService.editLogged(false);
   }
 }
