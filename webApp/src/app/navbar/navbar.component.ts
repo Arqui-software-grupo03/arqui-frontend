@@ -46,4 +46,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
       jQuery('#rightBox').toggleClass('active');
     });
   }
+  preventClose(event) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
 }

@@ -5,10 +5,7 @@ import { LoginModule } from '@app/navbar/login/login.module';
 import { HomepageService } from '@app/homepage/homepage.service';
 import { SignupModule } from '@app/navbar/signup/signup.module';
 import { FlashMessagesModule } from 'angular2-flash-messages';
-import { NavbarModule } from '@app/navbar/navbar.module';
 import { PostsModule } from '@app/posts/posts.module';
-import { SidebarModule } from '@app/sidebar/sidebar.module';
-import { NgxLoadingModule } from 'ngx-loading';
 
 
 @NgModule({
@@ -17,10 +14,7 @@ import { NgxLoadingModule } from 'ngx-loading';
         LoginModule,
         SignupModule,
         FlashMessagesModule,
-        // NavbarModule,
         PostsModule,
-        // SidebarModule,
-        // NgxLoadingModule
     ],
     declarations: [
         HomepageComponent

@@ -1,2 +1,11 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<div class="wrapper">
+    <flash-messages class="overlay" (click)="preventClose($event)"></flash-messages>
+    <nav *ngIf="user.email" id="sidebar">
+        <app-sidebar></app-sidebar>
+    </nav>
+    <div id="content">
+        <app-navbar ></app-navbar>
+        <router-outlet></router-outlet>
+    </div>
+</div>
+

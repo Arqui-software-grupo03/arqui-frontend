@@ -2,44 +2,11 @@
     box-shadow: 0 0.2em 0.5em 0.5em rgba(0, 0, 0, 0.15);
 }
 
-#sidebar.active {
-    margin-left: -250px;
-}
-
-
-#rightBox {
-    margin-left: 60%;
-}
-
-
-a[data-toggle="collapse"] {
-    position: relative;
-}
-
-
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
 }
 
-
-
-#rightBox.active > li {
-    display: inline-block;
-}
-
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-}
-/* .dropdown{
-    position: absolute;
-    right: 0;
-} */
 .nav-item:hover{
     color: black; 
     font-weight: bold;
@@ -87,89 +54,6 @@ body {
 }
 
 
-.forms {
-    margin-top: 1em;
-    border-radius: 0.25rem;
-    // box-shadow: 0em 0em 0.2em 0.2em white;
-    padding: 3.5rem 0;
-    
-}
-
-.wrapper {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
-}
-  
-.wrapper {
-    display: flex;
-    align-items: stretch;
-}
-  
-#sidebar {
-    min-width: 250px;
-    max-width: 250px;
-}
-#sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    min-height: 100vh;
-}
-#sidebar {
-    /* don't forget to add all the previously mentioned styles here too */
-    background: #1c677F;
-    color: #fff;
-    transition: all 0.1s;
-}
-#content {
-    width: 100%;
-}
-#rightBox.active > li {
-    display: inline-block;
-}
-
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-}
-#sidebar.active {
-    margin-left: -250px;
-}
 a[data-toggle="collapse"] {
     position: relative;
-}
-
-.overlay {
-    position: absolute;
-    z-index: 1000000;
-    top: 1%;
-    // left: 0;
-    right: 2.8%;
-    // background: #fde073;
-    text-align: center;
-    line-height: 3.5;
-    overflow: hidden; 
-    // -webkit-box-shadow: 0 0 5px black;
-    // -moz-box-shadow:    0 0 5px black;
-    // box-shadow:         0 0 5px black;
-}
-
-@-webkit-keyframes slideDown {
-    0%, 100% { -webkit-transform: translateY(-50px); }
-    10%, 90% { -webkit-transform: translateY(0px); }
-}
-@-moz-keyframes slideDown {
-    0%, 100% { -moz-transform: translateY(-50px); }
-    10%, 90% { -moz-transform: translateY(0px); }
-}
-
-.cssanimations.csstransforms .overlay {
-    -webkit-transform: translateY(-50px);
-    -webkit-animation: slideDown 2.5s 1.0s 1 ease forwards;
-    -moz-transform:    translateY(-50px);
-    -moz-animation:    slideDown 2.5s 1.0s 1 ease forwards;
 }

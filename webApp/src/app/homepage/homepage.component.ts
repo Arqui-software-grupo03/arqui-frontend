@@ -23,7 +23,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
   constructor(private logInService: LogInService, private flashMessage: FlashMessagesService,
     private usersService: UsersService, private cdRef: ChangeDetectorRef) {
 
-    if (this.logInService.getToken()) {
+    /* if (this.logInService.getToken()) {
       this.logInService.getUserByToken().subscribe(
         success => {
           this.setCurrentUser();
@@ -36,7 +36,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
       );
     } else {
       this.loading = false;
-    }
+    } */
 
 
   }

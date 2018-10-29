@@ -4,10 +4,7 @@ import { NavbarComponent } from '@app/navbar/navbar.component';
 import { LoginModule } from './login/login.module';
 import { SignupModule } from './signup/signup.module';
 import { NavbarService } from './navbar.service';
-import { SidebarModule } from '@app/sidebar/sidebar.module';
 import { LogoutComponent } from './logout/logout.component';
-import { FlashMessagesModule } from 'angular2-flash-messages';
-import { HomepageModule } from '@app/homepage/homepage.module';
 
 
 @NgModule({
@@ -15,9 +12,6 @@ import { HomepageModule } from '@app/homepage/homepage.module';
     CommonModule,
     LoginModule,
     SignupModule,
-    SidebarModule,
-    FlashMessagesModule,
-    HomepageModule
   ],
   declarations: [
     NavbarComponent,

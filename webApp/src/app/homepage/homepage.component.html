@@ -1,22 +1,5 @@
-<!--The content below is only a placeholder and can be replaced.
-<div class="wrapper">
-  <flash-messages class="overlay" (click)="preventClose($event)"></flash-messages>
-  <nav *ngIf="user.email" id="sidebar">
-      <app-sidebar></app-sidebar>
-  </nav>
-  <div *ngIf="!loading" id="content">
-    <app-navbar></app-navbar>
-    <app-posts *ngIf="user.email else notLogged"></app-posts>
-  </div>
-  <ng-template #loadingTemplate>
-    <div>
-    </div>
-  </ng-template>
-  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px', backdropBackgroundColour: '#78878a4d'}" [template]="loadingTemplate"></ngx-loading>
-</div>
--->
-<app-posts *ngIf="user.email else notLogged"></app-posts>
-<ng-template #notLogged>
+<app-posts id="content" *ngIf="user.email else notLogged"></app-posts>
+<ng-template id="content" #notLogged>
   <div class="home">
     <div class="home-form">
       
