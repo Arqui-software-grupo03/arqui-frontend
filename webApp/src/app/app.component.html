@@ -5,9 +5,14 @@
   <nav *ngIf="user.email" id="sidebar">
       <app-sidebar></app-sidebar>
   </nav>
-  <div id="content">
+  <div *ngIf="!loading" id="content">
     <app-navbar></app-navbar>
     <app-posts *ngIf="user.email"></app-posts>
     <app-homepage *ngIf="!user.email"></app-homepage>
   </div>
+  <ng-template #loadingTemplate>
+    <div>
+    </div>
+  </ng-template>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px', backdropBackgroundColour: '#78878a4d'}" [template]="loadingTemplate"></ngx-loading>
 </div>

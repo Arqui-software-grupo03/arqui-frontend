@@ -25,7 +25,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     );
     this.addjQueryTooltip();
     this.addjQuerySideBarToggle();
-
   }
 
   ngOnDestroy() {

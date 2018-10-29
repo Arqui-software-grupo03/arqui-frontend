@@ -15,6 +15,7 @@ import { AppComponent } from '@app/app.component';
 import { NotFoundComponent } from '@app/not-found/not-found.component';
 import { AppRoutingModule } from '@app/app-routing.module';
 import { HomepageModule } from './homepage/homepage.module';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { HomepageModule } from './homepage/homepage.module';
     HttpClientModule,
     BrowserAnimationsModule,
     FlashMessagesModule.forRoot(),
+    NgxLoadingModule.forRoot({}),
     AppRoutingModule,
     HomepageModule
     ],

@@ -17,6 +17,7 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'app';
   user: any;
   private ngUnsubscribe = new Subject();
+  public loading = true;
   constructor(private logInService: LogInService, private flashMessage: FlashMessagesService,
               private usersService: UsersService, private cdRef: ChangeDetectorRef,
               private route: ActivatedRoute) {
@@ -26,16 +27,30 @@ export class AppComponent implements OnInit, OnDestroy {
         success => {
           this.setCurrentUser();
           this.showMessage('Bienvenido!', 'success');
+          this.loading = false;
         },
-        error => {}
+        error => {
+          this.loading = false;
+        }
       );
+    } else {
+      this.loading = false;
     }
 
 
   }
   ngOnInit() {
+    this.loading = true;
+    setTimeout(
+      () => {
+        this.loading = false;
+      }, 900
+    );
     this.usersService.castUser.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-      usr => this.user = usr
+      usr => {
+        // this.loading = true;
+        this.user = usr;
+      }
     );
 
   }
