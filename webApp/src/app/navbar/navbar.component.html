@@ -10,11 +10,11 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
       </li>
       <div *ngIf="!user.email else loggedUserOptions" class="registration">
         <li class="nav-item">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-1" data-toggle="dropdown" role="button" aria-haspopup="false">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown-1" data-toggle="dropdown" role="button" aria-haspopup="false">
             Iniciar sesión
           </a>
           <div class="dropdown-menu" id="login" (click)=preventClose($event) aria-labelledby="navbarDropdown-1">
@@ -22,7 +22,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Registrarse
           </a>
           <div class="dropdown-menu" id="signup" aria-labelledby="navbarDropdown-2" (click)="preventClose($event)">
@@ -32,13 +32,13 @@
       </div>
       <ng-template #loggedUserOptions>
         <li class="nav-item">
-          <a class="nav-link" href="#">Posts</a>
+          <a class="nav-link" routerLink="/posts">Posts</a>
         </li>
         <li class="nav-item">
           <a class="nav-link click" routerLink="/profile">Profile</a>
         </li>
         <li class="nav-item dropdown" id="logout">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Cerrar sesión
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">

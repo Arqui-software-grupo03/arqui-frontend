@@ -5,6 +5,7 @@ import { LoginModule } from './login/login.module';
 import { SignupModule } from './signup/signup.module';
 import { NavbarService } from './navbar.service';
 import { LogoutComponent } from './logout/logout.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { LogoutComponent } from './logout/logout.component';
     CommonModule,
     LoginModule,
     SignupModule,
+    RouterModule
   ],
   declarations: [
     NavbarComponent,
