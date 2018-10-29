@@ -17,10 +17,10 @@ import { NgxLoadingModule } from 'ngx-loading';
         LoginModule,
         SignupModule,
         FlashMessagesModule,
-        NavbarModule,
+        // NavbarModule,
         PostsModule,
-        SidebarModule,
-        NgxLoadingModule
+        // SidebarModule,
+        // NgxLoadingModule
     ],
     declarations: [
         HomepageComponent

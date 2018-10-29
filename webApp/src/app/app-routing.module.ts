@@ -5,6 +5,7 @@ import { AppComponent } from '@app/app.component';
 import { UsersComponent } from '@app/users/users.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { Authenticate } from './auth/authenticate.guard';
+import { NavbarComponent } from './navbar/navbar.component';
 
 // Define routes for url: localhost:4200/anyRoute
 const routes: Routes = [

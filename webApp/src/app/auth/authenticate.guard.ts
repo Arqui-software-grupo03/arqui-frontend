@@ -45,7 +45,6 @@ export class Authenticate implements CanActivate {
                     return false; */
                     this.location.go(state.url);
                     this.routerNav.navigate([state.url]);
-                    console.log('hhhere');
                     return true;
                 },
                 error => {
