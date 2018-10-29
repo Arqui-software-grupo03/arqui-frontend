@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from '@app/not-found/not-found.component';
 import { AppComponent } from '@app/app.component';
 import { AuthResolver } from '@app/auth/auth.resolver';
+import { UsersComponent } from '@app/users/users.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 // Define routes for url: localhost:4200/anyRoute
 const routes: Routes = [
@@ -13,7 +15,10 @@ const routes: Routes = [
     },
     { path: 'home',
       component:
-      AppComponent,
+      HomepageComponent,
+    },
+    { path: 'profile',
+      component: UsersComponent
     },
     { path: '**',
       component: NotFoundComponent
