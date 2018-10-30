@@ -4,13 +4,13 @@
         <div class="form-group">
             <label for="dropdownFormEmail">Email</label>
             <input type="email" class="form-control" name="dropdownFormEmail"
-                #usernameBox id="username-box" placeholder="email@ejemplo.com" 
+                #usernameBox placeholder="email@ejemplo.com" 
                     (keyup)="keyUpFunction(usernameBox.value, passwordBox.value,$event)"
                         data-toggle="tooltip" data-placement="top" title="Ingrese email" required>
         </div>
         <div class="form-group">
             <label for="dropdownFormPassword">Contraseña</label>
-            <input type="password" name="dropdownFormPassword" class="form-control" #passwordBox id="password-box"
+            <input type="password" name="dropdownFormPassword" class="form-control" #passwordBox
                 placeholder="Contraseña" (keyup)="keyUpFunction(usernameBox.value, passwordBox.value,$event)"
                     data-toggle="tooltip" data-placement="top" title="Ingrese contraseña" required>
         </div>
