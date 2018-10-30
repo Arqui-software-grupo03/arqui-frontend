@@ -6,6 +6,7 @@ import { HomepageService } from '@app/homepage/homepage.service';
 import { SignupModule } from '@app/navbar/signup/signup.module';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { PostsModule } from '@app/posts/posts.module';
+import { NgxLoadingModule } from 'ngx-loading';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { PostsModule } from '@app/posts/posts.module';
         SignupModule,
         FlashMessagesModule,
         PostsModule,
+        NgxLoadingModule
     ],
     declarations: [
         HomepageComponent

@@ -1,8 +1,7 @@
-<app-posts id="content" *ngIf="user.email else notLogged"></app-posts>
+<app-posts id="content" *ngIf="user.email && !loading else notLogged"></app-posts>
 <ng-template id="content" #notLogged>
-  <div class="home">
+  <div *ngIf="!loading" class="home">
     <div class="home-form">
-      
       <button class="btn btn-info" [ngClass]="{'active': choice === 1}" (click)="choice = 1" id="login">Iniciar sesión</button>
       <button class="btn btn-danger" [ngClass]="{'active': choice === 2}" (click)="choice = 2" id="signup">Registarse</button>
       <div class="forms">

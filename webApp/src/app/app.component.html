@@ -7,5 +7,10 @@
         <app-navbar ></app-navbar>
         <router-outlet></router-outlet>
     </div>
+    <ng-template #loadingTemplate>
+        <div>
+        </div>
+    </ng-template>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px', backdropBackgroundColour: '#78878a4d'}" [template]="loadingTemplate"></ngx-loading>
 </div>
 

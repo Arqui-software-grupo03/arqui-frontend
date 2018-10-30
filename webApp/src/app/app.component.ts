@@ -4,6 +4,7 @@ import { UsersService } from './users/users.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { AppService } from './app.component.service';
 
 const TIMEOUT = 5000;
 
@@ -18,32 +19,13 @@ export class AppComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject();
   public loading = true;
   constructor(private logInService: LogInService, private flashMessage: FlashMessagesService,
-    private usersService: UsersService, private cdRef: ChangeDetectorRef) {
-
-    if (this.logInService.getToken()) {
-      this.logInService.getUserByToken().subscribe(
-        success => {
-          this.setCurrentUser();
-          this.showMessage('Bienvenido!', 'success');
-          this.loading = false;
-        },
-        error => {
-          this.loading = false;
-        }
-      );
-    } else {
-      this.loading = false;
-    }
-
-
+    private usersService: UsersService, private cdRef: ChangeDetectorRef,
+    private appService: AppService) {
   }
 
   ngOnInit() {
-    this.loading = true;
-    setTimeout(
-      () => {
-        this.loading = false;
-      }, 900
+    this.appService.castLoading.subscribe(
+      val => this.loading = val
     );
     this.usersService.castUser.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       usr => {
@@ -51,7 +33,20 @@ export class AppComponent implements OnInit, OnDestroy {
         this.user = usr;
       }
     );
-
+    if (this.logInService.getToken()) {
+      this.logInService.getUserByToken().subscribe(
+        success => {
+          this.setCurrentUser();
+          // this.showMessage('Bienvenido!', 'success');
+          this.appService.editLoading(false);
+        },
+        error => {
+          this.appService.editLoading(false);
+        }
+      );
+    } else {
+      this.appService.editLoading(false);
+    }
   }
   ngOnDestroy() {
     this.cdRef.detach();

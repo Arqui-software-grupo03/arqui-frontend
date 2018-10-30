@@ -16,6 +16,7 @@ import { NotFoundComponent } from '@app/not-found/not-found.component';
 import { AppRoutingModule } from '@app/app-routing.module';
 import { HomepageModule } from './homepage/homepage.module';
 import { NgxLoadingModule } from 'ngx-loading';
+import { AppService } from './app.component.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { NgxLoadingModule } from 'ngx-loading';
     AppRoutingModule,
     HomepageModule
     ],
-  providers: [],
+  providers: [ AppService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

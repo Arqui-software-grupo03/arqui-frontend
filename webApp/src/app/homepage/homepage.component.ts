@@ -6,6 +6,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { UsersService } from '@app/users/users.service';
 import { takeUntil } from 'rxjs/operators';
 import { LogInService } from '@app/navbar/login/login.service';
+import { AppService } from '@app/app.component.service';
 
 const TIMEOUT = 5000;
 declare var jQuery: any;
@@ -21,7 +22,8 @@ export class HomepageComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject();
   public loading = true;
   constructor(private logInService: LogInService, private flashMessage: FlashMessagesService,
-    private usersService: UsersService, private cdRef: ChangeDetectorRef) {
+    private usersService: UsersService, private cdRef: ChangeDetectorRef,
+    private appService: AppService) {
 
     /* if (this.logInService.getToken()) {
       this.logInService.getUserByToken().subscribe(
@@ -42,11 +44,8 @@ export class HomepageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.loading = true;
-    setTimeout(
-      () => {
-        this.loading = false;
-      }, 900
+    this.appService.castLoading.subscribe(
+      val => this.loading = val
     );
     this.usersService.castUser.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       usr => {

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -10,5 +11,11 @@ export class AppService {
     };
     // Apiary: http://private-bb6ce2-arquitransocialnetwork.apiary-mock.com/
     url = 'http://private-bb6ce2-arquitransocialnetwork.apiary-mock.com';
+    private loading = new BehaviorSubject(true);
+    castLoading = this.loading.asObservable();
     constructor() { }
+
+    editLoading(value: boolean) {
+        this.loading.next(value);
+    }
 }
