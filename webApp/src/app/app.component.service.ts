@@ -18,4 +18,12 @@ export class AppService {
     editLoading(value: boolean) {
         this.loading.next(value);
     }
+    getHttpOptionsWithToken() {
+        return {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Token': localStorage.getItem('token'),
+            })
+        };
+    }
 }
