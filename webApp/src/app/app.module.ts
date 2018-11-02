@@ -17,11 +17,13 @@ import { AppRoutingModule } from '@app/app-routing.module';
 import { HomepageModule } from './homepage/homepage.module';
 import { NgxLoadingModule } from 'ngx-loading';
 import { AppService } from './app.component.service';
+import { TopicComponent } from './topic/topic.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
+    TopicComponent,
   ],
   imports: [
     BrowserModule,
