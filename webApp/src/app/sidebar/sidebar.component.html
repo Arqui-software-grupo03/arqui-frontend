@@ -22,12 +22,9 @@
 
         <li class="active">
             <a href="#topicsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Topics</a>
-            <ul class="collapse list-unstyled" id="topicsSubmenu">
+            <ul *ngFor="let topic of topics" class="collapse list-unstyled" id="topicsSubmenu">
                 <li>
-                    <a href="#">Topic 1</a>
-                </li>
-                <li>
-                    <a href="#">Topic 2</a>
+                    <a href="#">{{topic.title}}</a>
                 </li>
             </ul>
         </li>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '@app/users/users.service';
+import { TopicService } from '@app/topic/topic.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,7 +10,8 @@ import { UsersService } from '@app/users/users.service';
 export class SidebarComponent implements OnInit {
   userPhotoUrl;
   user;
-  constructor(private usersService: UsersService) {
+  topics;
+  constructor(private usersService: UsersService, private topicService: TopicService) {
     this.userPhotoUrl = '../../assets/felipe_de_la_fuente.jpg';
    }
 
@@ -20,10 +22,21 @@ export class SidebarComponent implements OnInit {
         console.log(this.user);
       }, error => console.log(error)
     );
+    this.getAllTopics();
   }
 
   onClickEditProfile(event) {
 
+  }
+  getAllTopics() {
+    this.topicService.getAllTopics().subscribe(
+      topics => {
+        this.topics = topics;
+        console.log(this.topics);
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 
 }
