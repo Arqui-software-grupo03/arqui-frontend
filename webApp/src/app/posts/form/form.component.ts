@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PostsService } from '../posts.service';
 
 @Component({
   selector: 'app-form',
@@ -7,16 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormComponent implements OnInit {
   inputText: string;
-  constructor() { }
+  constructor(private postsService: PostsService) { }
 
   ngOnInit() {
+    this.inputText = '';
   }
   onChangeInput(event) {
     this.inputText = event.target.value;
   }
 
   onSubmit(event) {
-    console.log(this.inputText);
+    this.postsService.createNewPost(this.inputText).subscribe(response => {
+      console.log(response);
+      console.log(this.inputText);
+    }, error => {
+      console.log(error);
+      console.log("error");
+    });
+
   }
   onKeyDown(event) {
     this.onChangeInput(event);

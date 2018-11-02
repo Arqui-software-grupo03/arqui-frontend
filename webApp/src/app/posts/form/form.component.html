@@ -2,7 +2,7 @@
     <a class="clickeable">
       <i id="plus-icon" class="fa fa-plus"></i>
     </a>
-    <input type="text" id="new-post-input" placeholder="Escribe una publicación..." (keyup)="onChangeInput($event)" (keydown)="onKeyDown($event)">
+    <input type="text" id ="new-post-input" placeholder="Escribe una publicación..." (keyup)="onChangeInput($event)" (keydown)="onKeyDown($event)" [value]="inputText">
     <a class="clickeable" (click)="onSubmit($event)">
       <i id="new-post-submit" class="fa fa-arrow-right"></i>
     </a>
