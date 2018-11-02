@@ -19,14 +19,32 @@ export class PostsService {
   getAllPosts() {
     const url = this.postsUrl;
     console.log(this.httpOptions);
-    return this.http.get(url, this.httpOptions).pipe(retry(1), catchError(this.errorHandler));
+    return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
   createNewPost(content) {
     const url = this.postsUrl;
-    const body = {'content': content};
+    const body = {content: content};
     console.log(this.httpOptions);
-    return this.http.post(url, body, this.httpOptions).pipe(retry(1), catchError(this.errorHandler));
+    return this.http.post(url, body, this.httpOptions).pipe(catchError(this.errorHandler));
   }
+
+  editPost(postId, content) {
+    const url = `${this.postsUrl}/${postId}`;
+    const body = {content: content};
+    return this.http.patch(url, body, this.httpOptions).pipe(catchError(this.errorHandler));
+  }
+
+  deletePost(postId) {
+    const url = `${this.postsUrl}/${postId}`;
+    return this.http.delete(url, this.httpOptions).pipe(catchError(this.errorHandler));
+  }
+
+  getPost(postId) {
+    const url = `${this.postsUrl}/${postId}`;
+    return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
+  }
+
+
   errorHandler(error: HttpErrorResponse) {
     return throwError(error.status  || 'Server Error');
   }
