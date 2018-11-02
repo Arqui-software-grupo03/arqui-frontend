@@ -10,7 +10,9 @@ export class AppService {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
     // Apiary: http://private-bb6ce2-arquitransocialnetwork.apiary-mock.com/
-    url = 'http://private-bb6ce2-arquitransocialnetwork.apiary-mock.com';
+    // Apiary 'http://private-aa901-arquitransocialnetwork.apiary-mock.com'
+    url = 'http://private-aa901-arquitransocialnetwork.apiary-mock.com';
+
     private loading = new BehaviorSubject(true);
     castLoading = this.loading.asObservable();
     constructor() { }
@@ -22,7 +24,7 @@ export class AppService {
         return {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
-                'Token': localStorage.getItem('token'),
+                'token': 'token123',
             })
         };
     }
