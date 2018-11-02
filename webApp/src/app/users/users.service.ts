@@ -25,6 +25,11 @@ export class UsersService {
     };
     return this.http.post(this.usersUrl, body, this.httpOptions).pipe(catchError(this.errorHandler));
   }
+  getUser() {
+    const url = `${this.appService.url}/user`;
+    this.httpOptions = this.appService.getHttpOptionsWithToken();
+    return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
+  }
 
   editUser(user: any) {
     this.user.next(user);
