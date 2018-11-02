@@ -37,14 +37,19 @@
         <li class="nav-item">
           <a class="nav-link click" routerLink="/profile">Profile</a>
         </li>
-        <li class="nav-item dropdown" id="logout">
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Cerrar sesión
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <app-logout class=".logout-btn"></app-logout>
-          </div>
-        </li>
+        <div class="right-box">
+          <li class="nav-item" id="notifications">
+            <a class="nav-link click" ><i class="fa fa-bell-o"></i></a>
+          </li>
+          <li class="nav-item dropdown" id="logout">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Cerrar sesión
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <app-logout class=".logout-btn"></app-logout>
+            </div>
+          </li>
+        </div>
       </ng-template>
     </ul>
   </div>

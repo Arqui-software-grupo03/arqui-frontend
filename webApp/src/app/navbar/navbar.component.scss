@@ -37,7 +37,7 @@ body {
     font-weight: normal;
 }
 
-.registration, #logout {
+.registration, .right-box {
     position: absolute;
     right: 3%;
 }
@@ -56,4 +56,12 @@ body {
 
 a[data-toggle="collapse"] {
     position: relative;
+}
+
+.right-box li {
+    display: inline-block;
+}
+
+.right-box #logout:hover {
+    cursor: pointer;
 }

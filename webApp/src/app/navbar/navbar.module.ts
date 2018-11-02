@@ -6,6 +6,7 @@ import { SignupModule } from './signup/signup.module';
 import { NavbarService } from './navbar.service';
 import { LogoutComponent } from './logout/logout.component';
 import { RouterModule } from '@angular/router';
+import { NotificationCenterComponent } from './notification-center/notification-center.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { RouterModule } from '@angular/router';
   declarations: [
     NavbarComponent,
     LogoutComponent,
+    NotificationCenterComponent,
   ],
   exports: [
     NavbarComponent,
