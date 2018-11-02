@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '@app/users/users.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,16 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  username;
-  userEmail;
   userPhotoUrl;
-  constructor() {
-    this.username = 'Felipe De la Fuente';
-    this.userEmail = 'fadelafuente1@gmail.com';
+  user;
+  constructor(private usersService: UsersService) {
     this.userPhotoUrl = '../../assets/felipe_de_la_fuente.jpg';
    }
 
   ngOnInit() {
+    this.usersService.getUser().subscribe(
+      user => {
+        this.user = user;
+        console.log(this.user);
+      }, error => console.log(error)
+    );
   }
 
   onClickEditProfile(event) {
