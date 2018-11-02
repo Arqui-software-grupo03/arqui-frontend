@@ -15,5 +15,34 @@ export class ThreadService {
     this.httpOptions = appService.getHttpOptionsWithToken();
     this.postsUrl = `${appService.url}/posts/`;
   }
-  
+
+  createAnswer(postId, userId, content) {
+    const body = {
+      user_id: userId,
+      content: content,
+      post: postId
+    };
+    const url = `${this.postsUrl}/${postId}/answers`;
+    return this.http.post(url, body, this.httpOptions).pipe(catchError(this.errorHandler));
+  }
+
+  editAnswer(postId, answerId, content) {
+    const body = {content: content};
+    const url = `${this.postsUrl}/${postId}/answers/${answerId}`;
+    return this.http.patch(url, body, this.httpOptions).pipe(catchError(this.errorHandler));
+  }
+
+  deleteAnswer(postId, answerId) {
+    const url = `${this.postsUrl}/${postId}/answers/${answerId}`;
+    return this.http.delete(url, this.httpOptions).pipe(catchError(this.errorHandler));
+  }
+
+  getAllAnswers(postId) {
+    const url = `${this.postsUrl}/${postId}/answers`;
+    return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
+  }
+
+  errorHandler(error: HttpErrorResponse) {
+    return throwError(error.status  || 'Server Error');
+  }
 }
