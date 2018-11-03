@@ -4,7 +4,7 @@
       <img src="/README.md" type="">
     </div>
     <div class="col-md-4">
-      <h2 class="text-center">General</h2>
+      <h2 class="text-center">{{topicName}}</h2>
     </div>
     <div class="col-md-4">
       <form class="form-inline my-2 my-lg-0">
@@ -12,8 +12,8 @@
       </form>
     </div>
   </div>
-  <div id="posts-body">
-    <app-post></app-post>
+  <div *ngFor="let postId of postsIds" id="posts-body">
+    <app-post [postId]="postId" [topicName]="topicName"></app-post>
   </div>
   <div id="posts-new">
     <app-form></app-form>
