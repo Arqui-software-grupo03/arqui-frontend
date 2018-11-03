@@ -1,4 +1,4 @@
-<div class="thread border-top row">
+<div *ngFor="let answer of answers" class="thread border-top row">
   <div class="col-md-2">
   </div>
   <div class="col-md-10 row">
@@ -14,7 +14,7 @@
           <span class="time">{{hour}}</span> | <span class="time">{{date}}</span>
         </div>
       </div>
-      <p class="message">{{message}}</p>
+      <p class="message">{{answer.content}}</p>
     </div>
   </div>
 </div>
