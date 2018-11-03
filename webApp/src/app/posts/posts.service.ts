@@ -29,18 +29,18 @@ export class PostsService {
   }
 
   editPost(postId, content) {
-    const url = `${this.postsUrl}/${postId}`;
+    const url = `${this.postsUrl}${postId}/`;
     const body = {content: content};
     return this.http.patch(url, body, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
   deletePost(postId) {
-    const url = `${this.postsUrl}/${postId}`;
+    const url = `${this.postsUrl}${postId}/`;
     return this.http.delete(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
   getPost(postId) {
-    const url = `${this.postsUrl}/${postId}`;
+    const url = `${this.postsUrl}${postId}/`;
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 

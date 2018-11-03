@@ -13,7 +13,7 @@ export class TopicService {
   topicsUrl;
   constructor(private appService: AppService, private http: HttpClient) { 
     this.httpOptions = appService.getHttpOptionsWithToken();
-    this.topicsUrl = `${appService.url}/topics`;
+    this.topicsUrl = `${appService.url}/topics/`;
   }
 
   createTopic(title, description) {
@@ -26,7 +26,7 @@ export class TopicService {
   }
 
   getTopic(topicId) {
-    const url = `${this.topicsUrl}/${topicId}`;
+    const url = `${this.topicsUrl}${topicId}/`;
     return this.http.get(url, this.httpOptions);
   }
 
@@ -39,22 +39,22 @@ export class TopicService {
       post_id: postId,
       topic: topicId
     };
-    const url = `${this.topicsUrl}/${topicId}/post`;
+    const url = `${this.topicsUrl}${topicId}/post/`;
     return this.http.post(url, body, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
   deletePostfromTopic(topicId, postId) {
-    const url = `${this.topicsUrl}/${topicId}/post/${postId}`;
+    const url = `${this.topicsUrl}${topicId}/post/${postId}/`;
     return this.http.delete(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
   getAllPostFromTopic(topicId) {
-    const url = `${this.topicsUrl}/${topicId}/post`;
+    const url = `${this.topicsUrl}${topicId}/post/`;
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
   subscribeUserToTopic(topicId, userId) {
-    const url = `${this.topicsUrl}/${topicId}/subscribers`;
+    const url = `${this.topicsUrl}${topicId}/subscribers/`;
     const body = {
       user_id: userId,
       topic: topicId
@@ -63,12 +63,12 @@ export class TopicService {
   }
 
   unsubscribeUserToTopic(topicId, userId) {
-    const url = `${this.topicsUrl}/${topicId}/subscribers/${userId}`;
+    const url = `${this.topicsUrl}${topicId}/subscribers/${userId}/`;
     return this.http.delete(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
   getAllSubscribersFromTopic(topicId) {
-    const url = `${this.topicsUrl}/${topicId}/subscribers`;
+    const url = `${this.topicsUrl}${topicId}/subscribers/`;
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
