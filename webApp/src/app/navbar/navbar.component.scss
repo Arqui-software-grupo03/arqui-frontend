@@ -62,6 +62,43 @@ a[data-toggle="collapse"] {
     display: inline-block;
 }
 
-.right-box #logout:hover {
+.right-box #logout:hover, .right-box a:hover {
     cursor: pointer;
+}
+
+.show-notifications {
+    background: #3498db;
+    color: #fefefe;
+    font: normal 0.85em 'Lato';
+    height: 16px;
+    line-height: 1.75em;
+    position: absolute;
+    right: 2px;
+    text-align: center;
+    top: -2px;
+    width: 16px;
+}
+
+i.fa-bell-o, i.fa-sign-out {
+    font-size: 1.4em;
+}
+
+#notifications span {
+    background-color: rgb(36, 113, 165);
+    border-radius: 1rem;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: -2px;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    left: 19%;
+    top: 1%;
+}
+
+#logout .dropdown-menu, #notifications .dropdown-menu {
+    left: -16rem;
+    right: 0;
+    min-width: 15rem;
 }

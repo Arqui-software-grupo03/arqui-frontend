@@ -39,11 +39,17 @@
         </li>
         <div class="right-box">
           <li class="nav-item" id="notifications">
-            <a class="nav-link click" ><i class="fa fa-bell-o"></i></a>
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-bell-o"><span>6 <!-- Add unread notifications --></span></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <!-- Change [1,2] array for array of notification obj -->
+              <app-notification-center [notifications]="[1,2]"></app-notification-center>
+            </div>
           </li>
           <li class="nav-item dropdown" id="logout">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Cerrar sesión
+              <i class="fa fa-sign-out"></i>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <app-logout class=".logout-btn"></app-logout>

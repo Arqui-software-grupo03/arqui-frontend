@@ -1,5 +1,8 @@
-button#logout-btn:hover{
-  background-color: rgb(3, 102, 210);
-  cursor: pointer;
-  color: white;
+button#logout-btn {
+  text-align: center;
+  &:hover {
+    background-color: rgb(3, 102, 210);
+    cursor: pointer;
+    color: white;
+  }
 }

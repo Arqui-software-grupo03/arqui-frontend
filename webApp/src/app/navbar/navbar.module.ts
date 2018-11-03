@@ -23,6 +23,7 @@ import { NotificationCenterComponent } from './notification-center/notification-
   ],
   exports: [
     NavbarComponent,
+    NotificationCenterComponent
   ],
   providers: [
     NavbarService,
