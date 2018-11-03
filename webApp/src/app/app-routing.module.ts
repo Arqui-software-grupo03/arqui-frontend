@@ -18,7 +18,7 @@ const routes: Routes = [
       HomepageComponent,
     },
     {
-      path: 'topic/:topicName',
+      path: 'topic/:topicId',
       component: TopicComponent
     },
     { path: 'profile',
