@@ -7,6 +7,7 @@ import { UsersService } from '@app/users/users.service';
 import { takeUntil } from 'rxjs/operators';
 import { LogInService } from '@app/navbar/login/login.service';
 import { AppService } from '@app/app.component.service';
+import { TopicService } from '@app/topic/topic.service';
 
 const TIMEOUT = 5000;
 declare var jQuery: any;
@@ -23,7 +24,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
   public loading = true;
   constructor(private logInService: LogInService, private flashMessage: FlashMessagesService,
     private usersService: UsersService, private cdRef: ChangeDetectorRef,
-    private appService: AppService) {
+    private appService: AppService, private topicService: TopicService) {
 
     /* if (this.logInService.getToken()) {
       this.logInService.getUserByToken().subscribe(
