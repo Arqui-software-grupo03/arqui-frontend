@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ThreadService } from '@app/posts/thread/thread.service';
 
 @Component({
   selector: 'app-thread',
@@ -13,7 +14,11 @@ export class ThreadComponent implements OnInit {
   hour;
   date;
   message;
-  constructor() {
+  answers;
+  threadcount;
+  @Input() postId: string;
+  @Output() threadCounter = new EventEmitter<number>();
+  constructor(private threadService: ThreadService) {
     this.userPhotoUrl = '../../assets/chau.jpg';
     this.topic = 'Topic 1';
     this.response = 'Stephanie Chau';
@@ -26,6 +31,17 @@ export class ThreadComponent implements OnInit {
                     + "recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
   }
   ngOnInit() {
+    this.getAnswers();
+  }
+  getAnswers() {
+    this.threadService.getAllAnswers(this.postId).subscribe(
+      answers => {
+        this.answers = answers;
+        this.threadcount = this.answers.length;
+        this.threadCounter.emit(this.threadcount);
+        console.log(this.answers);
+      }, error => console.log(error)
+    );
   }
 
 }
