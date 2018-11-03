@@ -13,7 +13,7 @@
           <span class="time">{{hour}}</span> | <span class="time">{{date}}</span>
         </div>
       </div>
-      <p>{{post.message}}</p>
+      <p>{{post.content}}</p>
     </div>
   </div>
   <app-thread (threadCounter)="getThreadCounter($event)" [postId]="post.id" *ngIf="showThread"></app-thread>
