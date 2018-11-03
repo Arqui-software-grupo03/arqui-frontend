@@ -49,7 +49,7 @@ export class TopicService {
   }
 
   getAllPostFromTopic(topicId) {
-    const url = `${this.topicsUrl}${topicId}/post/`;
+    const url = `${this.topicsUrl}${topicId}/post_ids/`;
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
