@@ -24,7 +24,6 @@ export class SidebarComponent implements OnInit {
     );
     this.getAllTopics();
   }
-
   onClickEditProfile(event) {
 
   }
