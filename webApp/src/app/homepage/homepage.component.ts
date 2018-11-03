@@ -52,7 +52,8 @@ export class HomepageComponent implements OnInit, OnDestroy {
       usr => {
         // this.loading = true;
         this.user = usr;
-      }
+        console.log(usr);
+      }, error => console.log(error)
     );
 
   }
