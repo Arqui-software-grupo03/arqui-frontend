@@ -18,8 +18,10 @@ export class LogInService {
 
   getUserByEmail(email: string, password: string): Observable<any> {
     const body = {
-      'email': email,
-      'password': password
+      'user': {
+        'email': email,
+        'password': password
+      }
     };
     return this.http.post(this.logInUrl, body, this.httpOptions).pipe(retry(1), catchError(this.errorHandler));
   }
@@ -28,7 +30,8 @@ export class LogInService {
     const body = {
       'token': this.getToken()
     };
-    return this.http.post(this.logInUrl, body, this.httpOptions).pipe(retry(1), catchError(this.errorHandler));
+    const httpOptions = this.appService.getHttpOptionsWithToken();
+    return this.http.post(this.logInUrl, body, httpOptions).pipe(retry(1), catchError(this.errorHandler));
   }
 
   getToken(): string {
