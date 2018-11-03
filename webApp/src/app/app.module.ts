@@ -17,13 +17,12 @@ import { AppRoutingModule } from '@app/app-routing.module';
 import { HomepageModule } from './homepage/homepage.module';
 import { NgxLoadingModule } from 'ngx-loading';
 import { AppService } from './app.component.service';
-import { TopicComponent } from './topic/topic.component';
+import { TopicModule } from '@app/topic/topic.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
-    TopicComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +38,8 @@ import { TopicComponent } from './topic/topic.component';
     FlashMessagesModule.forRoot(),
     NgxLoadingModule.forRoot({}),
     AppRoutingModule,
-    HomepageModule
+    HomepageModule,
+    TopicModule,
     ],
   providers: [ AppService ],
   bootstrap: [ AppComponent ]
