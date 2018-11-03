@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from '@app/not-found/not-found.component';
 import { UsersComponent } from '@app/users/users.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { TopicComponent } from '@app/topic/topic.component';
 import { Authenticate } from './auth/authenticate.guard';
 
 // Define routes for url: localhost:4200/anyRoute
@@ -15,6 +16,10 @@ const routes: Routes = [
     { path: 'home',
       component:
       HomepageComponent,
+    },
+    {
+      path: 'topic/:topicName',
+      component: TopicComponent
     },
     { path: 'profile',
       component: UsersComponent,
