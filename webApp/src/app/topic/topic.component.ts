@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-topic',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./topic.component.scss']
 })
 export class TopicComponent implements OnInit {
-
-  constructor() { }
+  topicName = 'General';
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.topicName = this.activatedRoute.snapshot.paramMap.get('topicName');
   }
 
 }
