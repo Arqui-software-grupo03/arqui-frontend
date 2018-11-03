@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-2 text-center">
       <img [src]="userPhotoUrl" class="img">
-      <div class="topic">{{topic}}</div>
+      <div class="topic">{{topicName}}</div>
     </div>
     <div class="col-md-10 comment">
       <div class="row">
@@ -13,9 +13,9 @@
           <span class="time">{{hour}}</span> | <span class="time">{{date}}</span>
         </div>
       </div>
-      <p>{{message}}</p>
+      <p>{{post.message}}</p>
     </div>
   </div>
-  <app-thread *ngIf="showThread"></app-thread>
+  <app-thread (threadCounter)="getThreadCounter($event)" [postId]="post.id" *ngIf="showThread"></app-thread>
   <app-thread-form (show)="onShow($event)" threadCounter={{threadCounter}} ></app-thread-form>
 </div>
