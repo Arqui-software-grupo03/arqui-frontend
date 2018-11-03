@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { PostsService } from '@app/posts/posts.service';
 
 @Component({
   selector: 'app-post',
@@ -14,7 +15,10 @@ export class PostComponent implements OnInit {
   message;
   showThread;
   threadCounter;
-  constructor() {
+  post;
+  answers;
+  @Input() topicName: string;
+  constructor(private postsService: PostsService) {
     this.userPhotoUrl = '../../assets/felipe_de_la_fuente.jpg';
     this.topic = 'Topic 1';
     this.sender = 'Felipe De la Fuente';
@@ -28,11 +32,21 @@ export class PostComponent implements OnInit {
                     + "unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more"
                     + "recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
   }
-
+  @Input() postId: string;
   ngOnInit() {
+    this.getPostInfo();
   }
   onShow(event) {
     console.log(event);
     this.showThread = event;
+  }
+  getPostInfo() {
+    this.postsService.getPost(this.postId).subscribe(
+      post => this.post = post,
+      error => console.log(error)
+    );
+  }
+  getThreadCounter(threadCounter) {
+    this.threadCounter = threadCounter;
   }
 }
