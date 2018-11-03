@@ -1,4 +1,4 @@
-<app-posts id="content" *ngIf="user.email && !loading else notLogged"></app-posts>
+<app-topic id="content" *ngIf="user.email && !loading else notLogged"></app-topic>
 <ng-template id="content" #notLogged>
   <div *ngIf="!loading" class="home">
     <div class="home-form">
