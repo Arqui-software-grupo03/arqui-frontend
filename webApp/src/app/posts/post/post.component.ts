@@ -32,7 +32,7 @@ export class PostComponent implements OnInit {
                     + "unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more"
                     + "recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
   }
-  @Input() postId: string;
+  @Input() postId;
   ngOnInit() {
     this.getPostInfo();
   }
@@ -41,9 +41,10 @@ export class PostComponent implements OnInit {
     this.showThread = event;
   }
   getPostInfo() {
-    this.postsService.getPost(this.postId).subscribe(
-      post => this.post = post,
-      error => console.log(error)
+    this.postsService.getPost(this.postId.id).subscribe(
+      post => {
+        this.post = post;
+      }, error => console.log(error)
     );
   }
   getThreadCounter(threadCounter) {
