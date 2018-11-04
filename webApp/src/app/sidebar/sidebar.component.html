@@ -11,9 +11,6 @@
                 <a class="small-font">
                     {{user.email}}
                 </a>
-                <div class="row">
-                    <i class="fa fa-pencil put-right click" (click)="onClickEditProfile($event)"></i>
-                </div>
             </div>
         </div>
     </div>
@@ -27,29 +24,6 @@
                     <a class="nav-link" routerLink="/topic/{{topic.id}}/">{{topic.title}}</a>
                 </li>
             </ul>
-        </li>
-        <li>
-            <a href="#">About</a>
-        </li>
-        <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="#">Page 1</a>
-                </li>
-                <li>
-                    <a href="#">Page 2</a>
-                </li>
-                <li>
-                    <a href="#">Page 3</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Portfolio</a>
-        </li>
-        <li>
-            <a href="#">Contact</a>
         </li>
     </ul>
 </div>
