@@ -26,21 +26,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
     private usersService: UsersService, private cdRef: ChangeDetectorRef,
     private appService: AppService, private topicService: TopicService) {
 
-    /* if (this.logInService.getToken()) {
-      this.logInService.getUserByToken().subscribe(
-        success => {
-          this.setCurrentUser();
-          this.showMessage('Bienvenido!', 'success');
-          this.loading = false;
-        },
-        error => {
-          this.loading = false;
-        }
-      );
-    } else {
-      this.loading = false;
-    } */
-
 
   }
 
@@ -52,7 +37,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
       usr => {
         // this.loading = true;
         this.user = usr;
-        console.log(usr);
       }, error => console.log(error)
     );
 
