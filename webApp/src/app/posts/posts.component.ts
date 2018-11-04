@@ -16,7 +16,6 @@ export class PostsComponent implements OnInit, OnChanges {
 
   async ngOnInit() {
     this.id = +this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(this.id);
     await this.getPostsfromTopic();
   }
   ngOnChanges(changes: SimpleChanges) {
@@ -29,7 +28,6 @@ export class PostsComponent implements OnInit, OnChanges {
   }
 
   async getPostsfromTopic() {
-    console.log('init');
     await this.topicService.getAllPostsFromTopicById(+this.topicId).toPromise().then(
       postsIds => {
         this.postsIds = postsIds;
