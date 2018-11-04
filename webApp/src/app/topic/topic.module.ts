@@ -4,10 +4,12 @@ import { TopicComponent } from '@app/topic/topic.component';
 import { TopicService } from '@app/topic/topic.service';
 import {PostsModule } from '@app/posts/posts.module';
 import { RouterModule } from '@angular/router';
+import { TopicModalComponent } from '@app/topic/topic-modal/topic-modal.component';
 
 @NgModule({
   declarations: [
-    TopicComponent
+    TopicComponent,
+    TopicModalComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { RouterModule } from '@angular/router';
     TopicService
   ],
   exports: [
-    TopicComponent
+    TopicComponent,
+    TopicModalComponent
   ]
 })
 export class TopicModule { }
