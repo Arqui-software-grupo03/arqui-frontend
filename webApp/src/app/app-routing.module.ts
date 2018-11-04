@@ -19,7 +19,8 @@ const routes: Routes = [
     },
     {
       path: 'topic/:topicId',
-      component: TopicComponent
+      component: TopicComponent,
+      canActivate: [ Authenticate ]
     },
     { path: 'profile',
       component: UsersComponent,
