@@ -15,10 +15,9 @@ export class PostComponent implements OnInit {
   message;
   showThread;
   threadCounter;
-  post = {};
   answers;
   @Input() topicName: string;
-  @Input() postId;
+  @Input() post: any;
   constructor(private postsService: PostsService) {
     this.userPhotoUrl = '../../assets/felipe_de_la_fuente.jpg';
     this.topic = 'Topic 1';
@@ -37,9 +36,10 @@ export class PostComponent implements OnInit {
     this.showThread = event;
   }
   async getPostInfo() {
-    await this.postsService.getPost(this.postId.id).toPromise().then(
+    await this.postsService.getPost(this.post.post_id).toPromise().then(
       post => {
         this.post = post;
+        // console.log(post);
       },
       error => console.log(error)
     ).catch(
