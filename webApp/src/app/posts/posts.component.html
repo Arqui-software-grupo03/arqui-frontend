@@ -12,7 +12,7 @@
     </div>
   </div>
   <div *ngFor="let post of postsArray" id="posts-body">
-    <app-post [postId]="post" [topicName]="topicName"></app-post>
+    <app-post [post]="post" [topicName]="topicName"></app-post>
   </div>
   <div id="posts-new">
     <app-form [topicId]="topicId" ></app-form>

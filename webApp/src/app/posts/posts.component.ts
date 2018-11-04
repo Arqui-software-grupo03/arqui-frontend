@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 import { TopicService } from '@app/topic/topic.service';
 import { ActivatedRoute } from '@angular/router';
 import { PostsService } from './posts.service';
@@ -8,7 +8,7 @@ import { PostsService } from './posts.service';
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss']
 })
-export class PostsComponent implements OnInit, OnChanges {
+export class PostsComponent implements OnInit, OnChanges, OnDestroy {
   @Input() topicId: string;
   @Input() topicName: string;
   postsArray;
@@ -26,6 +26,10 @@ export class PostsComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     this.postsService.updateCastTopicPosts([]);
     this.getPostsfromTopic();
+  }
+
+  ngOnDestroy() {
+    this.postsService.updateCastTopicPosts([]);
   }
 
   async getPostsfromTopic() {
