@@ -11,8 +11,8 @@
       </form>
     </div>
   </div>
-  <div *ngFor="let postId of postsIds" id="posts-body">
-    <app-post [postId]="postId" [topicName]="topicName"></app-post>
+  <div *ngFor="let post of postsArray" id="posts-body">
+    <app-post [postId]="post" [topicName]="topicName"></app-post>
   </div>
   <div id="posts-new">
     <app-form [topicId]="topicId" ></app-form>

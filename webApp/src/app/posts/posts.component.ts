@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TopicService } from '@app/topic/topic.service';
 import { ActivatedRoute } from '@angular/router';
+import { PostsService } from './posts.service';
 
 @Component({
   selector: 'app-posts',
@@ -10,28 +11,27 @@ import { ActivatedRoute } from '@angular/router';
 export class PostsComponent implements OnInit, OnChanges {
   @Input() topicId: string;
   @Input() topicName: string;
-  postsIds;
+  postsArray;
   id;
-  constructor(private topicService: TopicService, private activatedRoute: ActivatedRoute) { }
+  constructor(private topicService: TopicService, private activatedRoute: ActivatedRoute,
+              private postsService: PostsService) { }
 
   async ngOnInit() {
     this.id = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.postsService.castTopicPosts.subscribe(
+      p => this.postsArray = p
+    );
     await this.getPostsfromTopic();
   }
   ngOnChanges(changes: SimpleChanges) {
-    /* for (let propName in changes) {
-      let chng = changes[propName];
-      let cur  = JSON.stringify(chng.currentValue);
-      let prev = JSON.stringify(chng.previousValue);
-      console.log(`${propName}: currentValue = ${cur}, previousValue = ${prev}`);
-    } */
+    this.postsService.updateCastTopicPosts([]);
+    this.getPostsfromTopic();
   }
 
   async getPostsfromTopic() {
     await this.topicService.getAllPostsFromTopicById(+this.topicId).toPromise().then(
-      postsIds => {
-        this.postsIds = postsIds;
-        console.log(postsIds);
+      posts => {
+        this.postsService.updateCastTopicPosts(posts);
       },
       error =>  console.log(error)
     ).catch(

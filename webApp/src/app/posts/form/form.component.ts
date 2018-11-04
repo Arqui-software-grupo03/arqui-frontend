@@ -39,6 +39,8 @@ export class FormComponent implements OnInit {
       const topic = await this.topicService.addPostToTopic(this.topicId, post.id).toPromise().then()
       .catch( err => this.showMessage('2 Hubo un problema al ingresar el post, intente nuevamente.', 'danger'));
       if (topic) {
+        this.updateCastTopics(topic);
+        this.updateCastTopicPosts(post);
         this.showMessage('¡Publicación creada correctamente!', 'success');
       } else {
         await this.postsService.deletePost(post.id).toPromise().then(
@@ -65,4 +67,20 @@ export class FormComponent implements OnInit {
     });
   }
 
+  updateCastTopics(topic: any) {
+    const allCastTopics = this.topicService.getAllTopicsFromCastValue();
+    let idx;
+    allCastTopics.map(
+      (t, index) => {
+        if (t.id === topic.id) {
+          idx = index;
+        }
+      }
+    );
+    allCastTopics[idx] = topic;
+    this.topicService.updateArrayCastTopics(allCastTopics);
+  }
+  updateCastTopicPosts(post: any) {
+    this.postsService.addPostToCastTopicPosts(post);
+  }
 }

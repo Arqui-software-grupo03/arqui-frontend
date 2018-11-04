@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AppService } from '@app/app.component.service';
 import { catchError, retry } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
-
+  private topicPosts = new BehaviorSubject([]);
+  castTopicPosts = this.topicPosts.asObservable();
   httpOptions;
   postsUrl;
   constructor(private appService: AppService, private http: HttpClient) {
@@ -47,6 +48,16 @@ export class PostsService {
   getPost(postId) {
     const url = `${this.postsUrl}/${postId}/`;
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
+  }
+
+  addPostToCastTopicPosts(post: any) {
+    const posts = this.topicPosts.value;
+    posts.push(post);
+    this.topicPosts.next(posts);
+  }
+
+  updateCastTopicPosts(postsArray: any) {
+    this.topicPosts.next(postsArray);
   }
 
 
