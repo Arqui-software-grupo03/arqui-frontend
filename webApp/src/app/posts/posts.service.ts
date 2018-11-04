@@ -34,18 +34,18 @@ export class PostsService {
     return this.http.post(url, body, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
-  editPost(postId, content) {
+  editPost(postId, content): Observable<any> {
     const url = `${this.postsUrl}/${postId}/`;
     const body = {content: content};
     return this.http.patch(url, body, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
-  deletePost(postId) {
+  deletePost(postId): Observable<any> {
     const url = `${this.postsUrl}/${postId}/`;
     return this.http.delete(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
-  getPost(postId) {
+  getPost(postId): Observable<any> {
     const url = `${this.postsUrl}/${postId}/`;
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
