@@ -5,6 +5,7 @@ import { UsersComponent } from '@app/users/users.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { TopicComponent } from '@app/topic/topic.component';
 import { Authenticate } from './auth/authenticate.guard';
+import { TopicPostsResolver } from './topic/topic.resolver';
 
 // Define routes for url: localhost:4200/anyRoute
 const routes: Routes = [
@@ -20,7 +21,10 @@ const routes: Routes = [
     {
       path: 'topic/:topicId',
       component: TopicComponent,
-      canActivate: [ Authenticate ]
+      canActivate: [ Authenticate ],
+      resolve: {
+        'topic':  TopicPostsResolver
+      }
     },
     { path: 'profile',
       component: UsersComponent,

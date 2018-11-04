@@ -13,11 +13,12 @@ export class PostsService {
   postsUrl;
   constructor(private appService: AppService, private http: HttpClient) {
     this.httpOptions = appService.getHttpOptionsWithToken();
-    this.postsUrl = `${appService.url}/posts`;
+    // this.postsUrl = `${appService.url}/posts`;
+    this.postsUrl = `http://localhost:8100`;
   }
 
-  getAllPosts() {
-    const url = this.postsUrl;
+  getAllPosts(): Observable<any> {
+    const url = `${this.postsUrl}/`;
     // console.log(this.httpOptions);
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }

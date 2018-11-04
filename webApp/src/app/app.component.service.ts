@@ -24,7 +24,7 @@ export class AppService {
         return {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
-                'token': 'token123',
+                'token': localStorage.getItem('token') ? localStorage.getItem('token') : '',
             })
         };
     }
