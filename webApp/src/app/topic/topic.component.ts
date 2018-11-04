@@ -15,8 +15,12 @@ export class TopicComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject();
   constructor(private activatedRoute: ActivatedRoute, private topicService: TopicService,
               private flashMessage: FlashMessagesService, private route: ActivatedRoute) {
-                this.route.data.pipe(takeUntil(this.ngUnsubscribe)).subscribe(res => {
+                this.route.data.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+                  res => {
                   this.topic = res.topic;
+                },
+                error => {
+
                 });
               }
 

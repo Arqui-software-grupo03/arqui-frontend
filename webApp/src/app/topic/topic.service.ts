@@ -15,7 +15,7 @@ export class TopicService {
   constructor(private appService: AppService, private http: HttpClient) {
     this.httpOptions = appService.getHttpOptionsWithToken();
     // this.topicsUrl = `${appService.url}/topics`;
-    this.topicsUrl = `http://localhost:8001/topics`;
+    this.topicsUrl = `http://localhost:8080/topics`;
   }
 
   createTopic(title: string, description: string): Observable<any> {
@@ -39,10 +39,10 @@ export class TopicService {
 
   addPostToTopic(topicId: number, postId: number) {
     const body = {
-      post_id: postId,
-      topic: topicId
+      'post_id': postId,
+      'topic_identifier': topicId
     };
-    const url = `${this.topicsUrl}/${topicId}/post/`;
+    const url = `${this.topicsUrl}/${topicId}/post_ids/`;
     return this.http.post(url, body, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
@@ -84,5 +84,13 @@ export class TopicService {
     const t = this.topics.value;
     t.push(topic);
     this.topics.next(t);
+  }
+
+  updateArrayCastTopics(topicArray: any) {
+    this.topics.next(topicArray);
+  }
+
+  getAllTopicsFromCastValue() {
+    return this.topics.value;
   }
 }
