@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { throwError, Observable } from 'rxjs';
+import { throwError, Observable, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AppService } from '@app/app.component.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -8,11 +8,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
   providedIn: 'root'
 })
 export class TopicService {
+  private topics = new BehaviorSubject([]);
+  castTopics = this.topics.asObservable();
   httpOptions;
   topicsUrl;
   constructor(private appService: AppService, private http: HttpClient) {
     this.httpOptions = appService.getHttpOptionsWithToken();
-    this.topicsUrl = `${appService.url}/topics`;
+    // this.topicsUrl = `${appService.url}/topics`;
+    this.topicsUrl = `http://localhost:8001/topics`;
   }
 
   createTopic(title: string, description: string): Observable<any> {
@@ -29,7 +32,7 @@ export class TopicService {
     return this.http.get(url, this.httpOptions);
   }
 
-  getAllTopics() {
+  getAllTopics(): Observable<any> {
     const url = `${this.topicsUrl}/`;
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
@@ -77,4 +80,9 @@ export class TopicService {
     return throwError(error.status  || 'Server Error');
   }
 
+  addTopicToCastTopics(topic: any) {
+    const t = this.topics.value;
+    t.push(topic);
+    this.topics.next(t);
+  }
 }

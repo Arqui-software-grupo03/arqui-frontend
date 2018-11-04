@@ -33,6 +33,7 @@ export class TopicModalComponent implements OnInit {
         this.showMessage(`Topic creado: ${topic.title}`, 'success');
         this.waitingResponse = false;
         this.topic = {'title': '', 'description': ''};
+        this.topicService.addTopicToCastTopics(topic);
       },
       err => {
         this.showMessage('Error creando topic. Intente nuevamente', 'danger');
