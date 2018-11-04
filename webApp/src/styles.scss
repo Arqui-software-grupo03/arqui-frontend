@@ -108,3 +108,11 @@ $typingColor: rgb(41, 168, 120);
     margin: 0.5rem 45% !important;
   }
 }
+
+.modal-backdrop {
+  display: none;
+}
+
+.modal-overlay {
+  z-index: 10000;
+}
