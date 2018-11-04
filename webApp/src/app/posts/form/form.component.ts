@@ -32,7 +32,7 @@ export class FormComponent implements OnInit {
   }
 
   async onSubmit(event) {
-    const post = await this.postsService.createNewPost(this.inputText).toPromise().then()
+    const post = await this.postsService.createNewPost(this.inputText, this.user.id).toPromise().then()
       .catch( err => this.showMessage('Hubo un problema al ingresar el post, intente nuevamente.', 'danger'));
 
     if (post) {
