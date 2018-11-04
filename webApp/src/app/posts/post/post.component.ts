@@ -30,9 +30,7 @@ export class PostComponent implements OnInit {
     this.message = 'LoremIpsum';
   }
   async ngOnInit() {
-    console.log('before');
     await this.getPostInfo();
-    console.log('after');
   }
   onShow(event) {
     // console.log(event);
@@ -42,7 +40,6 @@ export class PostComponent implements OnInit {
     await this.postsService.getPost(this.postId.id).toPromise().then(
       post => {
         this.post = post;
-        console.log('middle');
       },
       error => console.log(error)
     ).catch(
