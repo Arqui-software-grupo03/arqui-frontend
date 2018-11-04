@@ -28,7 +28,6 @@ export class FormComponent implements OnInit {
 
   onSubmit(event) {
     this.postsService.createNewPost(this.inputText).subscribe(response => {
-      console.log(response);
       this.inputText = '';
       this.showMessage('¡Publicación creada correctamente!', 'success');
     }, error => {

@@ -39,7 +39,7 @@ export class ThreadComponent implements OnInit {
         this.answers = answers;
         this.threadcount = this.answers.length;
         this.threadCounter.emit(this.threadcount);
-        console.log(this.answers);
+        // console.log(this.answers);
       }, error => console.log(error)
     );
   }
