@@ -23,11 +23,11 @@ export class PostsService {
     // console.log(this.httpOptions);
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
-  createNewPost(content: string): Observable<any> {
+  createNewPost(content: string, userId): Observable<any> {
     const url = `${this.postsUrl}/`;
     console.log(content);
     const body = {
-      'user_id': 1,
+      'user_id': userId,
       'content': content
     };
     // console.log(this.httpOptions);
@@ -59,7 +59,9 @@ export class PostsService {
   updateCastTopicPosts(postsArray: any) {
     this.topicPosts.next(postsArray);
   }
-
+  getAllPostsFromCastValue() {
+    return this.topicPosts.value;
+  }
 
   errorHandler(error: HttpErrorResponse) {
     return throwError(error.status  || 'Server Error');
