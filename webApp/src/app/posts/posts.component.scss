@@ -1,11 +1,20 @@
 #posts-background{
   background-color: #657C82;
   min-width: 100%;
-  min-height: 100%;
+  // min-height: 100%;
   padding: 4%;
 }
 .right{
   right: 3%;
   position: absolute;
   bottom: 0;
+}
+
+.search-results {
+  height: 99vh !important;
+  overflow-y: scroll !important;
+}
+
+#posts-new {
+  margin-bottom: 6em;
 }
