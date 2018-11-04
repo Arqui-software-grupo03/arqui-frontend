@@ -12,16 +12,19 @@ export class PostsComponent implements OnInit {
   postsIds;
   constructor(private topicService: TopicService) { }
 
-  ngOnInit() {
-    this.getPostsfromTopic();
+  async ngOnInit() {
+    await this.getPostsfromTopic();
   }
 
-  getPostsfromTopic() {
-    this.topicService.getAllPostFromTopic(this.topicId).subscribe(
+  async getPostsfromTopic() {
+    await this.topicService.getAllPostsFromTopicById(+this.topicId).toPromise().then(
       postsIds => {
         this.postsIds = postsIds;
         console.log(postsIds);
-      }, error =>  console.log(error)
+      },
+      error =>  console.log(error)
+    ).catch(
+      (err) => console.log(err)
     );
   }
 
