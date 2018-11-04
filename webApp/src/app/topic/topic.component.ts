@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { TopicService } from '@app/topic/topic.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-topic',
   templateUrl: './topic.component.html',
   styleUrls: ['./topic.component.scss']
 })
-export class TopicComponent implements OnInit {
+export class TopicComponent implements OnInit, OnDestroy {
   topicId: number;
   topic = {};
+  private ngUnsubscribe = new Subject();
   constructor(private activatedRoute: ActivatedRoute, private topicService: TopicService,
               private flashMessage: FlashMessagesService) { }
 
@@ -18,8 +21,14 @@ export class TopicComponent implements OnInit {
     this.topicId = +this.activatedRoute.snapshot.paramMap.get('topicId');
     this.getTopic();
   }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.unsubscribe();
+  }
+
   getTopic() {
-    this.topicService.getTopicById(this.topicId).subscribe(
+    this.topicService.getTopicById(this.topicId).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       topic => {
         this.topic = topic;
         // this.showMessage('great!', 'success');
