@@ -16,10 +16,10 @@ export class SidebarComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.usersService.getUser().subscribe(
+    this.usersService.castUser.subscribe(
       user => {
         this.user = user;
-        console.log(this.user);
+        // console.log(this.user);
       }, error => console.log(error)
     );
     this.getAllTopics();
@@ -31,7 +31,7 @@ export class SidebarComponent implements OnInit {
     this.topicService.getAllTopics().subscribe(
       topics => {
         this.topics = topics;
-        console.log(this.topics);
+        // console.log(this.topics);
       }, error => {
         console.log(error);
       }
