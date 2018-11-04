@@ -15,7 +15,7 @@ const TIMEOUT = 5000;
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'app';
-  user = {};
+  user;
   private ngUnsubscribe = new Subject();
   public loading = true;
   constructor(private logInService: LogInService, private flashMessage: FlashMessagesService,

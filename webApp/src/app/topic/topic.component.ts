@@ -12,7 +12,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class TopicComponent implements OnInit, OnDestroy {
   topicId: number;
-  topic = {};
+  topic;
   private ngUnsubscribe = new Subject();
   constructor(private activatedRoute: ActivatedRoute, private topicService: TopicService,
               private flashMessage: FlashMessagesService) { }

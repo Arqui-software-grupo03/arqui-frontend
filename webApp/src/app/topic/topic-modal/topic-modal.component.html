@@ -31,7 +31,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button (click)="submitNewTopic($event)" type="button" class="btn btn-success" [disabled]="!(validInputs.title && validInputs.description) || waitingResponse" [ngClass]="btn-enable">
+            <button (click)="submitNewTopic($event)" type="button" class="btn btn-success" [disabled]="!(validInputs.title && validInputs.description) || waitingResponse" [ngClass]="btnEnable">
                 <span *ngIf="!waitingResponse else loading">Save changes</span>
                 <ng-template #loading>
                     <div *ngIf="waitingResponse" class="span">

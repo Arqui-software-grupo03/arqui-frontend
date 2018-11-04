@@ -15,7 +15,7 @@ export class PostComponent implements OnInit {
   message;
   showThread;
   threadCounter;
-  post = {};
+  post;
   answers;
   @Input() topicName: string;
   @Input() postId;
