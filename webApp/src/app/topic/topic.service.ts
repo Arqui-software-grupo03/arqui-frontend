@@ -20,12 +20,12 @@ export class TopicService {
       title: title,
       description: description,
     };
-    const url = this.topicsUrl;
+    const url = `${this.topicsUrl}/`;
     return this.http.post(url, body, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
   getTopicById(topicId: number) {
-    const url = `${this.topicsUrl}${topicId}/`;
+    const url = `${this.topicsUrl}/${topicId}/`;
     return this.http.get(url, this.httpOptions);
   }
 
@@ -44,7 +44,7 @@ export class TopicService {
   }
 
   deletePostfromTopic(topicId: number, postId: number) {
-    const url = `${this.topicsUrl}${topicId}/post/${postId}/`;
+    const url = `${this.topicsUrl}/${topicId}/post/${postId}/`;
     return this.http.delete(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
@@ -68,7 +68,7 @@ export class TopicService {
   }
 
   getAllSubscribersFromTopic(topicId) {
-    const url = `${this.topicsUrl}${topicId}/subscribers/`;
+    const url = `${this.topicsUrl}/${topicId}/subscribers/`;
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
