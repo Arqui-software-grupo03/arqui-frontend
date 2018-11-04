@@ -1,7 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { PostsService } from '@app/posts/posts.service';
 import { UsersService } from '@app/users/users.service';
 import { AppService } from '@app/app.component.service';
+import { EventEmitter } from '@angular/core';
+import { ThreadService } from '../thread/thread.service';
 
 @Component({
   selector: 'app-post',
@@ -15,7 +17,6 @@ export class PostComponent implements OnInit {
   sender;
   hour;
   date;
-  message;
   showThread;
   threadCounter;
   answers;
@@ -25,21 +26,18 @@ export class PostComponent implements OnInit {
   @Input() topicName: string;
   @Input() post: any;
   constructor(private postsService: PostsService, private usersService: UsersService,
-            private appService: AppService) {
+            private appService: AppService, private threadService: ThreadService) {
     this.userPhotoUrl = '../../assets/felipe_de_la_fuente.jpg';
-    // this.topic = 'Topic 1';
-    // this.sender = 'Felipe De la Fuente';
-    // this.hour = '17:32';
-    // this.date = '7 septiembre';
     this.showThread = false;
-    this.threadCounter = 1;
-    this.message = 'LoremIpsum';
+    this.threadCounter = 0;
   }
   async ngOnInit() {
+    if (this.post.id) {
+      this.post.post_id = this.post.id;
+    }
     await this.getPostInfo();
   }
   onShow(event) {
-    // console.log(event);
     this.showThread = event;
   }
   async getPostInfo() {
@@ -50,6 +48,7 @@ export class PostComponent implements OnInit {
         });
     if (post) {
       const user = await this.usersService.getUserById(post.user_id).toPromise().then().catch(err => console.log(err));
+      await this.getAnswers();
       if (user) {
         this.sender = user;
         const d = new Date(post.pub_date);
@@ -61,10 +60,23 @@ export class PostComponent implements OnInit {
     }
     this.loading = false;
   }
-  getUser() {
 
-  }
   getThreadCounter(threadCounter) {
     this.threadCounter = threadCounter;
+  }
+
+  emitNewAnswer(newA) {
+    this.answers.push(newA);
+    this.threadCounter = this.answers.length;
+    this.showThread = true;
+  }
+
+  getAnswers() {
+    this.threadService.getAllAnswers(this.post.post_id).toPromise().then(
+      answers => {
+        this.answers = answers;
+        this.threadCounter = this.answers.length;
+      }
+    ).catch(err => console.log(err));
   }
 }

@@ -1,27 +1,59 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { ThreadService } from '../thread.service';
+import { UsersService } from '@app/users/users.service';
+import { TopicService } from '@app/topic/topic.service';
+import { PostsService } from '@app/posts/posts.service';
 
 @Component({
   selector: 'app-thread-form',
   templateUrl: './threadForm.component.html',
   styleUrls: ['./threadForm.component.scss']
 })
-export class ThreadFormComponent implements OnInit {
+export class ThreadFormComponent implements OnInit, OnChanges {
   userPhotoUrl;
-  showThread;
+  threadText = '';
+  user: any;
   @Input() threadCounter: number;
+  @Input() post: any;
+  @Input() showThread;
   @Output() show = new EventEmitter();
+  @Output() newAnswer = new EventEmitter();
 
-  constructor() {
+  constructor(private threadService: ThreadService, private usersService: UsersService, private topicService: TopicService,
+              private postsService: PostsService) {
     this.userPhotoUrl = '../../assets/chau.jpg';
-    this.showThread = false;
-   }
+  }
 
   ngOnInit() {
+    this.usersService.castUser.subscribe(
+      usr => this.user = usr
+    );
   }
+  ngOnChanges(changes: SimpleChanges) {
+  }
+
   onClickShowComments(event) {
     event.preventDefault();
     this.showThread = !this.showThread;
     this.show.emit(this.showThread);
   }
 
+  keyUp(value: string) {
+    this.threadText = value;
+  }
+
+  keyPressed($event) {
+    if (($event.keyCode === 13) && this.threadText.length > 0) {
+      this.createAnswer();
+    }
+  }
+
+  async createAnswer() {
+    await this.threadService.createAnswer(this.post.id, this.user.id, this.threadText).toPromise().then(
+      ans => {
+        this.newAnswer.emit(ans);
+      }
+    ).catch(err => console.log(err));
+    this.threadText = '';
+  }
 }
