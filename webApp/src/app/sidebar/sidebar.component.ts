@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '@app/users/users.service';
 import { TopicService } from '@app/topic/topic.service';
+import * as $ from 'jquery';
+
+declare var jQuery: any;
 
 @Component({
   selector: 'app-sidebar',
@@ -36,6 +39,10 @@ export class SidebarComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  openModal() {
+    jQuery('.topicM').modal('show');
   }
 
 }

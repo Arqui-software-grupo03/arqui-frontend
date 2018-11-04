@@ -18,7 +18,12 @@
     <ul class="list-unstyled components">
 
         <li class="active">
-            <a>Topics</a>
+            <a>Topics
+                
+                <button type="button" class="topic-modal-btn" data-toggle="modal" data-target="#topicModal">
+                    <i class="fa fa-plus"> </i>
+                </button>
+            </a>
             <ul *ngFor="let topic of topics" class="list-unstyled" id="topicsSubmenu">
                 <li>
                     <a class="nav-link" routerLink="/topic/{{topic.id}}/">{{topic.title}}</a>
@@ -26,4 +31,8 @@
             </ul>
         </li>
     </ul>
+</div>
+
+<div class="modal fade" id="topicModal" tabindex="-1" role="dialog" aria-labelledby="topicModalLabel" aria-hidden="true">
+    <app-topic-modal class="modal-overlay"></app-topic-modal>
 </div>
