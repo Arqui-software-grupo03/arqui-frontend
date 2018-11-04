@@ -14,7 +14,7 @@ export class PostsService {
   constructor(private appService: AppService, private http: HttpClient) {
     this.httpOptions = appService.getHttpOptionsWithToken();
     // this.postsUrl = `${appService.url}/posts`;
-    this.postsUrl = `http://localhost:8100`;
+    this.postsUrl = `http://localhost:8100/posts`;
   }
 
   getAllPosts(): Observable<any> {
@@ -22,9 +22,13 @@ export class PostsService {
     // console.log(this.httpOptions);
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
-  createNewPost(content) {
-    const url = this.postsUrl;
-    const body = {content: content};
+  createNewPost(content: string): Observable<any> {
+    const url = `${this.postsUrl}/`;
+    console.log(content);
+    const body = {
+      'user_id': 1,
+      'content': content
+    };
     // console.log(this.httpOptions);
     return this.http.post(url, body, this.httpOptions).pipe(catchError(this.errorHandler));
   }
