@@ -43,7 +43,7 @@ export class PostsComponent implements OnInit, OnChanges, OnDestroy {
     );
   }
 
-
-
-
+  addNewAnswerToPost(post: any) {
+    console.log(post);
+  }
 }
