@@ -64,7 +64,3 @@ COPY --from=builder /usr/src/angular_app/nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder /usr/src/angular_app/dist/webApp /usr/share/nginx/html
 
 # expose port 80
-EXPOSE 80
-
-# run nginx
-CMD ["nginx", "-g", "daemon off;"]
