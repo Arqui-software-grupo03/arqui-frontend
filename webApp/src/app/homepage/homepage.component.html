@@ -1,4 +1,6 @@
-<app-topic id="content" *ngIf="user.email && !loading else notLogged"></app-topic>
+<div *ngIf="user.email && !loading else notLogged">
+  <h1>Seleccione un topic </h1>
+</div>
 <ng-template id="content" #notLogged>
   <div *ngIf="!loading" class="home">
     <div class="home-form">

@@ -33,6 +33,7 @@ export class Authenticate implements CanActivate {
                 user => {
                     user.email = email;
                     user.token = token;
+                    user.id = 1;
                     // user.role = this.roles[user.role];
                     this.usersService.editUser(user);
                     this.logInService.editLogged(true);

@@ -25,6 +25,9 @@ export class SidebarComponent implements OnInit {
         // console.log(this.user);
       }, error => console.log(error)
     );
+    this.topicService.castTopics.subscribe(
+      t => this.topics = t
+    );
     this.getAllTopics();
   }
   onClickEditProfile(event) {
@@ -33,7 +36,11 @@ export class SidebarComponent implements OnInit {
   getAllTopics() {
     this.topicService.getAllTopics().subscribe(
       topics => {
-        this.topics = topics;
+        topics.map(
+          t => {
+            this.topicService.addTopicToCastTopics(t);
+          }
+        );
         // console.log(this.topics);
       }, error => {
         console.log(error);

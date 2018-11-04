@@ -15,29 +15,25 @@ export class TopicComponent implements OnInit, OnDestroy {
   topic;
   private ngUnsubscribe = new Subject();
   constructor(private activatedRoute: ActivatedRoute, private topicService: TopicService,
-              private flashMessage: FlashMessagesService) { }
+              private flashMessage: FlashMessagesService, private route: ActivatedRoute) {
+                this.route.data.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+                  res => {
+                  this.topic = res.topic;
+                },
+                error => {
+
+                });
+              }
 
   ngOnInit() {
-    this.topicId = +this.activatedRoute.snapshot.paramMap.get('topicId');
-    this.getTopic();
+    // this.topicId = +this.activatedRoute.snapshot.paramMap.get('topicId');
+    // console.log(this.topicId);
+    // this.getTopic();
   }
 
   ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.unsubscribe();
-  }
-
-  getTopic() {
-    this.topicService.getTopicById(this.topicId).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-      topic => {
-        this.topic = topic;
-        // this.showMessage('great!', 'success');
-      },
-      error => {
-        console.log(error);
-        // this.showMessage(error, 'danger');
-      }
-    );
   }
 
   showMessage(message: string, type: string) {

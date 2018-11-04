@@ -1,4 +1,4 @@
-<div class="border">
+<div class="border" *ngIf="!loading">
   <div class="row">
     <div class="col-md-2 text-center">
       <img [src]="userPhotoUrl" class="img">
@@ -7,7 +7,7 @@
     <div class="col-md-10 comment">
       <div class="row">
         <div class="eliminate-padding col-md-9 ">
-          <h6 class="sender">{{sender}}: </h6>
+          <h6 class="sender">{{sender.username}}: </h6>
         </div>
         <div class="col-md-3">
           <span class="time">{{hour}}</span> | <span class="time">{{date}}</span>
@@ -16,6 +16,6 @@
       <p>{{post.content}}</p>
     </div>
   </div>
-  <app-thread (threadCounter)="getThreadCounter($event)" [postId]="post.id" *ngIf="showThread"></app-thread>
-  <app-thread-form (show)="onShow($event)" threadCounter={{threadCounter}} ></app-thread-form>
+  <app-thread (threadCounter)="getThreadCounter($event)" [answers]="answers" [post]="post" [showThread]="showThread"></app-thread>
+  <app-thread-form [showThread]="showThread" (newAnswer)="emitNewAnswer($event)" (show)="onShow($event)" threadCounter={{threadCounter}} [post]="post" ></app-thread-form>
 </div>

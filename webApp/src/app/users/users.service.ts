@@ -14,7 +14,7 @@ export class UsersService {
   usersUrl;
   constructor(private appService: AppService, private http: HttpClient) {
     this.httpOptions = appService.httpOptions;
-    this.usersUrl = `${appService.url}/users/`;
+    this.usersUrl = `${appService.url}/users`;
   }
 
   createNewUser(username: string, email: string, password: string): Observable<any> {
@@ -25,8 +25,8 @@ export class UsersService {
     };
     return this.http.post(this.usersUrl, body, this.httpOptions).pipe(catchError(this.errorHandler));
   }
-  getUser() {
-    const url = `${this.appService.url}user/`;
+  getUserById(userId: number) {
+    const url = `${this.usersUrl}/search/${userId}/`;
     this.httpOptions = this.appService.getHttpOptionsWithToken();
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
