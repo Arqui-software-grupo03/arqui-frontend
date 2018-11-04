@@ -57,7 +57,8 @@ export class AppComponent implements OnInit, OnDestroy {
   setCurrentUser() {
     const usr = {
       'token': this.logInService.getToken(),
-      'email': this.logInService.getEmail()
+      'email': this.logInService.getEmail(),
+      'id': 1
     };
     this.usersService.editUser(usr);
     this.logInService.editLogged(true);
