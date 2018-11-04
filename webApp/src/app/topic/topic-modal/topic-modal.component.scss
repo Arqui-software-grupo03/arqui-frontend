@@ -1,0 +1,75 @@
+h5.modal-title, label {
+    color: black;
+    text-align: center;
+}
+
+$typingColor: white;
+
+/*Typing Loader ANIMATION*/ 
+.typing_loader{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    -webkit-animation: typing 1s linear infinite alternate;
+       -moz-animation: Typing 1s linear infinite alternate;
+            animation: typing 1s linear infinite alternate;
+    margin: 46px auto; /* Not necessary- its only for layouting*/  
+    position: relative;
+    left: -12px;
+  }
+  @-webkit-keyframes typing{
+    0%{
+        background-color: $typingColor;
+        box-shadow: 24px 0px 0px 0px rgba($typingColor,0.2), 
+                    48px 0px 0px 0px rgba($typingColor,0.2);
+        }
+    25%{ 
+        background-color: rgba($typingColor, 0.4);
+        box-shadow: 24px 0px 0px 0px rgba($typingColor, 2), 
+                    48px 0px 0px 0px rgba($typingColor,0.2);
+    }
+    75%{ background-color: rgba($typingColor, 0.4);
+        box-shadow: 24px 0px 0px 0px rgba($typingColor,0.2), 
+                    48px 0px 0px 0px rgba($typingColor,1);
+        }
+  }
+  
+  @-moz-keyframes typing{
+    0%{
+        background-color: $typingColor;
+        box-shadow: 24px 0px 0px 0px rgba($typingColor,0.2), 
+                    48px 0px 0px 0px rgba($typingColor,0.2);
+        }
+    25%{ 
+        background-color: rgba($typingColor, 0.4);
+        box-shadow: 24px 0px 0px 0px rgba($typingColor, 2), 
+                    48px 0px 0px 0px rgba($typingColor,0.2);
+    }
+    75%{ background-color: rgba($typingColor, 0.4);
+        box-shadow: 24px 0px 0px 0px rgba($typingColor,0.2), 
+                    48px 0px 0px 0px rgba($typingColor,1);
+        }
+  }
+  
+  @keyframes typing{
+    0%{
+        background-color: $typingColor;
+        box-shadow: 24px 0px 0px 0px rgba($typingColor,0.2), 
+                    48px 0px 0px 0px rgba($typingColor,0.2);
+        }
+    25%{ 
+        background-color: rgba($typingColor, 0.4);
+        box-shadow: 24px 0px 0px 0px rgba($typingColor, 2), 
+                    48px 0px 0px 0px rgba($typingColor,0.2);
+    }
+    75%{ background-color: rgba($typingColor, 0.4);
+        box-shadow: 24px 0px 0px 0px rgba($typingColor,0.2), 
+                    48px 0px 0px 0px rgba($typingColor,1);
+        }
+  }
+
+.small {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin: 0.5rem 3.2rem;
+}

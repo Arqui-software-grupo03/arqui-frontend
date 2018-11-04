@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AppService } from '@app/app.component.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -15,7 +15,7 @@ export class TopicService {
     this.topicsUrl = `${appService.url}/topics`;
   }
 
-  createTopic(title: string, description: string) {
+  createTopic(title: string, description: string): Observable<any> {
     const body = {
       title: title,
       description: description,
