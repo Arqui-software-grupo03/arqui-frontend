@@ -18,8 +18,8 @@
     <ul class="list-unstyled components">
 
         <li class="active">
-            <a href="#topicsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Topics</a>
-            <ul *ngFor="let topic of topics" class="collapse list-unstyled" id="topicsSubmenu">
+            <a>Topics</a>
+            <ul *ngFor="let topic of topics" class="list-unstyled" id="topicsSubmenu">
                 <li>
                     <a class="nav-link" routerLink="/topic/{{topic.id}}/">{{topic.title}}</a>
                 </li>
