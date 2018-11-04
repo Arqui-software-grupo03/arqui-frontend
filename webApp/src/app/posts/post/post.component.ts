@@ -15,9 +15,10 @@ export class PostComponent implements OnInit {
   message;
   showThread;
   threadCounter;
-  post;
+  post = {};
   answers;
   @Input() topicName: string;
+  @Input() postId;
   constructor(private postsService: PostsService) {
     this.userPhotoUrl = '../../assets/felipe_de_la_fuente.jpg';
     this.topic = 'Topic 1';
@@ -26,25 +27,28 @@ export class PostComponent implements OnInit {
     this.date = '7 septiembre';
     this.showThread = false;
     this.threadCounter = 1;
-    this.message = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard"
-                    + "dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen"
-                    + "book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially"
-                    + "unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more"
-                    + "recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+    this.message = 'LoremIpsum';
   }
-  @Input() postId;
-  ngOnInit() {
-    this.getPostInfo();
+  async ngOnInit() {
+    console.log('before');
+    await this.getPostInfo();
+    console.log('after');
   }
   onShow(event) {
-    console.log(event);
+    // console.log(event);
     this.showThread = event;
   }
-  getPostInfo() {
-    this.postsService.getPost(this.postId.id).subscribe(
+  async getPostInfo() {
+    await this.postsService.getPost(this.postId.id).toPromise().then(
       post => {
         this.post = post;
-      }, error => console.log(error)
+        console.log('middle');
+      },
+      error => console.log(error)
+    ).catch(
+      (err) => {
+        console.log(`Post ${err}`);
+      }
     );
   }
   getThreadCounter(threadCounter) {
