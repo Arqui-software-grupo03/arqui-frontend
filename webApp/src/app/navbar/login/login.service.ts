@@ -13,26 +13,32 @@ export class LogInService {
   private logged = false;
   constructor(private appService: AppService, private http: HttpClient) {
     this.httpOptions = appService.httpOptions;
-    this.logInUrl = `${appService.url}/users/login/`;
+    // this.logInUrl = `${appService.url}/users/login/`;
+    this.logInUrl = `${appService.publicApiUrl}/login`;
   }
 
-  getUserByEmail(email: string, password: string): Observable<any> {
+  logIn(email: string, password: string): Observable<any> {
     const body = {
-      'user': {
-        'email': email,
-        'password': password
-      }
+      'email': email,
+      'password': password
     };
-    return this.http.post(this.logInUrl, body, this.httpOptions).pipe(retry(1), catchError(this.errorHandler));
+    const url = `${this.logInUrl}/`;
+    return this.http.post(url, body, this.httpOptions).pipe(retry(1), catchError(this.errorHandler));
   }
 
   getUserByToken(): Observable<any> {
-    const body = {
-      'token': this.getToken()
-    };
     const httpOptions = this.appService.getHttpOptionsWithToken();
-    return this.http.post(this.logInUrl, body, httpOptions).pipe(retry(1), catchError(this.errorHandler));
+    const url = `${this.appService.publicApiUrl}/user/`;
+    console.log(httpOptions);
+    return this.http.get(url, httpOptions).pipe(retry(1), catchError(this.errorHandler));
   }
+  // getUserByEmail(): Observable<any> {
+  //   const body = {
+  //     'email': this.getEmail()
+  //   };
+  //   const httpOptions = this.appService.getHttpOptionsWithToken();
+  //   return this.http.post(this.logInUrl, body, httpOptions).pipe(retry(1), catchError(this.errorHandler));
+  // }
 
   getToken(): string {
     return localStorage.getItem('token');
