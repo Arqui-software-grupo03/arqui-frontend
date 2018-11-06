@@ -15,7 +15,8 @@ export class PostsService {
   constructor(private appService: AppService, private http: HttpClient) {
     this.httpOptions = appService.getHttpOptionsWithToken();
     // this.postsUrl = `${appService.url}/posts`;
-    this.postsUrl = `http://localhost:8100/posts`;
+    // this.postsUrl = `http://localhost:8100/posts`;
+    this.postsUrl = `${appService.publicApiUrl}/posts`;
   }
 
   getAllPosts(): Observable<any> {
