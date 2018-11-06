@@ -15,7 +15,8 @@ export class TopicService {
   constructor(private appService: AppService, private http: HttpClient) {
     this.httpOptions = appService.getHttpOptionsWithToken();
     // this.topicsUrl = `${appService.url}/topics`;
-    this.topicsUrl = `http://localhost:8080/topics`;
+    // this.topicsUrl = `http://localhost:8080/topics`;
+    this.topicsUrl = `${appService.publicApiUrl}/topics`;
   }
 
   createTopic(title: string, description: string): Observable<any> {
