@@ -35,9 +35,10 @@ export class AppComponent implements OnInit, OnDestroy {
     );
     if (this.logInService.getToken()) {
       this.logInService.getUserByToken().subscribe(
-        success => {
+        user1 => {
+          console.log(user1);
           this.setCurrentUser();
-          // this.showMessage('Bienvenido!', 'success');
+          this.showMessage('Bienvenido!', 'success');
           this.appService.editLoading(false);
         },
         error => {
