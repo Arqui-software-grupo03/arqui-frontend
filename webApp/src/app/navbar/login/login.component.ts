@@ -50,7 +50,7 @@ export class LogInComponent implements OnInit {
   }
 
   validateUser(email, password) {
-    this.logInService.getUserByEmail(email, password).subscribe(
+    this.logInService.logIn(email, password).subscribe(
       user => {
         user.email = email;
         this.usersService.editUser(user);
