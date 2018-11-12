@@ -51,12 +51,12 @@ export class LogInComponent implements OnInit {
 
   validateUser(email, password) {
     this.logInService.logIn(email, password).subscribe(
-      user => {
-        user.email = email;
-        this.usersService.editUser(user);
+      response => {
+        response.email = email;
+        this.usersService.editUser(response);
         this.waitingResponse = false;
         this.showMessage('Bienvenido!', 'success');
-        this.logInService.setToken(user.email, user.token);
+        this.logInService.setToken(response.email, response.token);
         this.setCurrentUser();
       },
       error => {
