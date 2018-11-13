@@ -51,11 +51,14 @@ export class PostComponent implements OnInit {
       const user = await this.usersService.getUserById(this.post.user_id).toPromise().then().catch(err => console.log(err));
       await this.getAnswers();
       if (user) {
+        console.log('user se viene');
+        console.log(user);
         this.sender = user;
         const d = new Date(this.post.pub_date);
         this.date = `${d.getDate()} ${this.monthNames[d.getMonth()]}`;
         this.hour = `${d.getHours()}:${d.getMinutes()}`;
-        // console.log(this.daysOfTheWeek[date.getDay()], date.getDate(), date.getMonth() + 1, date.getUTCFullYear());
+        console.log(this.sender);
+        // console.log(this.daysOfTheWeek[this.date.getDay()], this.date.getDate(), this.date.getMonth() + 1, date.getUTCFullYear());
       }
     }
     this.loading = false;

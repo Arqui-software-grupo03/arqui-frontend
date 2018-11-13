@@ -21,12 +21,10 @@ export class PostsService {
 
   getAllPosts(): Observable<any> {
     const url = `${this.postsUrl}/`;
-    // console.log(this.httpOptions);
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
   createNewPost(content: string, userId): Observable<any> {
     const url = `${this.postsUrl}/`;
-    console.log(content);
     const body = {
       'user_id': userId,
       'content': content

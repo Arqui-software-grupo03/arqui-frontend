@@ -26,7 +26,11 @@ export class SidebarComponent implements OnInit {
       }, error => console.log(error)
     );
     this.topicService.castTopics.subscribe(
-      t => this.topics = t
+      t => {
+        this.topics = t;
+        console.log(this.topics);
+      }
+
     );
     this.getAllTopics();
   }

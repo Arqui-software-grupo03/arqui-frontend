@@ -37,7 +37,10 @@ export class FormComponent implements OnInit {
 
     if (post) {
       const topic = await this.topicService.addPostToTopic(this.topicId, post.id).toPromise().then()
-      .catch( err => this.showMessage('2 Hubo un problema al ingresar el post, intente nuevamente.', 'danger'));
+      .catch( err => {
+        this.showMessage('2 Hubo un problema al ingresar el post, intente nuevamente.', 'danger');
+        console.log(err);
+      });
       if (topic) {
         this.updateCastTopics(topic);
         this.updateCastTopicPosts(post);
