@@ -43,7 +43,7 @@ export class TopicService {
       'post_id': postId,
       'topic_identifier': topicId
     };
-    const url = `${this.topicsUrl}/${topicId}/post_ids/`;
+    const url = `${this.topicsUrl}/${topicId}/posts/`;
     return this.http.post(url, body, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
@@ -53,7 +53,7 @@ export class TopicService {
   }
 
   getAllPostsFromTopicById(topicId: number) {
-    const url = `${this.topicsUrl}/${topicId}/post_ids/`;
+    const url = `${this.topicsUrl}/${topicId}/posts/`;
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
