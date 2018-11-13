@@ -19,7 +19,7 @@ export class PostsComponent implements OnInit, OnChanges, OnDestroy {
   async ngOnInit() {
     this.id = +this.activatedRoute.snapshot.paramMap.get('id');
     this.postsService.castTopicPosts.subscribe(
-      p => this.postsArray = p
+      posts => this.postsArray = posts
     );
     await this.getPostsfromTopic();
   }
@@ -33,8 +33,11 @@ export class PostsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   async getPostsfromTopic() {
+    console.log('getPostsFromTopic');
+    console.log(this.topicId);
     await this.topicService.getAllPostsFromTopicById(+this.topicId).toPromise().then(
       posts => {
+        console.log(posts);
         this.postsService.updateCastTopicPosts(posts);
       },
       error =>  console.log(error)
