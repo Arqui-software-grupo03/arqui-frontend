@@ -28,7 +28,8 @@ export class UsersService {
     return this.http.post(url, body, this.httpOptions).pipe(catchError(this.errorHandler));
   }
   getUserById(userId: number) {
-    const url = `${this.usersUrl}/search/${userId}/`;
+    const url = `${this.usersUrl}/${userId}/`;
+    console.log(url);
     this.httpOptions = this.appService.getHttpOptionsWithToken();
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
