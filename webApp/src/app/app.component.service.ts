@@ -22,6 +22,7 @@ export class AppService {
         this.loading.next(value);
     }
     getHttpOptionsWithToken() {
+        console.log(`Bearer ${localStorage.getItem('token')}`);
         return {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
