@@ -3,6 +3,7 @@ import { HomepageService } from './homepage.service';
 import * as $ from 'jquery';
 import { Subject } from 'rxjs';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Router } from '@angular/router';
 import { UsersService } from '@app/users/users.service';
 import { takeUntil } from 'rxjs/operators';
 import { LogInService } from '@app/navbar/login/login.service';
@@ -24,14 +25,24 @@ export class HomepageComponent implements OnInit, OnDestroy {
   public loading = true;
   constructor(private logInService: LogInService, private flashMessage: FlashMessagesService,
     private usersService: UsersService, private cdRef: ChangeDetectorRef,
-    private appService: AppService, private topicService: TopicService) {
+    private appService: AppService, private topicService: TopicService,
+    private router: Router) {
 
 
   }
 
   ngOnInit() {
     this.appService.castLoading.subscribe(
-      val => this.loading = val
+      val => {
+        this.loading = val;
+      }
+    );
+    this.topicService.castTopics.subscribe(
+      t => {
+        if (t.length > 0) {
+          this.router.navigate([`/topic/${t[0].topic_id}`]);
+        }
+      }
     );
     this.usersService.castUser.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       usr => {

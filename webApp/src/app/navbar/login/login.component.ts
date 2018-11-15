@@ -94,5 +94,10 @@ export class LogInComponent implements OnInit {
     event.stopPropagation();
     event.preventDefault();
   }
+  keyDownFunction(email, password, event) {
+    if (event.keyCode === 13) {
+      this.validateUser(email, password);
+    }
+  }
 
 }

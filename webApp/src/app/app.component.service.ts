@@ -14,6 +14,10 @@ export class AppService {
     url = 'http://private-aa901-arquitransocialnetwork.apiary-mock.com';
     publicApiUrl = 'https://charette9.ing.puc.cl/api';
 
+    daysOfTheWeek = ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'];
+    monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'Mayo', 'Jun',
+    'Jul', 'Ago', 'Sept', 'Oct', 'Nov', 'Dic'];
+
     private loading = new BehaviorSubject(true);
     castLoading = this.loading.asObservable();
     constructor() { }

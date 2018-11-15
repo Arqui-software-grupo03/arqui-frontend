@@ -10,6 +10,7 @@ import { TopicService } from './topic.service';
 export class TopicPostsResolver implements Resolve<any> {
     constructor(private topicService: TopicService) {}
     resolve(route: ActivatedRouteSnapshot, rstate: RouterStateSnapshot): Observable<any> {
-        return this.topicService.getTopicById(+route.params['topicId']);
+        console.log('estoy resolviendo');
+        return this.topicService.getTopicById(route.params['topicId']);
     }
 }
