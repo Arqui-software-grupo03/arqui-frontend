@@ -12,6 +12,7 @@ import { ThreadService } from '../thread/thread.service';
 })
 export class PostComponent implements OnInit {
   loading = true;
+  post;
   userPhotoUrl;
   topic;
   sender;
@@ -24,7 +25,8 @@ export class PostComponent implements OnInit {
   monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'Mayo', 'Jun',
     'Jul', 'Ago', 'Sept', 'Oct', 'Nov', 'Dic'];
   @Input() topicName: string;
-  @Input() post: any;
+  @Input() postId: any;
+  // ver que onda cuando no hay input (cuando se hace de un form)
   constructor(private postsService: PostsService, private usersService: UsersService,
             private appService: AppService, private threadService: ThreadService) {
     this.userPhotoUrl = '../../assets/felipe_de_la_fuente.jpg';
@@ -32,30 +34,28 @@ export class PostComponent implements OnInit {
     this.threadCounter = 0;
   }
   async ngOnInit() {
-    if (this.post.id) {
-      this.post.post_id = this.post.id;
-    }
     await this.getPostInfo();
   }
   onShow(event) {
     this.showThread = event;
   }
   async getPostInfo() {
-    const post = await this.postsService.getPost(this.post.post_id).toPromise().then()
-      .catch(
-        (err) => {
-          console.log(`Post ${err}`);
-        });
-    if (post) {
-      const user = await this.usersService.getUserById(post.user_id).toPromise().then().catch(err => console.log(err));
+    await this.postsService.getPost(this.postId).toPromise().then(
+      post => {
+        this.post = post;
+      }, error => {
+        console.log(`Post ${error}`);
+      }
+    );
+    if (this.post) {
+      const user = await this.usersService.getUserById(this.post.user_id).toPromise().then().catch(err => console.log(err));
       await this.getAnswers();
       if (user) {
         this.sender = user;
-        const d = new Date(post.pub_date);
+        const d = new Date(this.post.pub_date);
         this.date = `${d.getDate()} ${this.monthNames[d.getMonth()]}`;
         this.hour = `${d.getHours()}:${d.getMinutes()}`;
-        this.post = post;
-        // console.log(this.daysOfTheWeek[date.getDay()], date.getDate(), date.getMonth() + 1, date.getUTCFullYear());
+        // console.log(this.daysOfTheWeek[this.date.getDay()], this.date.getDate(), this.date.getMonth() + 1, date.getUTCFullYear());
       }
     }
     this.loading = false;
@@ -72,11 +72,13 @@ export class PostComponent implements OnInit {
   }
 
   getAnswers() {
-    this.threadService.getAllAnswers(this.post.post_id).toPromise().then(
+    this.threadService.getAllAnswers(this.postId).toPromise().then(
       answers => {
         this.answers = answers;
         this.threadCounter = this.answers.length;
       }
-    ).catch(err => console.log(err));
+    ).catch(err => {
+      console.log(`Error al buscar las respuestas: ${err}`);
+    });
   }
 }

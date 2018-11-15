@@ -11,23 +11,24 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./topic.component.scss']
 })
 export class TopicComponent implements OnInit, OnDestroy {
-  topic = {};
+  topic;
+  topicId;
   private ngUnsubscribe = new Subject();
   constructor(private activatedRoute: ActivatedRoute, private topicService: TopicService,
               private flashMessage: FlashMessagesService, private route: ActivatedRoute) {
-                this.route.data.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-                  res => {
-                  this.topic = res.topic;
-                },
-                error => {
+                // this.route.data.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+                //   res => {
+                //   console.log(res);
+                //   this.topic = res.topic;
+                // },
+                // error => {
 
-                });
+                // });
               }
 
   ngOnInit() {
-    // this.topicId = +this.activatedRoute.snapshot.paramMap.get('topicId');
-    // console.log(this.topicId);
-    // this.getTopic();
+    this.topicId = +this.activatedRoute.snapshot.paramMap.get('topicId');
+    this.getTopic();
   }
 
   ngOnDestroy() {
@@ -42,6 +43,16 @@ export class TopicComponent implements OnInit, OnDestroy {
       showCloseBtn: true,
       closeOnClick: true
     });
+  }
+  getTopic() {
+    this.topicService.getTopicById(this.topicId).subscribe(
+      topic => {
+        this.topic = topic;
+        console.log(this.topic);
+      }, error => {
+        console.log(`Error al obtener el topic: ${error}`);
+      }
+    );
   }
 
 }

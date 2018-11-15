@@ -15,17 +15,16 @@ export class PostsService {
   constructor(private appService: AppService, private http: HttpClient) {
     this.httpOptions = appService.getHttpOptionsWithToken();
     // this.postsUrl = `${appService.url}/posts`;
-    this.postsUrl = `http://localhost:8100/posts`;
+    // this.postsUrl = `http://localhost:8100/posts`;
+    this.postsUrl = `${appService.publicApiUrl}/posts`;
   }
 
   getAllPosts(): Observable<any> {
     const url = `${this.postsUrl}/`;
-    // console.log(this.httpOptions);
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
   createNewPost(content: string, userId): Observable<any> {
     const url = `${this.postsUrl}/`;
-    console.log(content);
     const body = {
       'user_id': userId,
       'content': content
@@ -50,9 +49,9 @@ export class PostsService {
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
-  addPostToCastTopicPosts(post: any) {
+  addPostToCastTopicPosts(topicPost: any) {
     const posts = this.topicPosts.value;
-    posts.push(post);
+    posts.push(topicPost);
     this.topicPosts.next(posts);
   }
 

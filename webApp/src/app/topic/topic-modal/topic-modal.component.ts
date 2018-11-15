@@ -34,6 +34,7 @@ export class TopicModalComponent implements OnInit {
         this.waitingResponse = false;
         this.topic = {'title': '', 'description': ''};
         this.topicService.addTopicToCastTopics(topic);
+        jQuery('#topicModal').hide();
       },
       err => {
         this.showMessage('Error creando topic. Intente nuevamente', 'danger');

@@ -19,7 +19,7 @@ export class PostsComponent implements OnInit, OnChanges, OnDestroy {
   async ngOnInit() {
     this.id = +this.activatedRoute.snapshot.paramMap.get('id');
     this.postsService.castTopicPosts.subscribe(
-      p => this.postsArray = p
+      posts => this.postsArray = posts
     );
     await this.getPostsfromTopic();
   }

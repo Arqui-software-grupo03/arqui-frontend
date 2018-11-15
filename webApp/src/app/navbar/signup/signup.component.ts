@@ -108,9 +108,10 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   async createUser(username: string, email: string, password: string) {
     await this.usersService.createNewUser(username, email, password).toPromise().then(
-      obj => {
-        this.logInService.setToken(email, obj.token);
-        this.setCurrentUser(email, obj.token);
+      user => {
+        this.usersService.editUser(user);
+        this.showMessage('Cuenta creada satisfactoriamente!', 'success');
+        this.logIn(user.email, password);
       }
     ).catch(
       error => {
@@ -120,11 +121,28 @@ export class SignUpComponent implements OnInit, OnDestroy {
     this.waitingResponse = false;
   }
 
-  setCurrentUser(token: string, email: string) {
+  logIn(email, password) {
+    this.logInService.logIn(email, password).subscribe(
+      response => {
+        response.email = email;
+        this.showMessage('Bienvenido!', 'success');
+        this.logInService.setToken(response.email, response.token);
+        this.setCurrentUser(response.user);
+      }, error => {
+        console.log(error);
+        this.showMessage('Mail o clave incorrecta', 'danger');
+      }
+    );
+  }
+
+  setCurrentUser(user) {
     const usr = {
-      'token': token,
-      'email': email
+      'token': this.logInService.getToken(),
+      'email': this.logInService.getEmail(),
+      'id': user.id,
+      'username': user.username
     };
     this.usersService.editUser(usr);
+    this.logInService.editLogged(true);
   }
 }

@@ -33,14 +33,19 @@ export class FormComponent implements OnInit {
 
   async onSubmit(event) {
     const post = await this.postsService.createNewPost(this.inputText, this.user.id).toPromise().then()
-      .catch( err => this.showMessage('Hubo un problema al ingresar el post, intente nuevamente.', 'danger'));
-
+      .catch( err => {
+        this.showMessage('Hubo un problema al ingresar el post, intente nuevamente.', 'danger');
+        console.log(`El problema al crear el post es: ${err}`);
+      });
     if (post) {
       const topic = await this.topicService.addPostToTopic(this.topicId, post.id).toPromise().then()
-      .catch( err => this.showMessage('2 Hubo un problema al ingresar el post, intente nuevamente.', 'danger'));
+      .catch( err => {
+        this.showMessage('2 Hubo un problema al ingresar el post, intente nuevamente.', 'danger');
+        console.log(err);
+      });
       if (topic) {
-        this.updateCastTopics(topic);
-        this.updateCastTopicPosts(post);
+        this.addPostToCastTopics(post);
+        this.updateCastTopicPosts(topic);
         this.showMessage('¡Publicación creada correctamente!', 'success');
       } else {
         await this.postsService.deletePost(post.id).toPromise().then(
@@ -67,20 +72,10 @@ export class FormComponent implements OnInit {
     });
   }
 
-  updateCastTopics(topic: any) {
-    const allCastTopics = this.topicService.getAllTopicsFromCastValue();
-    let idx;
-    allCastTopics.map(
-      (t, index) => {
-        if (t.id === topic.id) {
-          idx = index;
-        }
-      }
-    );
-    allCastTopics[idx] = topic;
-    this.topicService.updateArrayCastTopics(allCastTopics);
+  addPostToCastTopics(post: any) {
+    this.topicService.addPostToCastTopics(this.topicId, post);
   }
-  updateCastTopicPosts(post: any) {
-    this.postsService.addPostToCastTopicPosts(post);
+  updateCastTopicPosts(topicPost: any) {
+    this.postsService.addPostToCastTopicPosts(topicPost);
   }
 }

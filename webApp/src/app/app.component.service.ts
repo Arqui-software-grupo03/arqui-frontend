@@ -12,6 +12,7 @@ export class AppService {
     // Apiary: http://private-bb6ce2-arquitransocialnetwork.apiary-mock.com/
     // Apiary 'http://private-aa901-arquitransocialnetwork.apiary-mock.com'
     url = 'http://private-aa901-arquitransocialnetwork.apiary-mock.com';
+    publicApiUrl = 'https://charette9.ing.puc.cl/api';
 
     private loading = new BehaviorSubject(true);
     castLoading = this.loading.asObservable();
@@ -21,10 +22,11 @@ export class AppService {
         this.loading.next(value);
     }
     getHttpOptionsWithToken() {
+        // console.log(`Bearer ${localStorage.getItem('token')}`);
         return {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
-                'token': localStorage.getItem('token') ? localStorage.getItem('token') : '',
+                'Authorization': `Bearer ${localStorage.getItem('token') ? localStorage.getItem('token') : ''}`,
             })
         };
     }

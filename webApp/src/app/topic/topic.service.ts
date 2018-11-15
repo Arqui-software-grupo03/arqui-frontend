@@ -15,7 +15,8 @@ export class TopicService {
   constructor(private appService: AppService, private http: HttpClient) {
     this.httpOptions = appService.getHttpOptionsWithToken();
     // this.topicsUrl = `${appService.url}/topics`;
-    this.topicsUrl = `http://localhost:8080/topics`;
+    // this.topicsUrl = `http://localhost:8080/topics`;
+    this.topicsUrl = `${appService.publicApiUrl}/topics`;
   }
 
   createTopic(title: string, description: string): Observable<any> {
@@ -42,7 +43,7 @@ export class TopicService {
       'post_id': postId,
       'topic_identifier': topicId
     };
-    const url = `${this.topicsUrl}/${topicId}/post_ids/`;
+    const url = `${this.topicsUrl}/${topicId}/posts/`;
     return this.http.post(url, body, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
@@ -52,7 +53,7 @@ export class TopicService {
   }
 
   getAllPostsFromTopicById(topicId: number) {
-    const url = `${this.topicsUrl}/${topicId}/post_ids/`;
+    const url = `${this.topicsUrl}/${topicId}/posts/`;
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
@@ -88,6 +89,14 @@ export class TopicService {
 
   updateArrayCastTopics(topicArray: any) {
     this.topics.next(topicArray);
+  }
+  addPostToCastTopics(topicId: number, post: any) {
+    this.topics.value.map(
+      topic => {
+        if (topic.topic_id === topicId) {
+          topic.posts.push(post);
+        }
+      });
   }
 
   getAllTopicsFromCastValue() {
