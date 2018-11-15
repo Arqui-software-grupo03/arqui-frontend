@@ -49,9 +49,9 @@ export class PostsService {
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
-  addPostToCastTopicPosts(post: any) {
+  addPostToCastTopicPosts(topicPost: any) {
     const posts = this.topicPosts.value;
-    posts.push(post);
+    posts.push(topicPost);
     this.topicPosts.next(posts);
   }
 
