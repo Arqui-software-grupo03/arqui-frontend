@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { throwError, Observable, BehaviorSubject } from 'rxjs';
+import { throwError, Observable, BehaviorSubject, Observer } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AppService } from '@app/app.component.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Socket } from '@app/socket/socket';
+import * as socketIo from 'socket.io-client';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,8 @@ export class TopicService {
   castTopics = this.topics.asObservable();
   httpOptions;
   topicsUrl;
+  socket: Socket;
+  observer: Observer<any>;
   constructor(private appService: AppService, private http: HttpClient) {
     this.httpOptions = appService.getHttpOptionsWithToken();
     // this.topicsUrl = `${appService.url}/topics`;
@@ -92,5 +96,22 @@ export class TopicService {
 
   getAllTopicsFromCastValue() {
     return this.topics.value;
+  }
+
+  getFromSocket() {
+
+    this.socket = socketIo('http://localhost:8009');
+
+    this.socket.on('data', (res) => {
+      this.observer.next(res.data);
+    });
+
+    return this.createObservable();
+  }
+
+  createObservable(): Observable<number> {
+      return new Observable<number>(observer => {
+        this.observer = observer;
+      });
   }
 }

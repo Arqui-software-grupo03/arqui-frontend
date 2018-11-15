@@ -13,7 +13,7 @@ export class LogInService {
   private logged = false;
   constructor(private appService: AppService, private http: HttpClient) {
     this.httpOptions = appService.httpOptions;
-    this.logInUrl = `${appService.url}/users/login/`;
+    this.logInUrl = `${appService.url}/login/`;
   }
 
   getUserByEmail(email: string, password: string): Observable<any> {

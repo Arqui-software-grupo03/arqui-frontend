@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UsersService } from '@app/users/users.service';
 import { TopicService } from '@app/topic/topic.service';
 import * as $ from 'jquery';
+import { Subscription } from 'rxjs';
 
 declare var jQuery: any;
 
@@ -10,15 +11,20 @@ declare var jQuery: any;
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
   userPhotoUrl;
   user;
   topics;
+  sock: Subscription;
+  sockData: any;
   constructor(private usersService: UsersService, private topicService: TopicService) {
     this.userPhotoUrl = '../../assets/felipe_de_la_fuente.jpg';
    }
 
   ngOnInit() {
+    this.sock = this.topicService.getFromSocket().subscribe(
+      d => this.sockData = d
+    );
     this.usersService.castUser.subscribe(
       user => {
         this.user = user;
@@ -30,6 +36,11 @@ export class SidebarComponent implements OnInit {
     );
     this.getAllTopics();
   }
+
+  ngOnDestroy() {
+    this.sock.unsubscribe();
+  }
+
   onClickEditProfile(event) {
 
   }
