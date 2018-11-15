@@ -26,9 +26,9 @@ export class TopicComponent implements OnInit, OnDestroy {
                 // });
               }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.topicId = +this.activatedRoute.snapshot.paramMap.get('topicId');
-    this.getTopic();
+    await this.getTopic();
   }
 
   ngOnDestroy() {
