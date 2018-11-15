@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { ThreadService } from '@app/posts/thread/thread.service';
 import { UsersService } from '@app/users/users.service';
+import { AppService } from '@app/app.component.service';
 
 @Component({
   selector: 'app-thread',
@@ -16,14 +17,14 @@ export class ThreadComponent implements OnInit, OnChanges {
   date;
   message;
   threadcount;
-  daysOfTheWeek = ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'];
-  monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'Mayo', 'Jun',
-    'Jul', 'Ago', 'Sept', 'Oct', 'Nov', 'Dic'];
+  monthNames;
+  daysOfTheWeek;
   @Input() post: any;
   @Output() threadCounter = new EventEmitter<number>();
   @Input() showThread: any;
   @Input() answers: any;
-  constructor(private threadService: ThreadService, private usersService: UsersService) {
+  constructor(private threadService: ThreadService, private usersService: UsersService, private appService: AppService) {
+    this.monthNames = this.appService.monthNames;
     this.userPhotoUrl = '../../assets/chau.jpg';
   }
   async ngOnInit() {

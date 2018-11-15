@@ -21,9 +21,8 @@ export class PostComponent implements OnInit {
   showThread;
   threadCounter;
   answers;
-  daysOfTheWeek = ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'];
-  monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'Mayo', 'Jun',
-    'Jul', 'Ago', 'Sept', 'Oct', 'Nov', 'Dic'];
+  daysOfTheWeek;
+  monthNames;
   @Input() topicName: string;
   @Input() postId: any;
   // ver que onda cuando no hay input (cuando se hace de un form)
@@ -32,6 +31,8 @@ export class PostComponent implements OnInit {
     this.userPhotoUrl = '../../assets/felipe_de_la_fuente.jpg';
     this.showThread = false;
     this.threadCounter = 0;
+    this.monthNames = this.appService.monthNames;
+    this.daysOfTheWeek = this.appService.daysOfTheWeek;
   }
   async ngOnInit() {
     await this.getPostInfo();
