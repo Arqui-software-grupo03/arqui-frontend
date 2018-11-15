@@ -44,8 +44,8 @@ export class FormComponent implements OnInit {
         console.log(err);
       });
       if (topic) {
-        this.updateCastTopics(topic);
-        this.updateCastTopicPosts(post);
+        this.addPostToCastTopics(post);
+        this.updateCastTopicPosts(topic);
         this.showMessage('¡Publicación creada correctamente!', 'success');
       } else {
         await this.postsService.deletePost(post.id).toPromise().then(
@@ -72,20 +72,10 @@ export class FormComponent implements OnInit {
     });
   }
 
-  updateCastTopics(topic: any) {
-    const allCastTopics = this.topicService.getAllTopicsFromCastValue();
-    let idx;
-    allCastTopics.map(
-      (t, index) => {
-        if (t.id === topic.id) {
-          idx = index;
-        }
-      }
-    );
-    allCastTopics[idx] = topic;
-    this.topicService.updateArrayCastTopics(allCastTopics);
+  addPostToCastTopics(post: any) {
+    this.topicService.addPostToCastTopics(this.topicId, post);
   }
-  updateCastTopicPosts(post: any) {
-    this.postsService.addPostToCastTopicPosts(post);
+  updateCastTopicPosts(topicPost: any) {
+    this.postsService.addPostToCastTopicPosts(topicPost);
   }
 }
