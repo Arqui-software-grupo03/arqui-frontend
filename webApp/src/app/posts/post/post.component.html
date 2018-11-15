@@ -16,6 +16,6 @@
       <p>{{post.content}}</p>
     </div>
   </div>
-  <app-thread (threadCounter)="getThreadCounter($event)" [answers]="answers" [post]="post" [showThread]="showThread"></app-thread>
+  <app-thread *ngIf="showThread" (threadCounter)="getThreadCounter($event)" [answers]="answers" [post]="post" [showThread]="showThread"></app-thread>
   <app-thread-form [showThread]="showThread" (newAnswer)="emitNewAnswer($event)" (show)="onShow($event)" threadCounter={{threadCounter}} [post]="post" ></app-thread-form>
 </div>
