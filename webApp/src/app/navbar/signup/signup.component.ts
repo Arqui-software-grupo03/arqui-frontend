@@ -125,10 +125,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
     this.logInService.logIn(email, password).subscribe(
       response => {
         response.email = email;
-        this.usersService.editUser(response);
         this.showMessage('Bienvenido!', 'success');
         this.logInService.setToken(response.email, response.token);
-        this.setCurrentUser();
+        this.setCurrentUser(response.user);
       }, error => {
         console.log(error);
         this.showMessage('Mail o clave incorrecta', 'danger');
@@ -136,10 +135,12 @@ export class SignUpComponent implements OnInit, OnDestroy {
     );
   }
 
-  setCurrentUser() {
+  setCurrentUser(user) {
     const usr = {
       'token': this.logInService.getToken(),
-      'email': this.logInService.getEmail()
+      'email': this.logInService.getEmail(),
+      'id': user.id,
+      'username': user.username
     };
     this.usersService.editUser(usr);
     this.logInService.editLogged(true);
