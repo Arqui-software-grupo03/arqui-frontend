@@ -16,19 +16,18 @@ export class TopicComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject();
   constructor(private activatedRoute: ActivatedRoute, private topicService: TopicService,
               private flashMessage: FlashMessagesService, private route: ActivatedRoute) {
-                // this.route.data.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-                //   res => {
-                //   console.log(res);
-                //   this.topic = res.topic;
-                // },
-                // error => {
+                this.route.data.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+                  res => {
+                  console.log(res);
+                  this.topic = res.topic;
+                  this.topicId = this.topic.topicId;
+                },
+                error => {
 
-                // });
+                });
               }
 
   async ngOnInit() {
-    this.topicId = +this.activatedRoute.snapshot.paramMap.get('topicId');
-    await this.getTopic();
   }
 
   ngOnDestroy() {
@@ -43,16 +42,6 @@ export class TopicComponent implements OnInit, OnDestroy {
       showCloseBtn: true,
       closeOnClick: true
     });
-  }
-  getTopic() {
-    this.topicService.getTopicById(this.topicId).subscribe(
-      topic => {
-        this.topic = topic;
-        console.log(this.topic);
-      }, error => {
-        console.log(`Error al obtener el topic: ${error}`);
-      }
-    );
   }
 
 }
