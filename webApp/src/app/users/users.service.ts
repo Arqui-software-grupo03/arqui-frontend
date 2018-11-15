@@ -29,7 +29,6 @@ export class UsersService {
   }
   getUserById(userId: number) {
     const url = `${this.usersUrl}/${userId}/`;
-    console.log(url);
     this.httpOptions = this.appService.getHttpOptionsWithToken();
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
