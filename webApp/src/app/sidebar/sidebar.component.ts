@@ -30,7 +30,6 @@ export class SidebarComponent implements OnInit {
         this.topics = t;
         console.log(this.topics);
       }
-
     );
     this.getAllTopics();
   }
