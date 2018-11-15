@@ -90,6 +90,14 @@ export class TopicService {
   updateArrayCastTopics(topicArray: any) {
     this.topics.next(topicArray);
   }
+  addPostToCastTopics(topicId: number, post: any) {
+    this.topics.value.map(
+      topic => {
+        if (topic.topic_id === topicId) {
+          topic.posts.push(post);
+        }
+      });
+  }
 
   getAllTopicsFromCastValue() {
     return this.topics.value;
