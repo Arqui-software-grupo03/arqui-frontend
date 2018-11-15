@@ -1,22 +1,22 @@
 <div *ngIf="showThread">
-<div *ngFor="let answer of answers" class="thread border-top row">
-  <div class="col-md-2">
-  </div>
-  <div class="col-md-10 row">
-    <div class="col-md-2 text-center ">
-      <img [src]="userPhotoUrl" class="img">
+  <div *ngFor="let answer of answers" class="thread border-top row">
+    <div class="col-md-2">
     </div>
-    <div class="col-md-10 comment ">
-      <div class="row">
-        <div class="col-md-8 eliminate-padding">
-          <h6 class="response">{{response}}: </h6>
-        </div>
-        <div class="col-md-4">
-          <span class="time">{{hour}}</span> | <span class="time">{{date}}</span>
-        </div>
+    <div class="col-md-10 row">
+      <div class="col-md-2 text-center ">
+        <img [src]="userPhotoUrl" class="img">
       </div>
-      <p class="message">{{answer.content}}</p>
+      <div class="col-md-10 comment ">
+        <div class="row">
+          <div class="col-md-8 eliminate-padding">
+            <h6 class="response">{{answer.user.username}}: </h6>
+          </div>
+          <div class="col-md-4">
+            <span class="time">{{answer.hour}}</span> | <span class="time">{{answer.date}}</span>
+          </div>
+        </div>
+        <p class="message">{{answer.content}}</p>
+      </div>
     </div>
   </div>
-</div>
 </div>

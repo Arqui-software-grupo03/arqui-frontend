@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { ThreadService } from '@app/posts/thread/thread.service';
+import { UsersService } from '@app/users/users.service';
 
 @Component({
   selector: 'app-thread',
@@ -15,35 +16,36 @@ export class ThreadComponent implements OnInit, OnChanges {
   date;
   message;
   threadcount;
+  daysOfTheWeek = ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'];
+  monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'Mayo', 'Jun',
+    'Jul', 'Ago', 'Sept', 'Oct', 'Nov', 'Dic'];
   @Input() post: any;
   @Output() threadCounter = new EventEmitter<number>();
   @Input() showThread: any;
   @Input() answers: any;
-  constructor(private threadService: ThreadService) {
+  constructor(private threadService: ThreadService, private usersService: UsersService) {
     this.userPhotoUrl = '../../assets/chau.jpg';
-    this.topic = 'Topic 1';
-    this.response = 'Stephanie Chau';
-    this.hour = '17:38';
-    this.date = '7 septiembre';
-
   }
   async ngOnInit() {
-    // await this.getAnswers();
+    await this.getAnswersInfo();
   }
 
   ngOnChanges(changes: SimpleChanges) {
 
   }
-
-  /* getAnswers() {
-    this.threadService.getAllAnswers(this.post.id).toPromise().then(
-      answers => {
-        this.answers = answers;
-        this.threadcount = this.answers.length;
-        this.threadCounter.emit(this.threadcount);
-        // console.log(this.answers);
+  getAnswersInfo() {
+    this.answers.map(
+      async answer => {
+        answer['user'] = await this.getSenderInfo(answer.user_id);
+        const d = new Date(answer.pub_date);
+        answer['date'] = `${d.getDate()} ${this.monthNames[d.getMonth()]}`;
+        answer['hour'] = `${d.getHours()}:${d.getMinutes()}`;
       }
-    ).catch(err => console.log(err));
-  } */
+    );
+  }
+  async getSenderInfo(userId: number) {
+    const user = await this.usersService.getUserById(userId).toPromise().then().catch(err => console.log(err));
+    return user;
+  }
 
 }
