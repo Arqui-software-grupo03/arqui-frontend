@@ -67,6 +67,11 @@ export class SignUpComponent implements OnInit, OnDestroy {
     this.waitingResponse = true;
     this.createUser(username, email, password);
   }
+  keyDownFunction(username, email, password, event) {
+    if (event.keyCode === 13) {
+      this.onSubmit(username, email, password, event);
+    }
+  }
 
   showMessage(message: string, type: string) {
     this.flashMessage.show(message, {
