@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { throwError, Observable, BehaviorSubject } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, retry } from 'rxjs/operators';
 import { AppService } from '@app/app.component.service';
+import { UsersService } from '@app/users/users.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
@@ -12,7 +13,10 @@ export class TopicService {
   castTopics = this.topics.asObservable();
   httpOptions;
   topicsUrl;
-  constructor(private appService: AppService, private http: HttpClient) {
+  constructor(private appService: AppService, private http: HttpClient, private usersService: UsersService) {
+    this.usersService.castUser.subscribe(
+      user => this.httpOptions = appService.getHttpOptionsWithToken()
+    );
     this.httpOptions = appService.getHttpOptionsWithToken();
     // this.topicsUrl = `${appService.url}/topics`;
     // this.topicsUrl = `http://localhost:8080/topics`;
@@ -25,7 +29,7 @@ export class TopicService {
       description: description,
     };
     const url = `${this.topicsUrl}/`;
-    return this.http.post(url, body, this.httpOptions).pipe(catchError(this.errorHandler));
+    return this.http.post(url, body, this.httpOptions).pipe(retry(1), catchError(this.errorHandler));
   }
 
   getTopicById(topicId: number) {
