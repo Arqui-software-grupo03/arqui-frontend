@@ -33,11 +33,8 @@ export class PostsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   async getPostsfromTopic() {
-    console.log('getPostsFromTopic');
-    console.log(this.topicId);
     await this.topicService.getAllPostsFromTopicById(+this.topicId).toPromise().then(
       posts => {
-        console.log(posts);
         this.postsService.updateCastTopicPosts(posts);
       },
       error =>  console.log(error)
