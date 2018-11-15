@@ -52,12 +52,15 @@ export class LogInComponent implements OnInit {
   validateUser(email, password) {
     this.logInService.logIn(email, password).subscribe(
       response => {
+        console.log('se viene user al ser validado:');
+        console.log(response);
         response.email = email;
         this.usersService.editUser(response);
         this.waitingResponse = false;
         this.showMessage('Bienvenido!', 'success');
         this.logInService.setToken(response.email, response.token);
-        this.setCurrentUser();
+        this.setCurrentUser(response.user);
+
       },
       error => {
         // Error
@@ -66,11 +69,14 @@ export class LogInComponent implements OnInit {
       }
     );
   }
-  setCurrentUser() {
+  setCurrentUser(user) {
     const usr = {
       'token': this.logInService.getToken(),
-      'email': this.logInService.getEmail()
+      'email': this.logInService.getEmail(),
+      'id': user.id,
+      'username': user.username
     };
+    console.log(usr);
     this.usersService.editUser(usr);
     this.logInService.editLogged(true);
   }
