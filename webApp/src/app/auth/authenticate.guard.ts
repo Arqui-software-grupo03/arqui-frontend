@@ -9,7 +9,6 @@ import { Location } from '@angular/common';
     providedIn: 'root'
 })
 export class Authenticate implements CanActivate {
-    // roles = {1: 'admin', 2: 'boss', 3: 'secretary'};
     constructor(private usersService: UsersService, private routerNav: Router,
                 private logInService: LogInService, private location: Location) { }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
