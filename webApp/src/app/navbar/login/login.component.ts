@@ -4,6 +4,7 @@ import * as $ from 'jquery';
 import { UsersService } from '@app/users/users.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { ThrowStmt } from '@angular/compiler';
+import { AppService } from '@app/app.component.service';
 
 declare var jQuery: any;
 const TIMEOUT = 5000;
@@ -18,7 +19,7 @@ export class LogInComponent implements OnInit {
   btnEnable = false;
   waitingResponse = false;
   constructor(private flashMessages: FlashMessagesService, private logInService: LogInService,
-              private usersService: UsersService) { }
+              private usersService: UsersService, private appService: AppService) { }
 
   ngOnInit() {
     this.usersService.castUser.subscribe(
@@ -52,10 +53,10 @@ export class LogInComponent implements OnInit {
   validateUser(email, password) {
     this.logInService.logIn(email, password).subscribe(
       user => {
-        user.email = email;
+        user.user.email = email;
         this.waitingResponse = false;
         this.showMessage('Bienvenido!', 'success');
-        this.logInService.setToken(user.email, user.token);
+        this.logInService.setToken(user.token);
         this.setCurrentUser(user.user);
 
       },

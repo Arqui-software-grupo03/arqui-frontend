@@ -39,9 +39,8 @@ export class LogInService {
     return localStorage.getItem('email');
   }
 
-  setToken(email: string, token: string): void {
+  setToken(token: string): void {
     localStorage.setItem('token', token);
-    localStorage.setItem('email', email);
   }
 
   removeToken(): void {
