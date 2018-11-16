@@ -14,12 +14,6 @@ export class Authenticate implements CanActivate {
                 private logInService: LogInService, private location: Location) { }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         if (this.logInService.isUserLogged()) {
-            // if (requiredRoles === null || requiredRoles.includes(this.usersService.getRole())) {
-            //    return true;
-            // } else {
-            //    this.routerNav.navigate(['home']);
-            //    return false;
-            // }
             return true;
         }
         // User might be logged
@@ -31,19 +25,11 @@ export class Authenticate implements CanActivate {
         } else {
             this.logInService.getUserByToken().subscribe(
                 user => {
+                    // console.log(user);
                     user.email = email;
                     user.token = token;
-                    user.id = 1;
-                    // user.role = this.roles[user.role];
                     this.usersService.editUser(user);
                     this.logInService.editLogged(true);
-                    /* if (requiredRoles === null || requiredRoles.includes(user.role)) {
-                        this.location.go(state.url);
-                        this.routerNav.navigate([state.url]);
-                        return true;
-                    }
-                    this.routerNav.navigate(['home']);
-                    return false; */
                     this.location.go(state.url);
                     this.routerNav.navigate([state.url]);
                     return true;
