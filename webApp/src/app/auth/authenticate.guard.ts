@@ -18,21 +18,24 @@ export class Authenticate implements CanActivate {
         }
         // User might be logged
         const token = this.logInService.getToken();
-        const email = this.logInService.getEmail();
-        if (!(email && token)) {
+        if (!(token)) {
             this.routerNav.navigate(['home']);
             return false;
         } else {
             this.logInService.getUserByToken().subscribe(
                 user => {
-                    // console.log(user);
-                    user.email = email;
-                    user.token = token;
-                    this.usersService.editUser(user);
-                    this.logInService.editLogged(true);
-                    this.location.go(state.url);
-                    this.routerNav.navigate([state.url]);
-                    return true;
+                    if (user) {
+                        user.token = token;
+                        this.usersService.editUser(user);
+                        this.logInService.editLogged(true);
+                        this.location.go(state.url);
+                        this.routerNav.navigate([state.url]);
+                        return true;
+                    } else {
+                        this.logInService.removeToken();
+                        this.routerNav.navigate(['home']);
+                        return false;
+                    }
                 },
                 error => {
                     this.logInService.editLogged(false);
