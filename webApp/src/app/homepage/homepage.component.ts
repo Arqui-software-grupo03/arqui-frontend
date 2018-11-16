@@ -58,14 +58,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.unsubscribe();
   }
 
-  setCurrentUser() {
-    const usr = {
-      'token': this.logInService.getToken(),
-      'email': this.logInService.getEmail()
-    };
-    this.usersService.editUser(usr);
-    this.logInService.editLogged(true);
-  }
   showMessage(message: string, type: string) {
     this.flashMessage.show(message, {
       cssClass: `alert-${type}`,
