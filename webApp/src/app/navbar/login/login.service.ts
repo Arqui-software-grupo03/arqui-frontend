@@ -13,7 +13,6 @@ export class LogInService {
   private logged = false;
   constructor(private appService: AppService, private http: HttpClient) {
     this.httpOptions = appService.httpOptions;
-    // this.logInUrl = `${appService.url}/users/login/`;
     this.logInUrl = `${appService.publicApiUrl}/login`;
   }
 
@@ -29,16 +28,8 @@ export class LogInService {
   getUserByToken(): Observable<any> {
     const httpOptions = this.appService.getHttpOptionsWithToken();
     const url = `${this.appService.publicApiUrl}/user/`;
-    console.log(httpOptions);
     return this.http.get(url, httpOptions).pipe(retry(1), catchError(this.errorHandler));
   }
-  // getUserByEmail(): Observable<any> {
-  //   const body = {
-  //     'email': this.getEmail()
-  //   };
-  //   const httpOptions = this.appService.getHttpOptionsWithToken();
-  //   return this.http.post(this.logInUrl, body, httpOptions).pipe(retry(1), catchError(this.errorHandler));
-  // }
 
   getToken(): string {
     return localStorage.getItem('token');

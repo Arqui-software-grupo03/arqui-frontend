@@ -141,13 +141,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   setCurrentUser(user) {
-    const usr = {
-      'token': this.logInService.getToken(),
-      'email': this.logInService.getEmail(),
-      'id': user.id,
-      'username': user.username
-    };
-    this.usersService.editUser(usr);
+    user.token = this.logInService.getToken();
+    this.usersService.editUser(user);
     this.logInService.editLogged(true);
   }
 }
