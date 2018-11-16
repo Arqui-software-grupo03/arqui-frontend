@@ -18,6 +18,11 @@ import { HomepageModule } from './homepage/homepage.module';
 import { NgxLoadingModule } from 'ngx-loading';
 import { AppService } from './app.component.service';
 import { TopicModule } from '@app/topic/topic.module';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '@env/environment';
 
 @NgModule({
   declarations: [
@@ -40,6 +45,10 @@ import { TopicModule } from '@app/topic/topic.module';
     AppRoutingModule,
     HomepageModule,
     TopicModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase),
     ],
   providers: [ AppService ],
   bootstrap: [ AppComponent ]

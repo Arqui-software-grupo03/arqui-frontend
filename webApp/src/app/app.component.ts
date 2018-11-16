@@ -18,6 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
   user = {};
   private ngUnsubscribe = new Subject();
   public loading = true;
+
   constructor(private logInService: LogInService, private flashMessage: FlashMessagesService,
     private usersService: UsersService, private cdRef: ChangeDetectorRef,
     private appService: AppService) {
@@ -35,9 +36,8 @@ export class AppComponent implements OnInit, OnDestroy {
     );
     if (this.logInService.getToken()) {
       this.logInService.getUserByToken().subscribe(
-        user1 => {
-          console.log(user1);
-          this.setCurrentUser();
+        user => {
+          this.setCurrentUser(user);
           this.showMessage('Bienvenido!', 'success');
           this.appService.editLoading(false);
         },
@@ -55,13 +55,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.unsubscribe();
   }
 
-  setCurrentUser() {
-    const usr = {
-      'token': this.logInService.getToken(),
-      'email': this.logInService.getEmail(),
-      'id': 1
-    };
-    this.usersService.editUser(usr);
+  setCurrentUser(user) {
+    user.token = this.logInService.getToken();
+    this.usersService.editUser(user);
     this.logInService.editLogged(true);
   }
   showMessage(message: string, type: string) {
