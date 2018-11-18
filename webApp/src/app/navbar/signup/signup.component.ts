@@ -131,7 +131,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
       response => {
         response.email = email;
         this.showMessage('Bienvenido!', 'success');
-        this.logInService.setToken(response.email, response.token);
+        this.logInService.setToken(response.token);
         this.setCurrentUser(response.user);
       }, error => {
         console.log(error);

@@ -6,6 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { AppService } from './app.component.service';
 
+
 const TIMEOUT = 5000;
 
 @Component({

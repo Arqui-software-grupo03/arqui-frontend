@@ -23,6 +23,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '@env/environment';
+import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-5.x';
+import * as  cloudinary from 'cloudinary-core';
+import {FileUploadModule} from 'ng2-file-upload';
+import cloudinaryConfiguration from './../cloudinary-config';
 
 @NgModule({
   declarations: [
@@ -49,6 +53,8 @@ import { environment } from '@env/environment';
     AngularFireAuthModule,
     AngularFireMessagingModule,
     AngularFireModule.initializeApp(environment.firebase),
+    CloudinaryModule.forRoot(cloudinary, cloudinaryConfiguration),
+    FileUploadModule,
     ],
   providers: [ AppService ],
   bootstrap: [ AppComponent ]
