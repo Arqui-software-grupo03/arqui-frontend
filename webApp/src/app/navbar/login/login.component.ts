@@ -92,4 +92,17 @@ export class LogInComponent implements OnInit {
     }
   }
 
+  async updateFCMToken(user) {
+    if (!user.user.fcmTokens) {
+      let usr: any;
+      usr = await this.usersService.patchUserFCMTokens(user.user.id, []).toPromise().then().catch(err => console.log(err));
+      if (usr) {
+        user.user.fcmTokens = usr.fcmTokens;
+        console.log('jere');
+      } else {
+        console.log('jhjj');
+      }
+    }
+  }
+
 }
