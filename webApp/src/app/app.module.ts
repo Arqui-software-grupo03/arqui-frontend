@@ -23,6 +23,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '@env/environment';
+import { Ng2CloudinaryModule } from 'ng2-cloudinary';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { environment } from '@env/environment';
     SidebarModule,
     UsersModule,
     AuthModule,
+    FormsModule,
     InfiniteScrollModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -49,6 +52,7 @@ import { environment } from '@env/environment';
     AngularFireAuthModule,
     AngularFireMessagingModule,
     AngularFireModule.initializeApp(environment.firebase),
+    Ng2CloudinaryModule,
     ],
   providers: [ AppService ],
   bootstrap: [ AppComponent ]

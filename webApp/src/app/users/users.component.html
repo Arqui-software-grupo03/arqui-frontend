@@ -11,6 +11,9 @@
   </div>
 </div>
 
+<input type="file" ng2FileSelect [uploader]="uploader" accept="image/*;capture=camera">
+<button [disabled]="loading" (click)="upload()" class="btn btn-success mt-3">Upload</button>
+
 <div class="container">
   <ol>
     <li>Aca irian los posts del usuario</li>

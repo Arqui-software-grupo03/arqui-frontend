@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from './users.service';
+import { CloudinaryOptions, CloudinaryUploader } from 'ng2-cloudinary';
 import * as $ from 'jquery';
 
 declare var jQuery: any;
@@ -11,6 +12,11 @@ declare var jQuery: any;
 })
 export class UsersComponent implements OnInit {
   user;
+  uploader: CloudinaryUploader = new CloudinaryUploader(
+     new CloudinaryOptions({ cloudName: 'djc5vnrki', uploadPreset: 'oiw15i7w' })
+    );
+   
+  loading: any;
   constructor(private usersService: UsersService) { }
 
   ngOnInit() {
@@ -22,6 +28,18 @@ export class UsersComponent implements OnInit {
     );
     this.addjQueryTooltip();
   }
+
+  upload(){
+    this.loading = true;
+    this.uploader.uploadAll();
+    this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any): any => {
+        let res: any = JSON.parse(response);
+        console.log(res);
+      };
+    this.uploader.onErrorItem = function(fileItem, response, status, headers) {
+         console.info('onErrorItem', fileItem, response, status, headers);
+      };
+   }
 
   getData() {
     this.user.followers = 10;
