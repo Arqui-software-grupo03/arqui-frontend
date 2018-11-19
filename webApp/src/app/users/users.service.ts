@@ -27,6 +27,14 @@ export class UsersService {
     const url = `${this.usersUrl}/`;
     return this.http.post(url, body, this.httpOptions).pipe(catchError(this.errorHandler));
   }
+  patchUserFCMTokens(userId, fcmTokensArray) {
+    const body = {
+      'fcmTokens': fcmTokensArray
+    };
+    const url = `${this.usersUrl}/${userId}/`;
+    return this.http.patch(url, body, this.appService.getHttpOptionsWithToken()).pipe(catchError(this.errorHandler));
+  }
+
   getUserById(userId: number) {
     const url = `${this.usersUrl}/${userId}/`;
     this.httpOptions = this.appService.getHttpOptionsWithToken();
