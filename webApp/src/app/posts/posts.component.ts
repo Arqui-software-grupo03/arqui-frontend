@@ -75,6 +75,18 @@ export class PostsComponent implements OnInit, OnChanges, OnDestroy {
     );
   }
 
+  unFollowTopic() {
+    this.topicService.unsubscribeUserToTopic(+this.topicId, this.user.id).subscribe(
+      status => {
+        this.isUserSubscribed = false;
+      },
+      error => {
+        this.showMessage('Error al intentar dejar de seguir el topic. Intente nuevamente.', 'danger');
+        console.log(error);
+      }
+    );
+  }
+
   async getTopicSubscribers() {
     let subscribers: any;
     subscribers = await this.topicService.getAllSubscribersFromTopic(this.topicId).toPromise().then().catch(err => console.log(err));
