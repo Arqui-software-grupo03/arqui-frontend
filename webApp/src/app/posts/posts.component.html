@@ -3,7 +3,7 @@
     <div class="col-md-4">
     </div>
     <div class="col-md-4">
-      <h2 class="text-center">{{topicName}}</h2>
+      <h2 class="text-center">{{topicName}} <i class="fa fa-check click" [ngClass]="{'fa-times': isUserSubscribed}" (click)="followTopic()" data-toggle="tooltip" data-placement="top" title="{{ isUserSubscribed ? 'Dejar de seguir el topic' : 'Seguir el topic' }}"></i> </h2>
     </div>
     <div class="col-md-4">
       <form class="form-inline my-2 my-lg-0">
