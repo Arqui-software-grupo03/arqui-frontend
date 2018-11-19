@@ -2,15 +2,16 @@ import { Component, OnInit, NgZone, Input } from '@angular/core';
 import { UsersService } from './users.service';
 import * as $ from 'jquery';
 import { Cloudinary } from '@cloudinary/angular-5.x';
-import { FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
+import { FileUploader, FileUploaderOptions, ParsedResponseHeaders, FileSelectDirective, FILE_UPLOAD_DIRECTIVES } from 'ng2-file-upload';
 import { HttpClient } from '@angular/common/http';
+import { CloudinaryOptions, CloudinaryUploader } from 'ng2-cloudinary';
 
 declare var jQuery: any;
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
 
@@ -19,6 +20,11 @@ export class UsersComponent implements OnInit {
 
   user;
   private uploader: FileUploader;
+
+  uploader2: CloudinaryUploader = new CloudinaryUploader(
+     new CloudinaryOptions({ cloudName: 'CLOUDINARY CLOUD NAME', uploadPreset: 'CLOUDINARY UPLOAD PRESET' })
+    );
+  loading: any;
 
   constructor(
     private usersService: UsersService,

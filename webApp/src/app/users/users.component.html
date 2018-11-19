@@ -19,6 +19,7 @@
         <div class="upload_button_holder">
           <label class="upload_button" for="fileupload">Upload</label>
           <!-- onChange hanlder resets the input value to get the change event when uploading the same file consecutively -->
+          <input type="file" id="fileupload" #fileInput ng2FileSelect [style.display]="'none'" [uploader]="uploader"/>
         </div>
 
       </div>

@@ -27,6 +27,7 @@ import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@clo
 import * as  cloudinary from 'cloudinary-core';
 import {FileUploadModule} from 'ng2-file-upload';
 import cloudinaryConfiguration from './../cloudinary-config';
+import { Ng2CloudinaryModule } from 'ng2-cloudinary';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import cloudinaryConfiguration from './../cloudinary-config';
     AngularFireModule.initializeApp(environment.firebase),
     CloudinaryModule.forRoot(cloudinary, cloudinaryConfiguration),
     FileUploadModule,
+    Ng2CloudinaryModule,
     ],
   providers: [ AppService ],
   bootstrap: [ AppComponent ]
