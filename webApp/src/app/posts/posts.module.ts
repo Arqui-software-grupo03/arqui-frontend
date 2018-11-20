@@ -20,6 +20,7 @@ import { ThreadFormComponent } from './thread/form/threadForm.component';
   ],
   exports: [
     PostsComponent,
+    PostComponent
   ],
   providers: [
     PostsService
