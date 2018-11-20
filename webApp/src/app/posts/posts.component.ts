@@ -28,7 +28,7 @@ export class PostsComponent implements OnInit, OnChanges, OnDestroy {
     this.postsService.castTopicPosts.subscribe(
       posts => this.postsArray = posts
     );
-    console.log(this.user);
+    // console.log(this.user);
     this.addjQueryTooltip();
     await this.getTopicSubscribers();
     await this.getPostsfromTopic();
