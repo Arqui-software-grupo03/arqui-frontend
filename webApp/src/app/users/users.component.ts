@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import * as $ from 'jquery';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostsService } from '@app/posts/posts.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 declare var jQuery: any;
 
@@ -15,8 +16,10 @@ export class UsersComponent implements OnInit {
   currentUser;
   user;
   postsArray;
+  following;
   constructor(private usersService: UsersService, private route: ActivatedRoute,
-              private routerNav: Router, private postsService: PostsService) {
+              private routerNav: Router, private postsService: PostsService,
+              private flashMessage: FlashMessagesService) {
     this.route.data.subscribe(
       res => {
         if (res.user) {
@@ -44,9 +47,11 @@ export class UsersComponent implements OnInit {
         }
       }
     );
-    setTimeout(
+    this.following = this.user.followers.filter(e => e.id === this.currentUser.id).length > 0 ? true : false;
+    this.user.url = this.user.url ? this.user.url : 'https://s17.postimg.cc/xcbukrwdr/Hugh_Jackman_f.jpg';
+    /* setTimeout(
       () => this.getData(), 50
-    );
+    ); */
     await this.getUserPosts();
     this.addjQueryTooltip();
   }
@@ -73,5 +78,22 @@ export class UsersComponent implements OnInit {
     } else {
       this.postsArray = [];
     }
+  }
+
+  async followUser() {
+    const response = await this.usersService.followUser(this.user.id).toPromise().then().catch(err => console.log(err));
+    if (response) {
+      this.following = !this.following;
+    } else {
+      this.showMessage('Ocurrió un error. Intente nuevamente', 'danger');
+    }
+  }
+  showMessage(message: string, type: string) {
+    this.flashMessage.show(message, {
+      cssClass: `alert-${type}`,
+      timeout: 5000,
+      showCloseBtn: true,
+      closeOnClick: true
+    });
   }
 }

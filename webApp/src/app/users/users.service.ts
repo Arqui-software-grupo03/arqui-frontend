@@ -41,6 +41,11 @@ export class UsersService {
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
+  followUser(userId: number) {
+    const url = `${this.usersUrl}/${userId}/followers/`;
+    return this.http.post(url, {}, this.appService.getHttpOptionsWithToken()).pipe(catchError(this.errorHandler));
+  }
+
   editUser(user: any) {
     this.user.next(user);
   }
