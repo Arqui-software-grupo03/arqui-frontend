@@ -137,3 +137,8 @@ html {
 .body-stats:hover {
   transform: translateY(-0.12rem) scale(1.025);
 }
+
+.scroll-container {
+  overflow-y: scroll;
+  height: 65vh;
+}

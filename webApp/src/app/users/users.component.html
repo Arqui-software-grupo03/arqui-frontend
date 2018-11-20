@@ -9,11 +9,9 @@
     <span class="body-stats" data-toggle="tooltip" data-placement="left" title="Ver posts">Posts <span>{{user.following}}</span></span>
     <div class="u-clearfix"></div>
   </div>
-</div>
-
-<div class="container">
-  <ol>
-    <li>Aca irian los posts del usuario</li>
-    <li>1</li>
-  </ol>
+  <div class="scroll-container">
+    <div *ngFor="let post of postsArray" id="posts-body">
+      <app-post [postId]="post.post_id"></app-post>
+    </div>
+  </div>
 </div>
