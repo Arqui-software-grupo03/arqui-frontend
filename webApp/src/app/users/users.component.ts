@@ -37,7 +37,7 @@ export class UsersComponent implements OnInit {
         if (!this.route.snapshot.params['userId']) {
           this.user = usr;
         }
-        if (+this.route.snapshot.params['userId'] === usr.id) {
+        if (+this.route.snapshot.params['userId'] === this.currentUser.id) {
           this.routerNav.navigate(['profile']);
         }
       }
