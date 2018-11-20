@@ -1,19 +1,18 @@
 <div class="container"> 
   <div class="body">
-    <img src="{{user.url}}" alt="Hugh Jackman" class="body-image" />
+    <img src="{{ user.url }}" alt="Hugh Jackman" class="body-image" />
     <div class="body-action-button u-flex-center">
       <i class="fa fa-wrench fa-2x"></i>
     </div>
-    <span class="body-stats" data-toggle="tooltip" data-placement="left" title="Ver seguidores">Followers <span>{{user.followers}}</span></span>
-    <span class="body-stats" data-toggle="tooltip" data-placement="left" title="Ver seguidos">Following <span>{{user.following}}</span></span>
+    <span class="body-stats" data-toggle="tooltip" data-placement="left" title="Ver seguidores">Followers <span>{{user.followers.length}}</span></span>
+    <span class="body-stats" data-toggle="tooltip" data-placement="left" title="Ver seguidos">Following <span>{{user.following? user.following.length : 0}}</span></span>
     <span class="body-stats" data-toggle="tooltip" data-placement="left" title="Ver posts">Posts <span>{{user.following}}</span></span>
+    <span *ngIf="user.id !== currentUser.id" class="body-stats" (click)="followUser()" > {{following? "Dejar de seguir" : "Seguir"}} </span>
     <div class="u-clearfix"></div>
   </div>
-</div>
-
-<div class="container">
-  <ol>
-    <li>Aca irian los posts del usuario</li>
-    <li>1</li>
-  </ol>
+  <div class="scroll-container">
+    <div *ngFor="let post of postsArray" id="posts-body">
+      <app-post [postId]="post.post_id"></app-post>
+    </div>
+  </div>
 </div>

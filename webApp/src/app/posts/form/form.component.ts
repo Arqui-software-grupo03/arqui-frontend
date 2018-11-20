@@ -38,7 +38,7 @@ export class FormComponent implements OnInit {
         console.log(`El problema al crear el post es: ${err}`);
       });
     if (post) {
-      const topic = await this.topicService.addPostToTopic(this.topicId, post.id).toPromise().then()
+      const topic = await this.topicService.addPostToTopic(this.topicId, post.post_id).toPromise().then()
       .catch( err => {
         this.showMessage('2 Hubo un problema al ingresar el post, intente nuevamente.', 'danger');
         console.log(err);
