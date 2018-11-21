@@ -66,7 +66,6 @@ export class PostsComponent implements OnInit, OnChanges, OnDestroy {
     this.topicService.subscribeUserToTopic(+this.topicId, +this.user.id).subscribe(
       status => {
         this.isUserSubscribed = !this.isUserSubscribed;
-        console.log(status);
       },
       error => {
         this.showMessage('Error al intentar seguir el topic. Intente nuevamente.', 'danger');

@@ -42,7 +42,7 @@ export class TopicModalComponent implements OnInit {
         const response = this.topicService.subscribeUserToTopic(topic.topic_id, +this.user.id).toPromise()
           .then().catch((err) => console.log(err));
         if (response) {
-          
+
         }
       },
       err => {
