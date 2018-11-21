@@ -67,7 +67,7 @@ export class PostComponent implements OnInit {
   }
 
   emitNewAnswer(newA) {
-    this.answers.push(newA);
+    this.answers = [...this.answers, newA];
     this.threadCounter = this.answers.length;
     this.showThread = true;
   }

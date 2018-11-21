@@ -32,15 +32,20 @@ export class ThreadComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-
+    if (changes.answers) {
+      this.answers = changes.answers.currentValue;
+      this.getAnswersInfo();
+    }
   }
-  getAnswersInfo() {
+  async getAnswersInfo() {
     this.answers.map(
       async answer => {
-        answer['user'] = await this.getSenderInfo(answer.user_id);
-        const d = new Date(answer.pub_date);
-        answer['date'] = `${d.getDate()} ${this.monthNames[d.getMonth()]}`;
-        answer['hour'] = `${d.getHours()}:${d.getMinutes()}`;
+        if (!answer.user) {
+          answer['user'] = await this.getSenderInfo(answer.user_id);
+          const d = new Date(answer.pub_date);
+          answer['date'] = `${d.getDate()} ${this.monthNames[d.getMonth()]}`;
+          answer['hour'] = `${d.getHours()}:${d.getMinutes()}`;
+        }
       }
     );
   }

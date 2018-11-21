@@ -4,18 +4,18 @@
     </div>
     <div class="col-md-10 row">
       <div class="col-md-2 text-center ">
-        <img [src]="userPhotoUrl" class="img">
+        <!-- <img [src]="userPhotoUrl" class="img"> -->
       </div>
       <div class="col-md-10 comment ">
         <div class="row">
           <div class="col-md-8 eliminate-padding">
-            <h6 class="response">{{answer.user.username}}: </h6>
+            <h6 class="response">{{answer.user?.username? answer.user.username : ""}}: </h6>
           </div>
           <div class="col-md-4">
-            <span class="time">{{answer.hour}}</span> | <span class="time">{{answer.date}}</span>
+            <span class="time">{{answer?.hour ? answer.hour : "N/A" }}</span> | <span class="time">{{answer?.date ? answer.date : "N/A"}}</span>
           </div>
         </div>
-        <p class="message">{{answer.content}}</p>
+        <p class="message">{{answer?.content ? answer.content : ""}}</p>
       </div>
     </div>
   </div>
