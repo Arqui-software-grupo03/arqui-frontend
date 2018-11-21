@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import * as $ from 'jquery';
 import { TopicService } from '../topic.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { UsersService } from '@app/users/users.service';
 
 declare var jQuery: any;
 
@@ -20,9 +21,12 @@ export class TopicModalComponent implements OnInit {
       'active': this.validInputs.title && this.validInputs.description,
   };
   waitingResponse = false;
-  constructor(private topicService: TopicService, private flashMessage: FlashMessagesService) { }
+  user;
+  constructor(private topicService: TopicService, private flashMessage: FlashMessagesService,
+              private usersService: UsersService) { }
 
   ngOnInit() {
+    this.usersService.castUser.subscribe(user => this.user = user);
     this.addjQueryTooltip();
   }
 
@@ -35,6 +39,11 @@ export class TopicModalComponent implements OnInit {
         this.topic = {'title': '', 'description': ''};
         this.topicService.addTopicToCastTopics(topic);
         jQuery('#topicModal').hide();
+        const response = this.topicService.subscribeUserToTopic(topic.topic_id, +this.user.id).toPromise()
+          .then().catch((err) => console.log(err));
+        if (response) {
+          
+        }
       },
       err => {
         this.showMessage('Error creando topic. Intente nuevamente', 'danger');
