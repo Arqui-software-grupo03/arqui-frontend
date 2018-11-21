@@ -23,6 +23,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '@env/environment';
+import { FireBaseLocalService } from './firebase.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,10 @@ import { environment } from '@env/environment';
     AngularFireMessagingModule,
     AngularFireModule.initializeApp(environment.firebase),
     ],
-  providers: [ AppService ],
+  providers: [
+    AppService,
+    FireBaseLocalService
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
