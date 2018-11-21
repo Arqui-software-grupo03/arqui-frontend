@@ -2,9 +2,10 @@ import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { LogInService } from './navbar/login/login.service';
 import { UsersService } from './users/users.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, mergeMapTo } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { AppService } from './app.component.service';
+import { FireBaseLocalService } from './firebase.service';
 
 const TIMEOUT = 5000;
 
@@ -15,13 +16,13 @@ const TIMEOUT = 5000;
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'app';
-  user = {};
+  user: any;
   private ngUnsubscribe = new Subject();
   public loading = true;
-
+  message;
   constructor(private logInService: LogInService, private flashMessage: FlashMessagesService,
     private usersService: UsersService, private cdRef: ChangeDetectorRef,
-    private appService: AppService) {
+    private appService: AppService, private fbService: FireBaseLocalService) {
   }
 
   ngOnInit() {
@@ -30,8 +31,13 @@ export class AppComponent implements OnInit, OnDestroy {
     );
     this.usersService.castUser.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       usr => {
-        // this.loading = true;
         this.user = usr;
+        if (this.user.id !== undefined) {
+          // if (this.user.fcmTokens.length === 0) {
+            this.fbService.requestPermission(`user-${this.user.id}`);
+            // this.fbService.receiveMessage();
+          // }
+        }
       }
     );
     if (this.logInService.getToken()) {
@@ -53,6 +59,7 @@ export class AppComponent implements OnInit, OnDestroy {
     } else {
       this.appService.editLoading(false);
     }
+    this.message = this.fbService.currentMessage;
   }
   ngOnDestroy() {
     this.cdRef.detach();
