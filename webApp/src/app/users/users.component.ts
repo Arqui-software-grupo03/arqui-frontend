@@ -72,9 +72,9 @@ export class UsersComponent implements OnInit {
   }
 
   async getUserPosts() {
-    const posts = await this.postsService.getAllPosts().toPromise().then().catch((err) => console.log(err));
+    const posts = await this.postsService.getUserPosts(this.user.id).toPromise().then().catch((err) => console.log(err));
     if (posts) {
-      this.postsArray = posts.filter(post => post.user_id === this.user.id);
+      this.postsArray = posts; // posts.filter(post => post.user_id === this.user.id);
     } else {
       this.postsArray = [];
     }
