@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from './users.service';
+import { CloudinaryOptions, CloudinaryUploader } from 'ng2-cloudinary';
 import * as $ from 'jquery';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostsService } from '@app/posts/posts.service';
@@ -15,6 +16,12 @@ declare var jQuery: any;
 export class UsersComponent implements OnInit {
   currentUser;
   user;
+  fileChoosen;
+  uploader: CloudinaryUploader = new CloudinaryUploader(
+     new CloudinaryOptions({ cloudName: 'djc5vnrki', uploadPreset: 'oiw15i7w' })
+    );
+
+  loading: any;
   postsArray;
   following;
   constructor(private usersService: UsersService, private route: ActivatedRoute,
@@ -56,6 +63,31 @@ export class UsersComponent implements OnInit {
     this.addjQueryTooltip();
   }
 
+   upload() {
+    this.loading = true;
+    this.uploader.uploadAll();
+    this.uploader.onSuccessItem =  (item: any, response: string, status: number, headers: any): any => {
+        const res: any = JSON.parse(response);
+        this.user.imageUrl = res.secure_url;
+        this.usersService.editUser(this.user);
+        this.usersService.patchUser(this.user).subscribe(
+          user => {
+            console.log('succes');
+            this.showMessage('Imagen cambiada', 'success');
+            this.loading = false;
+            this.fileChoosen = false;
+          }, error => {
+            this.loading = false;
+            this.fileChoosen = true;
+          }
+        );
+      };
+    this.uploader.onErrorItem = function(fileItem, response, status, headers) {
+        this.loading = false;
+         console.log('onErrorItem', fileItem, response, status, headers);
+      };
+   }
+
   getData() {
     this.user.followers = 10;
     this.user.following = 20;
@@ -69,6 +101,9 @@ export class UsersComponent implements OnInit {
     }).on('click', () => {
       jQuery(jQuery('[data-toggle="tooltip"]')).tooltip('hide');
     });
+  }
+  changeFile() {
+    this.fileChoosen = true;
   }
 
   async getUserPosts() {

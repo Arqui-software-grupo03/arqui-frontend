@@ -9,7 +9,7 @@
   </div>
   <div class="col-md-10 border-top row">
     <div class="col-md-2 text-right">
-      <img [src]="userPhotoUrl" class="img">
+      <img [src]="user.imageUrl || user.defaultImageUrl" class="img">
     </div>
     <div class="col-md-10 input-form">
       <input name="text" value="{{threadText}}" (keyup)="keyUp($event.target.value)" type="text" (keydown)="keyPressed($event)" class="form-control form-control-sm" placeholder="Escribe un comentario...">

@@ -23,6 +23,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '@env/environment';
+import { Ng2CloudinaryModule } from 'ng2-cloudinary';
+import { FormsModule } from '@angular/forms';
 import { FireBaseLocalService } from './firebase.service';
 
 @NgModule({
@@ -38,6 +40,7 @@ import { FireBaseLocalService } from './firebase.service';
     SidebarModule,
     UsersModule,
     AuthModule,
+    FormsModule,
     InfiniteScrollModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -50,6 +53,7 @@ import { FireBaseLocalService } from './firebase.service';
     AngularFireAuthModule,
     AngularFireMessagingModule,
     AngularFireModule.initializeApp(environment.firebase),
+    Ng2CloudinaryModule,
     ],
   providers: [
     AppService,

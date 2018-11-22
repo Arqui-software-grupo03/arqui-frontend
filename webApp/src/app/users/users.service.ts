@@ -47,7 +47,13 @@ export class UsersService {
   }
 
   editUser(user: any) {
+    user.defaultImageUrl = 'assets/default-user-image.png';
     this.user.next(user);
+    this.httpOptions = this.appService.getHttpOptionsWithToken();
+  }
+  patchUser(user: any) {
+    const url = `${this.usersUrl}/${user.id}/`;
+    return this.http.patch(url, user, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
   errorHandler(error: HttpErrorResponse) {
