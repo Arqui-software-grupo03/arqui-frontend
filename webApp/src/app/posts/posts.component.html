@@ -3,7 +3,12 @@
     <div class="col-md-4">
     </div>
     <div class="col-md-4">
-      <h2 class="text-center">{{topicName}} <i class="fa fa-check click" [ngClass]="{'fa-times': isUserSubscribed}" (click)="isUserSubscribed ? unFollowTopic() : followTopic()" data-toggle="tooltip" data-placement="top" title="{{ isUserSubscribed ? 'Dejar de seguir el topic' : 'Seguir el topic' }}"></i> </h2>
+      <h2 class="text-center">{{topicName}} 
+        <span data-toggle="tooltip" data-placement="top" title="{{ isUserSubscribed ? 'Dejar de seguir el topic' : 'Seguir el topic' }}">
+            <i class="fa fa-check click" [ngClass]="{'fa-times': isUserSubscribed}" (click)="isUserSubscribed ? unFollowTopic() : followTopic()"></i> 
+        </span>
+        
+      </h2>
     </div>
     <div class="col-md-4">
       <form class="form-inline my-2 my-lg-0">

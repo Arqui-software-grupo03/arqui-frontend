@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PostsService } from './posts.service';
 import { UsersService } from '@app/users/users.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import * as $ from 'jquery';
 declare var jQuery: any;
 
 @Component({
@@ -29,9 +30,9 @@ export class PostsComponent implements OnInit, OnChanges, OnDestroy {
       posts => this.postsArray = posts
     );
     // console.log(this.user);
-    this.addjQueryTooltip();
     await this.getTopicSubscribers();
     await this.getPostsfromTopic();
+    this.addjQueryTooltip();
   }
   async ngOnChanges(changes: SimpleChanges) {
     this.postsService.updateCastTopicPosts([]);
