@@ -21,7 +21,6 @@ export class ThreadFormComponent implements OnInit, OnChanges {
 
   constructor(private threadService: ThreadService, private usersService: UsersService, private topicService: TopicService,
               private postsService: PostsService) {
-    this.userPhotoUrl = '../../assets/chau.jpg';
   }
 
   ngOnInit() {

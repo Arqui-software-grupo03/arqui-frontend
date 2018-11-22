@@ -53,6 +53,7 @@ export class PostComponent implements OnInit {
       await this.getAnswers();
       if (user) {
         this.sender = user;
+        this.sender.defaultImageUrl = 'assets/default-user-image.png';
         const d = new Date(this.post.pub_date);
         this.date = `${d.getDate()} ${this.monthNames[d.getMonth()]}`;
         this.hour = `${d.getHours()}:${d.getMinutes()}`;

@@ -8,18 +8,16 @@
     <span class="body-stats" data-toggle="tooltip" data-placement="left" title="Ver seguidos">Following <span>{{user.following? user.following.length : 0}}</span></span>
     <span class="body-stats" data-toggle="tooltip" data-placement="left" title="Ver posts">Posts <span>{{user.following}}</span></span>
     <span *ngIf="user.id !== currentUser.id" class="body-stats" (click)="followUser()" > {{following? "Dejar de seguir" : "Seguir"}} </span>
-    <div class="u-clearfix"></div>
+    <div class="u-clearfix">
+      <input type="file" ng2FileSelect [uploader]="uploader" accept="image/*;capture=camera">
+      <button [disabled]="loading" (click)="upload()" class="btn btn-success mt-3">Upload</button>
+    </div>
   </div>
 </div>
 
-<input type="file" ng2FileSelect [uploader]="uploader" accept="image/*;capture=camera">
-<button [disabled]="loading" (click)="upload()" class="btn btn-success mt-3">Upload</button>
+
 
 <div class="container">
-  <ol>
-    <li>Aca irian los posts del usuario</li>
-    <li>1</li>
-  </ol>
   <div class="scroll-container">
     <div *ngFor="let post of postsArray" id="posts-body">
       <app-post [postId]="post.post_id"></app-post>

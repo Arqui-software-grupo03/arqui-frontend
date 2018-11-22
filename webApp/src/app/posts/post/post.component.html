@@ -1,7 +1,7 @@
 <div class="border" *ngIf="!loading">
   <div class="row">
     <div class="col-md-2 text-center">
-      <img [src]="userPhotoUrl" class="img">
+      <img [src]="sender.imageUrl || sender.defaultImageUrl" class="img">
       <div class="topic">{{topicName}}</div>
     </div>
     <div class="col-md-10 comment">
