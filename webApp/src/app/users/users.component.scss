@@ -96,7 +96,10 @@ html {
   margin: -90px 0 20px;
   position: relative;
   z-index: 2;
-  max-width: 10%;
+  max-width: 100%;
+}
+.body-image:hover {
+  cursor: pointer;
 }
 
 .body-action-button {
@@ -142,4 +145,15 @@ html {
 .scroll-container {
   overflow-y: scroll;
   height: 65vh;
+}
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+label{
+  width: 10%;
 }

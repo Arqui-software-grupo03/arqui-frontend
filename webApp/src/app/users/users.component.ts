@@ -16,6 +16,7 @@ declare var jQuery: any;
 export class UsersComponent implements OnInit {
   currentUser;
   user;
+  fileChoosen;
   uploader: CloudinaryUploader = new CloudinaryUploader(
      new CloudinaryOptions({ cloudName: 'djc5vnrki', uploadPreset: 'oiw15i7w' })
     );
@@ -67,18 +68,22 @@ export class UsersComponent implements OnInit {
     this.uploader.uploadAll();
     this.uploader.onSuccessItem =  (item: any, response: string, status: number, headers: any): any => {
         const res: any = JSON.parse(response);
-        console.log(res.secure_url);
         this.user.imageUrl = res.secure_url;
-        console.log(this.user);
         this.usersService.editUser(this.user);
         this.usersService.patchUser(this.user).subscribe(
           user => {
-            console.log(user);
             console.log('succes');
+            this.showMessage('Imagen cambiada', 'success');
+            this.loading = false;
+            this.fileChoosen = false;
+          }, error => {
+            this.loading = false;
+            this.fileChoosen = true;
           }
         );
       };
     this.uploader.onErrorItem = function(fileItem, response, status, headers) {
+        this.loading = false;
          console.log('onErrorItem', fileItem, response, status, headers);
       };
    }
@@ -96,6 +101,9 @@ export class UsersComponent implements OnInit {
     }).on('click', () => {
       jQuery(jQuery('[data-toggle="tooltip"]')).tooltip('hide');
     });
+  }
+  changeFile() {
+    this.fileChoosen = true;
   }
 
   async getUserPosts() {

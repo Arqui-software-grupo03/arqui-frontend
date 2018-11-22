@@ -1,6 +1,13 @@
 <div class="container"> 
   <div class="body">
-    <img src="{{user.imageUrl}}" alt="user image" class="body-image" />
+    <div class="row">
+      <label for="file" data-toggle="tooltip" data-placement="left" title="Cambiar imagen">
+        <img src="{{user.imageUrl || user.defaultImageUrl}}" alt="user image" class="body-image" />
+      </label>
+      <input type="file" name="file" (click)="changeFile()" id="file" ng2FileSelect [uploader]="uploader" accept="image/*;capture=camera" class="inputfile">
+      <button *ngIf="fileChoosen" [disabled]="loading" (click)="upload()" class="btn btn-success mt-3">Actualizar imagen</button>
+    </div>
+    
     <div class="body-action-button u-flex-center">
       <i class="fa fa-wrench fa-2x"></i>
     </div>
@@ -9,8 +16,6 @@
     <span class="body-stats" data-toggle="tooltip" data-placement="left" title="Ver posts">Posts <span>{{user.following}}</span></span>
     <span *ngIf="user.id !== currentUser.id" class="body-stats" (click)="followUser()" > {{following? "Dejar de seguir" : "Seguir"}} </span>
     <div class="u-clearfix">
-      <input type="file" ng2FileSelect [uploader]="uploader" accept="image/*;capture=camera">
-      <button [disabled]="loading" (click)="upload()" class="btn btn-success mt-3">Upload</button>
     </div>
   </div>
 </div>
