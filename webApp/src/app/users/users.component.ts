@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
   uploader: CloudinaryUploader = new CloudinaryUploader(
      new CloudinaryOptions({ cloudName: 'djc5vnrki', uploadPreset: 'oiw15i7w' })
     );
-   
+
   loading: any;
   constructor(private usersService: UsersService) { }
 
@@ -29,15 +29,24 @@ export class UsersComponent implements OnInit {
     this.addjQueryTooltip();
   }
 
-  upload(){
+   upload() {
     this.loading = true;
     this.uploader.uploadAll();
-    this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any): any => {
-        let res: any = JSON.parse(response);
-        console.log(res);
+    this.uploader.onSuccessItem =  (item: any, response: string, status: number, headers: any): any => {
+        const res: any = JSON.parse(response);
+        console.log(res.secure_url);
+        this.user.imageUrl = res.secure_url;
+        console.log(this.user);
+        this.usersService.editUser(this.user);
+        this.usersService.patchUser(this.user).subscribe(
+          user => {
+            console.log(user);
+            console.log('succes');
+          }
+        );
       };
     this.uploader.onErrorItem = function(fileItem, response, status, headers) {
-         console.info('onErrorItem', fileItem, response, status, headers);
+         console.log('onErrorItem', fileItem, response, status, headers);
       };
    }
 

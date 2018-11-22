@@ -36,6 +36,11 @@ export class UsersService {
   editUser(user: any) {
     this.user.next(user);
   }
+  patchUser(user: any) {
+    const url = `${this.usersUrl}/${user.id}/`;
+    this.httpOptions = this.appService.getHttpOptionsWithToken();
+    return this.http.patch(url, this.httpOptions).pipe(catchError(this.errorHandler));
+  }
 
   errorHandler(error: HttpErrorResponse) {
     return throwError(error.status  || 'Server Error');
