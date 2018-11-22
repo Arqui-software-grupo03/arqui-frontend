@@ -23,6 +23,12 @@ export class PostsService {
     const url = `${this.postsUrl}/`;
     return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
   }
+
+  getUserPosts(userId) {
+    const url = `${this.postsUrl}/user/${userId}/`;
+    return this.http.get(url, this.httpOptions).pipe(catchError(this.errorHandler));
+  }
+
   createNewPost(content: string, userId): Observable<any> {
     const url = `${this.postsUrl}/`;
     const body = {

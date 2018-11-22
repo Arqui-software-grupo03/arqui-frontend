@@ -6,6 +6,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { TopicComponent } from '@app/topic/topic.component';
 import { Authenticate } from './auth/authenticate.guard';
 import { TopicPostsResolver } from './topic/topic.resolver';
+import { UserResolver } from './users/user.resolver';
 
 // Define routes for url: localhost:4200/anyRoute
 const routes: Routes = [
@@ -30,8 +31,16 @@ const routes: Routes = [
       component: UsersComponent,
       canActivate: [ Authenticate ]
     },
+    {
+      path: 'user/:userId',
+      component: UsersComponent,
+      canActivate: [ Authenticate ],
+      resolve: {
+        'user': UserResolver
+      }
+    },
     { path: '**',
-      component: NotFoundComponent
+      redirectTo: 'home'
     }
   ];
   @NgModule({

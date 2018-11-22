@@ -49,9 +49,10 @@ export class ThreadFormComponent implements OnInit, OnChanges {
   }
 
   async createAnswer() {
-    await this.threadService.createAnswer(this.post.id, this.user.id, this.threadText).toPromise().then(
+    await this.threadService.createAnswer(this.post.post_id, this.user.id, this.threadText).toPromise().then(
       ans => {
         this.newAnswer.emit(ans);
+        this.threadText = '';
       }
     ).catch(err => console.log(err));
     this.threadText = '';

@@ -64,8 +64,8 @@ export class TopicService {
   subscribeUserToTopic(topicId: number, userId: number) {
     const url = `${this.topicsUrl}/${topicId}/subscribers/`;
     const body = {
-      user_id: userId,
-      topic: topicId
+      'user_id': userId,
+      'topic_identifier': topicId
     };
     return this.http.post(url, body, this.httpOptions).pipe(catchError(this.errorHandler));
   }

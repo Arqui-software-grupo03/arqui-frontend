@@ -25,6 +25,7 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '@env/environment';
 import { Ng2CloudinaryModule } from 'ng2-cloudinary';
 import { FormsModule } from '@angular/forms';
+import { FireBaseLocalService } from './firebase.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,10 @@ import { FormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(environment.firebase),
     Ng2CloudinaryModule,
     ],
-  providers: [ AppService ],
+  providers: [
+    AppService,
+    FireBaseLocalService
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

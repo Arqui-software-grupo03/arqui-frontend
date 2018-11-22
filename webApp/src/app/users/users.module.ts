@@ -5,6 +5,7 @@ import { UsersService } from './users.service';
 import { SignupModule } from '@app/navbar/signup/signup.module';
 import { FileUploadModule } from 'ng2-file-upload';
 // import { usersRouting } from './user.routing';
+import { PostsModule } from '@app/posts/posts.module';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     SignupModule,
     FileUploadModule,
     // usersRouting
+    PostsModule
   ],
   declarations: [
     UsersComponent,

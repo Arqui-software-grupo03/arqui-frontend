@@ -114,7 +114,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
   async createUser(username: string, email: string, password: string) {
     await this.usersService.createNewUser(username, email, password).toPromise().then(
       user => {
-        this.usersService.editUser(user);
         this.showMessage('Cuenta creada satisfactoriamente!', 'success');
         this.logIn(user.email, password);
       }
