@@ -7,8 +7,9 @@ body {
     background: #fafafa;
 }
 
-.nav-item:hover{
+.nav-link:hover{
     color: black; 
+    cursor: pointer;
     font-weight: bold;
     #login, #signup {
         font-weight: normal;
